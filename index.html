@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Mechanical Engineer & FEA Specialist</title>
+    <title>Pratik Koirala, Ph.D. | Portfolio</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     
@@ -13,34 +13,77 @@
 
     <style>
         :root {
-            /* Your resume color: RGB 23, 80, 150 -> Hex #175096 */
             --cv-blue: #175096; 
             --text-dark: #333;
             --text-light: #666;
             --bg-light: #f9f9f9;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Roboto', sans-serif;
             color: var(--text-dark);
             line-height: 1.6;
             background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        /* --- Header / Hero Section --- */
-        header {
+        /* --- NAVIGATION BAR --- */
+        nav {
             background-color: var(--cv-blue);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .nav-brand {
             color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-            /* Adding a subtle gradient effect */
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.8);
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: 500;
+            padding: 5px 10px;
+            transition: all 0.3s;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            color: white;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 4px;
+        }
+
+        /* --- HERO HEADER (Your New Section) --- */
+        header {
             background: linear-gradient(135deg, var(--cv-blue) 0%, #0d2d57 100%);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            border-radius: 0 0 12px 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(23, 80, 150, 0.2);
         }
 
         header h1 {
@@ -55,6 +98,7 @@
             opacity: 0.9;
         }
 
+        /* Contact Links in Header */
         .contact-links {
             margin-top: 1.5rem;
         }
@@ -62,333 +106,310 @@
         .contact-links a {
             color: white;
             text-decoration: none;
-            margin: 0 10px;
-            font-size: 1.5rem;
+            margin: 0 15px;
+            font-size: 1.8rem; /* Made icons slightly larger */
             transition: all 0.3s ease;
+            display: inline-block;
         }
 
         .contact-links a:hover {
             transform: translateY(-3px);
             opacity: 0.8;
+            color: #dcecfb;
         }
 
-        /* --- Layout --- */
+        /* --- MAIN CONTAINER --- */
         .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem;
+            max-width: 1000px;
+            margin: 0 auto 2rem auto;
+            padding: 0 2rem;
+            flex: 1;
         }
 
-        section {
-            margin-bottom: 3rem;
+        /* --- TABS LOGIC --- */
+        .tab-content {
+            display: none; /* Hidden by default */
+            animation: fadeIn 0.5s;
+        }
+        .tab-content.active {
+            display: block; /* Show if active */
         }
 
-        /* --- CAROUSEL STYLES (New) --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- CAROUSEL STYLES --- */
         .swiper {
             width: 100%;
-            height: 400px; /* Adjust height of banner here */
-            margin-top: 2rem;
-            margin-bottom: 3rem;
+            height: 450px;
             border-radius: 12px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
-
         .swiper-slide {
-            text-align: center;
-            font-size: 18px;
             background: #fff;
-            /* Center slide content vertically */
             display: flex;
             justify-content: center;
             align-items: center;
         }
-
         .swiper-slide img {
-            display: block;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* IMPORTANT: Keeps images looking good without stretching */
-        }
-        
-        /* Customizing the little dots below the carousel */
-        .swiper-pagination-bullet-active {
-            background-color: var(--cv-blue) !important;
+            object-fit: cover;
         }
 
-
-        /* --- Section Titles --- */
-        .section-title {
-            color: var(--cv-blue);
-            font-size: 1.5rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 2px solid var(--cv-blue);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        /* --- About Section --- */
-        .about-text {
-            font-weight: 300;
-            font-size: 1.05rem;
-            text-align: justify;
-        }
-
-        /* --- Skills Grid --- */
-        .skills-grid {
+        /* --- ABOUT TAB STYLES --- */
+        .about-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            margin-top: 2rem;
         }
-
-        .skill-category h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-dark);
+        .profile-pic {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .tag {
-            background-color: #eef4fb; /* Light blue tint */
+        .section-header {
+            border-bottom: 2px solid var(--cv-blue);
             color: var(--cv-blue);
-            padding: 0.3rem 0.8rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            margin-top: 1.5rem;
+        }
+        .skill-tag {
+            display: inline-block;
+            background: #eef4fb;
+            color: var(--cv-blue);
+            padding: 5px 10px;
+            margin: 3px;
             border-radius: 4px;
             font-size: 0.9rem;
-            font-weight: 500;
-            transition: background-color 0.3s;
-        }
-        
-        .tag:hover {
-             background-color: #dcecfb;
         }
 
-        /* --- Projects --- */
-        .project-card {
-            background: var(--bg-light);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            border-left: 4px solid var(--cv-blue);
-            transition: transform 0.3s, box-shadow 0.3s;
+        /* --- RESEARCH TAB STYLES --- */
+        .publication-item {
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+            border-left: 3px solid #ddd;
+        }
+        .publication-title { font-weight: 700; color: #333; }
+        .publication-meta { font-style: italic; color: #666; font-size: 0.9rem; }
+
+        /* --- HOBBY TAB STYLES --- */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .photo-card {
+            background: white;
+            padding: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 6px;
+        }
+        .photo-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
         }
 
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 0.5rem;
-        }
-
-        .project-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--text-dark);
-        }
-
-        .project-tech {
-            font-size: 0.85rem;
-            color: var(--text-light);
-            font-style: italic;
-        }
-
-        .project-desc {
-            font-size: 0.95rem;
-            color: var(--text-dark);
-        }
-
-        /* --- Footer --- */
-        footer {
+        /* --- CONTACT TAB STYLES --- */
+        .contact-box {
             text-align: center;
-            padding: 2rem;
-            background-color: #f0f0f0;
-            font-size: 0.9rem;
-            color: var(--text-light);
+            padding: 3rem;
+            background: var(--bg-light);
+            border-radius: 12px;
         }
-        
-        /* Mobile adjustment */
-        @media (max-width: 600px) {
-            .project-header {
-                flex-direction: column;
-            }
-             .swiper {
-                height: 250px; /* Smaller banner on phones */
-            }
+        .contact-btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 12px 25px;
+            background-color: var(--cv-blue);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        .contact-btn:hover { background-color: #0d2d57; }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Simplified for mobile example */
+            .about-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Your Name, Ph.D.</h1>
-        <p>Mechanical Engineer | FEA Specialist | Manufacturing & Design</p>
-        
-        <div class="contact-links">
-            <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
-            <a href="mailto:your.email@example.com" title="Email"><i class="fas fa-envelope"></i></a>
+    <nav>
+        <div class="nav-brand">Pratik Koirala</div>
+        <div class="nav-links">
+            <button class="nav-btn active" onclick="openTab('home')">Home</button>
+            <button class="nav-btn" onclick="openTab('about')">About</button>
+            <button class="nav-btn" onclick="openTab('research')">Research</button>
+            <button class="nav-btn" onclick="openTab('hobby')">Hobby</button>
+            <button class="nav-btn" onclick="openTab('contact')">Contact</button>
         </div>
-    </header>
+    </nav>
 
     <div class="container">
-        
-        <div class="swiper mySwiper">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <img src="https://placehold.co/800x400/175096/FFFFFF?text=FEA+Simulation+Results" alt="FEA Project">
-              </div>
-              <div class="swiper-slide">
-                <img src="https://placehold.co/800x400/333333/FFFFFF?text=SEM+Micrograph+Analysis" alt="SEM Analysis">
-              </div>
-              <div class="swiper-slide">
-                <img src="https://placehold.co/800x400/666666/FFFFFF?text=Laser+Sintered+Prototype" alt="3D Printing">
-              </div>
-               <div class="swiper-slide">
-                <img src="https://placehold.co/800x400/175096/FFFFFF?text=Thermal+Imaging+Data" alt="Thermal Data">
-              </div>
+
+        <div id="home" class="tab-content active">
+            
+            <header>
+                <h1>Pratik Koirala, Ph.D.</h1>
+                <p>Polymer and Composites | FEA Specialist | Manufacturing & Design</p>
+                
+                <div class="contact-links">
+                    <a href="https://www.linkedin.com/in/prkoirala/" title="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/pratikoirala" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="mailto:prkoirala9@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </header>
+
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://placehold.co/800x450/175096/FFFFFF?text=Polymer+Composite+Analysis" alt="Slide 1"></div>
+                    <div class="swiper-slide"><img src="https://placehold.co/800x450/333/FFFFFF?text=FEA+Simulation+Model" alt="Slide 2"></div>
+                    <div class="swiper-slide"><img src="https://placehold.co/800x450/666/FFFFFF?text=Laser+Sintering+Process" alt="Slide 3"></div>
+                    <div class="swiper-slide"><img src="https://placehold.co/800x450/175096/FFFFFF?text=SEM+Microscopy" alt="Slide 4"></div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
             </div>
-            <div class="swiper-pagination"></div>
         </div>
-        <section>
-            <h2 class="section-title">Profile</h2>
-            <p class="about-text">
-                Mechanical Engineer with a Ph.D. in Manufacturing & Design from the University of Texas at Austin. 
-                I specialize in bridging the gap between hardware engineering and software automation. 
-                My expertise lies in Finite Element Analysis (FEA), advanced manufacturing processes (Laser Sintering), 
-                and developing Python/MATLAB algorithms for material characterization and image analysis.
+
+        <div id="about" class="tab-content">
+            <h2 class="section-header">About Me</h2>
+            
+            <div class="about-grid">
+                <div class="about-sidebar">
+                    <img src="https://placehold.co/300x300?text=Pratik+Koirala" alt="Pratik Koirala" class="profile-pic">
+                    <br><br>
+                    <p><strong>Location:</strong> Austin, TX</p>
+                    <p><strong>Email:</strong> prkoirala9@gmail.com</p>
+                </div>
+
+                <div class="about-main">
+                    <p>
+                        I am a Ph.D. holder in Mechanical Engineering, specializing in Polymer and Composites. 
+                        My work bridges the gap between hardware experimentation (Laser Sintering, 3D Printing) and software automation 
+                        (Python, MATLAB, FEA). I am passionate about solving complex material challenges using data-driven approaches.
+                    </p>
+
+                    <h3 class="section-header">Education</h3>
+                    <p><strong>Ph.D. Mechanical Engineering</strong> | University of Texas at Austin <br>
+                    <span style="color:#666">Focus: Laser Sintering of Conductive Inks & Polymer Composites</span></p>
+
+                    <h3 class="section-header">Technical Skills</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python (OpenCV, Automation)</span>
+                        <span class="skill-tag">MATLAB</span>
+                        <span class="skill-tag">Abaqus / Femap / ANSYS</span>
+                        <span class="skill-tag">LabVIEW</span>
+                        <span class="skill-tag">SEM / AFM / Raman Spectroscopy</span>
+                        <span class="skill-tag">Laser Sintering (DMD)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="research" class="tab-content">
+            <h2 class="section-header">Research Focus Areas</h2>
+            <ul>
+                <li><strong>Laser Sintering of Nanoparticle Inks:</strong> Optimization of conductive silver and graphene inks using DMD-based laser systems.</li>
+                <li><strong>Polymer & Composites:</strong> Structural analysis, failure modes, and void quantification in composite materials.</li>
+                <li><strong>Void Analysis & Metrology:</strong> Automated detection of micro-voids in sintered parts using Computer Vision (Python/OpenCV).</li>
+                <li><strong>Material Characterization:</strong> Thermal profiling (FLIR), 4-Probe conductivity, and capillary action studies.</li>
+            </ul>
+
+            <h2 class="section-header">Publications</h2>
+            <div class="publication-item">
+                <div class="publication-title">Title of Your Recent Paper Goes Here</div>
+                <div class="publication-meta">Published in [Journal Name], 2025. Pratik Koirala et al.</div>
+            </div>
+            <div class="publication-item">
+                <div class="publication-title">Another Research Paper Title</div>
+                <div class="publication-meta">Conference Proceedings of [Conference Name], 2024.</div>
+            </div>
+            </div>
+
+        <div id="hobby" class="tab-content">
+            <h2 class="section-header">Photography</h2>
+            <p style="margin-bottom: 1rem;">
+                Outside of the lab, I am an avid photographer. I enjoy capturing landscapes and macro details, 
+                which often parallels my interest in microscopy and visual analysis.
             </p>
-        </section>
-
-        <section>
-            <h2 class="section-title">Technical Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Simulation & Design</h3>
-                    <div class="tags">
-                        <span class="tag">Abaqus</span>
-                        <span class="tag">ANSYS</span>
-                        <span class="tag">Femap</span>
-                        <span class="tag">SolidWorks</span>
-                    </div>
+            
+            <div class="photo-grid">
+                <div class="photo-card">
+                    <img src="https://placehold.co/400x300?text=Photo+1" alt="Photography 1">
+                    <p style="padding:5px; font-size:0.9rem; color:#666;">Caption for photo 1</p>
                 </div>
-                <div class="skill-category">
-                    <h3>Programming</h3>
-                    <div class="tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">MATLAB</span>
-                        <span class="tag">LabVIEW</span>
-                        <span class="tag">C++</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Manufacturing</h3>
-                    <div class="tags">
-                        <span class="tag">Laser Sintering</span>
-                        <span class="tag">Composites</span>
-                        <span class="tag">SEM Analysis</span>
-                        <span class="tag">DMD Systems</span>
-                    </div>
+                <div class="photo-card">
+                    <img src="https://placehold.co/400x300?text=Photo+2" alt="Photography 2">
+                    <p style="padding:5px; font-size:0.9rem; color:#666;">Caption for photo 2</p>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section>
-            <h2 class="section-title">Selected Projects</h2>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <span class="project-title">Automated Void Analysis System</span>
-                    <span class="project-tech">Python, OpenCV, Machine Learning</span>
-                </div>
-                <p class="project-desc">
-                    Developed a computer vision pipeline to analyze Scanning Electron Microscope (SEM) images. 
-                    Created a Python script to automate the detection and quantification of micro-scale voids in composite materials, 
-                    replacing manual counting and significantly increasing data throughput.
-                </p>
+        <div id="contact" class="tab-content">
+            <h2 class="section-header">Contact Me</h2>
+            <div class="contact-box">
+                <p>I am currently open to opportunities in Advanced Manufacturing, R&D, and Mechanical Design.</p>
+                <br>
+                <a href="mailto:prkoirala9@gmail.com" class="contact-btn"><i class="fas fa-envelope"></i> Email Me</a>
+                <a href="https://www.linkedin.com/in/prkoirala/" class="contact-btn" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/pratikoirala" class="contact-btn" target="_blank"><i class="fab fa-github"></i> GitHub</a>
             </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <span class="project-title">4-Probe Material Conductivity Setup</span>
-                    <span class="project-tech">Python, Keithley Instruments, Automation</span>
-                </div>
-                <p class="project-desc">
-                    Designed and built an automated measurement system using Keithley 2401 and 2182A instruments. 
-                    Wrote custom control software to perform current sweeps and voltage measurements, enabling 
-                    precise characterization of conductive inks (Silver/Graphene) on flexible substrates.
-                </p>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <span class="project-title">Composite Failure Mode Educational Platform</span>
-                    <span class="project-tech">LLM Integration (RAG), Web Development</span>
-                </div>
-                <p class="project-desc">
-                    Developing a technical educational website to illustrate loading and failure types in composite materials. 
-                    Integrating a Retrieval-Augmented Generation (RAG) model to provide interactive explanations of complex failure theories.
-                </p>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <span class="project-title">Thermal Analysis with FLIR Integration</span>
-                    <span class="project-tech">Thermal Imaging, FLIR Research Studio</span>
-                </div>
-                <p class="project-desc">
-                    Conducted thermal profiling of laser sintering processes using FLIR A700 series cameras. 
-                    Troubleshot emissivity and reflection challenges to acquire accurate temperature data during rapid heating cycles.
-                </p>
-            </div>
-
-        </section>
-
-        <section>
-            <h2 class="section-title">Education</h2>
-            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                <strong>University of Texas at Austin</strong>
-                <span>Austin, TX</span>
-            </div>
-            <div style="display: flex; justify-content: space-between;">
-                <span>Ph.D. in Mechanical Engineering (Manufacturing & Design)</span>
-                <span>May 2024</span>
-            </div>
-        </section>
+        </div>
 
     </div>
 
-    <footer>
-        <p>&copy; 2026. Built with standard HTML/CSS & AI.</p>
-    </footer>
-    
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
     <script>
-      var swiper = new Swiper(".mySwiper", {
-        spaceBetween: 30,
-        centeredSlides: true,
-        loop: true, /* This makes it go around forever */
-        autoplay: {
-          delay: 3000, /* Time in ms before moving (3 seconds) */
-          disableOnInteraction: false,
-        },
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-        },
-      });
-    </script>
+        // 1. Tab Switching Logic
+        function openTab(tabName) {
+            var i, tabContent, navBtn;
+            tabContent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabContent.length; i++) {
+                tabContent[i].style.display = "none";
+                tabContent[i].classList.remove("active");
+            }
+            navBtn = document.getElementsByClassName("nav-btn");
+            for (i = 0; i < navBtn.length; i++) {
+                navBtn[i].classList.remove("active");
+            }
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).classList.add("active");
+            event.currentTarget.classList.add("active");
+        }
 
+        // 2. Swiper Carousel Initialization
+        var swiper = new Swiper(".mySwiper", {
+            spaceBetween: 30,
+            centeredSlides: true,
+            observer: true,
+            observeParents: true,
+            loop: true,
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    </script>
 </body>
 </html>
