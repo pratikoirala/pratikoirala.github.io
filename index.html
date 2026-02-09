@@ -302,6 +302,79 @@
             .nav-links { display: none; } /* Use simple links or hamburger menu in real deploy */
             .about-grid { grid-template-columns: 1fr; }
         }
+		/* --- MOBILE & TABLET RESPONSIVENESS --- */
+        @media (max-width: 768px) {
+            
+            /* 1. Fix the Navigation (Make it scrollable horizontally) */
+            nav {
+                padding: 0.5rem 1rem;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .nav-brand {
+                margin-bottom: 10px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links {
+                display: flex; /* Force display */
+                width: 100%;
+                overflow-x: auto; /* Allow side-scrolling */
+                white-space: nowrap; /* Keep buttons in one line */
+                padding-bottom: 5px;
+                gap: 10px;
+                -webkit-overflow-scrolling: touch; /* Smooth scrolling on iPhone */
+            }
+
+            .nav-btn {
+                background: rgba(255,255,255,0.1); /* Slight background to see buttons */
+                padding: 8px 15px;
+                border-radius: 20px;
+                font-size: 0.9rem;
+                flex-shrink: 0; /* Prevent buttons from squishing */
+            }
+
+            /* 2. Fix the Carousel Height */
+            .swiper {
+                height: 250px; /* Much shorter for phone screens */
+            }
+
+            /* 3. Fix Layout Stacking */
+            .container {
+                padding: 0 1rem; /* Less padding on sides */
+            }
+            
+            .about-grid, 
+            .articles-grid {
+                grid-template-columns: 1fr; /* Force 1 column stack */
+                gap: 1.5rem;
+            }
+
+            /* 4. Fix Profile Picture & Sidebar */
+            .about-sidebar {
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+            
+            .profile-pic {
+                width: 180px; /* Smaller profile pic */
+                height: 180px;
+            }
+
+            /* 5. Typography Adjustments */
+            header h1 { font-size: 1.8rem; }
+            header p { font-size: 1rem; }
+            
+            .section-header { font-size: 1.3rem; }
+            
+            /* Make text easier to read */
+            p, li {
+                font-size: 0.95rem;
+                text-align: left; /* Justify can look weird on mobile, left is safer */
+            }
+        }
     </style>
 </head>
 <body>
@@ -818,3 +891,4 @@
     </script>
 </body>
 </html>
+
