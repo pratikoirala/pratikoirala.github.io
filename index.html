@@ -6,10 +6,10 @@
     <title>Pratik Koirala, Ph.D. | Portfolio</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 
     <style>
         :root {
@@ -52,328 +52,151 @@
             letter-spacing: 1px;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 20px;
-        }
+        .nav-links { display: flex; gap: 20px; }
 
         .nav-btn {
-            background: none;
-            border: none;
-            color: rgba(255,255,255,0.8);
-            font-size: 1rem;
-            cursor: pointer;
-            font-weight: 500;
-            padding: 5px 10px;
-            transition: all 0.3s;
-            font-family: 'Roboto', sans-serif;
+            background: none; border: none; color: rgba(255,255,255,0.8);
+            font-size: 1rem; cursor: pointer; font-weight: 500;
+            padding: 5px 10px; transition: all 0.3s; font-family: 'Roboto', sans-serif;
         }
 
-        .nav-btn:hover, .nav-btn.active {
-            color: white;
-            background-color: rgba(255,255,255,0.1);
-            border-radius: 4px;
-        }
+        .nav-btn:hover, .nav-btn.active { color: white; background-color: rgba(255,255,255,0.1); border-radius: 4px; }
 
         /* --- HERO HEADER --- */
         header {
             background: linear-gradient(135deg, var(--cv-blue) 0%, #0d2d57 100%);
-            color: white;
-            padding: 3rem 1rem;
-            text-align: center;
-            border-radius: 0 0 12px 12px;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 15px rgba(23, 80, 150, 0.2);
+            color: white; padding: 3rem 1rem; text-align: center;
+            border-radius: 0 0 12px 12px; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(23, 80, 150, 0.2);
         }
 
-        header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
+        header h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+        header p { font-size: 1.2rem; font-weight: 300; opacity: 0.9; }
 
-        header p {
-            font-size: 1.2rem;
-            font-weight: 300;
-            opacity: 0.9;
-        }
-
-        /* Contact Links in Header */
-        .contact-links {
-            margin-top: 1.5rem;
-        }
-
-        .contact-links a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 1.8rem;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-
-        .contact-links a:hover {
-            transform: translateY(-3px);
-            opacity: 0.8;
-            color: #dcecfb;
-        }
+        .contact-links { margin-top: 1.5rem; }
+        .contact-links a { color: white; text-decoration: none; margin: 0 15px; font-size: 1.8rem; transition: all 0.3s ease; display: inline-block; }
+        .contact-links a:hover { transform: translateY(-3px); opacity: 0.8; color: #dcecfb; }
 
         /* --- MAIN CONTAINER --- */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto 2rem auto;
-            padding: 0 2rem;
-            flex: 1;
-        }
+        .container { max-width: 1000px; margin: 0 auto 2rem auto; padding: 0 2rem; flex: 1; width: 100%; }
 
         /* --- TABS LOGIC --- */
-        .tab-content {
-            display: none; /* Hidden by default */
-            animation: fadeIn 0.5s;
-        }
-        .tab-content.active {
-            display: block; /* Show if active */
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .tab-content { display: none; animation: fadeIn 0.5s; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* --- CAROUSEL STYLES --- */
-        .swiper-slide img, 
-        .swiper-slide video {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* Keeps the whole video visible */
-        }
-        .swiper-slide {
+        .swiper { 
+            width: 100%; 
+            height: 450px; /* Height must be on the main container */
+            border-radius: 8px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             background: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
-        .swiper-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
+        .swiper-slide { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+        }
+        .swiper-slide img, .swiper-slide video { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: contain; 
         }
 
         /* --- ABOUT TAB STYLES --- */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        .profile-pic {
-            width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        .section-header {
-            border-bottom: 2px solid var(--cv-blue);
-            color: var(--cv-blue);
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            margin-top: 1.5rem;
-            font-weight: 700;
-        }
-        
-        .skill-tag {
-            display: inline-block;
-            background: #eef4fb;
-            color: var(--cv-blue);
-            padding: 5px 10px;
-            margin: 3px;
-            border-radius: 4px;
-            font-size: 0.9rem;
-        }
+        .about-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; margin-top: 2rem; }
+        .profile-pic { width: 100%; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .section-header { border-bottom: 2px solid var(--cv-blue); color: var(--cv-blue); margin-bottom: 1rem; padding-bottom: 0.5rem; margin-top: 1.5rem; font-weight: 700; }
+        .skill-tag { display: inline-block; background: #eef4fb; color: var(--cv-blue); padding: 5px 10px; margin: 3px; border-radius: 4px; font-size: 0.9rem; }
+        .about-main p { margin-bottom: 1.2rem; text-align: justify; }
+        .education-entry { margin-bottom: 1.5rem; }
 
-        /* Specific text styling from your update */
-        .about-main p {
-            margin-bottom: 1.2rem;
-            text-align: justify;
-        }
-
-        /* Education Entry Styling */
-        .education-entry {
-            margin-bottom: 1.5rem;
-        }
-
-        /* --- NEW ARTICLE SECTION STYLES --- */
-        .articles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 3rem;
-        }
-
-        .article-card {
-            background: #fff;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 20px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-top: 4px solid var(--cv-blue); /* Blue accent on top */
-        }
-
-        .article-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-        }
-
-        .article-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #175096;
-            margin-bottom: 10px;
-        }
-
-        .article-summary {
-            font-size: 0.95rem;
-            color: #555;
-            margin-bottom: 15px;
-            text-align: justify;
-        }
-
-        .read-more-btn {
-            font-size: 0.9rem;
-            color: #175096;
-            text-decoration: none;
-            font-weight: 500;
-            border-bottom: 1px dotted #175096;
-        }
-        
-        .read-more-btn:hover {
-            border-bottom: 1px solid #175096;
-        }
-		
-		/* --- RESEARCH TAB STYLES --- */
-        .publication-item {
-            margin-bottom: 1rem;
-            padding-left: 1rem;
-            border-left: 3px solid #ddd;
-        }
+        /* --- RESEARCH TAB STYLES --- */
+        .articles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 3rem; }
+        .article-card { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; transition: transform 0.3s ease, box-shadow 0.3s ease; border-top: 4px solid var(--cv-blue); }
+        .article-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
+        .article-title { font-size: 1.1rem; font-weight: 700; color: #175096; margin-bottom: 10px; }
+        .article-summary { font-size: 0.95rem; color: #555; margin-bottom: 15px; text-align: justify; }
+        .publication-item { margin-bottom: 1rem; padding-left: 1rem; border-left: 3px solid #ddd; }
         .publication-title { font-weight: 700; color: #333; }
         .publication-meta { font-style: italic; color: #666; font-size: 0.9rem; }
 
-        /* --- HOBBY TAB STYLES --- */
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
+        /* --- CLT TOOL STYLES (CLEAN BLUE THEME) --- */
+        .clt-app {
+            --bg: #ffffff; --bg2: #f8f9fa; --bg3: #eef4fb; --border: #dee2e6;
+            --accent: #175096; --accent2: #d9534f; --accent3: #198754; --accent4: #f59f00;
+            --text: #333333; --text-dim: #666666; --text-mid: #555555;
+            --fail: #d9534f; --safe: #198754; --warn: #f59f00;
+            font-family: 'Roboto', sans-serif; 
+            font-size: 15px; /* INCREASED from 13px */
+            color: var(--text);
         }
-        .photo-card {
-            background: white;
-            padding: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            border-radius: 6px;
-        }
-        .photo-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 4px;
-        }
+        .clt-app .layout { display: grid; grid-template-columns: 360px 1fr; gap: 16px; align-items: start; margin-top: 20px;}
+        .clt-app .panel { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+        .clt-app .panel-header { padding: 12px 16px; background: var(--bg3); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+        .clt-app .panel-header .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+        .clt-app .panel-title { font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); font-size: 14px; /* INCREASED */ }
+        .clt-app .panel-body { padding: 16px; overflow-x: auto; }
+        .clt-app .form-section-label { font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+        .clt-app .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+        .clt-app .form-group { display: flex; flex-direction: column; gap: 4px; }
+        .clt-app .form-group label { font-size: 12px; color: var(--text-dim); }
+        .clt-app input, .clt-app textarea { background: #fff; border: 1px solid var(--border); border-radius: 4px; color: var(--text); font-family: 'JetBrains Mono', monospace; font-size: 14px; padding: 6px 8px; outline: none; transition: border-color 0.2s; width: 100%; }
+        .clt-app input:focus, .clt-app textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(23,80,150,0.1); }
+        .clt-app .btn-primary { width: 100%; padding: 12px; background: var(--accent); color: #fff; border: none; border-radius: 4px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; font-size: 14px; cursor: pointer; transition: background 0.2s; margin-top: 8px; }
+        .clt-app .btn-primary:hover { background: #0d2d57; }
+        .clt-app .radio-group { display: flex; gap: 4px; background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; padding: 2px; }
+        .clt-app .radio-group label { flex: 1; text-align: center; padding: 6px 8px; border-radius: 2px; cursor: pointer; font-size: 12px; color: var(--text-dim); font-weight: 500;}
+        .clt-app .radio-group input[type="radio"] { display: none; }
+        .clt-app .radio-group input[type="radio"]:checked + label { background: var(--accent); color: #fff; }
+        .clt-app .matrix-section { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; min-width: 400px;}
+        .clt-app .matrix-block { background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; padding: 12px; }
+        .clt-app .matrix-block h4 { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 10px; text-align: center; }
+        .clt-app .matrix-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); border: 1px solid var(--border); }
+        .clt-app .matrix-cell { background: #fff; padding: 6px 2px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-mid); }
+        .clt-app .matrix-cell.nonzero { color: var(--accent); font-weight: 600;}
+        .clt-app .matrix-cell.coupling { color: var(--warn); font-weight: 600;}
+        .clt-app .summary-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; min-width: 300px;}
+        .clt-app .summary-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; padding: 12px; text-align: center; }
+        .clt-app .summary-card .val { font-size: 22px; font-weight: 700; margin-bottom: 2px; }
+        .clt-app .summary-card .lbl { font-size: 11px; color: var(--text-dim); text-transform: uppercase; font-weight: bold; }
+        .clt-app .tabs { display: flex; border-bottom: 2px solid var(--border); margin-bottom: 16px; min-width: 400px;}
+        .clt-app .tab { padding: 10px 16px; font-size: 13px; font-weight: 700; text-transform: uppercase; color: var(--text-dim); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; }
+        .clt-app .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+        .clt-app .clt-tab-content { display: none; }
+        .clt-app .clt-tab-content.active { display: block; }
+        .clt-app .failure-table { width: 100%; border-collapse: collapse; font-size: 13px; font-family: 'JetBrains Mono', monospace; min-width: 600px;}
+        .clt-app .failure-table th { background: var(--bg3); padding: 10px 8px; text-align: left; color: var(--accent); border-bottom: 2px solid var(--border); font-family: 'Roboto', sans-serif;}
+        .clt-app .failure-table td { padding: 10px 8px; border-bottom: 1px solid var(--border); }
+        .clt-app .rf-bar-wrap { display: flex; align-items: center; gap: 6px; }
+        .clt-app .rf-bar { flex: 1; height: 6px; background: #e9ecef; border-radius: 3px; overflow: hidden; min-width: 40px; }
+        .clt-app .rf-bar-fill { height: 100%; border-radius: 3px; }
 
-        /* --- CONTACT TAB STYLES --- */
-        .contact-box {
-            text-align: center;
-            padding: 3rem;
-            background: var(--bg-light);
-            border-radius: 12px;
-        }
+        /* --- CONTACT & HOBBY TAB STYLES --- */
+        .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
+        .photo-card { background: white; padding: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-radius: 6px; }
+        .photo-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 4px; }
+        .contact-box { text-align: center; padding: 3rem; background: var(--bg-light); border-radius: 12px; }
         .contact-btn {
-            display: inline-block;
-            margin: 10px;
-            padding: 12px 25px;
-            background-color: var(--cv-blue);
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: 500;
-            transition: background 0.3s;
+            display: inline-block; margin: 10px; padding: 12px 25px; background-color: var(--cv-blue);
+            color: white; text-decoration: none; border-radius: 5px; font-weight: 500; transition: background 0.3s;
         }
         .contact-btn:hover { background-color: #0d2d57; }
 
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .nav-links { display: none; } /* Use simple links or hamburger menu in real deploy */
-            .about-grid { grid-template-columns: 1fr; }
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 900px) {
+            .clt-app .layout { grid-template-columns: 1fr; }
+            .clt-app .matrix-section { grid-template-columns: 1fr; }
+            .clt-app .summary-cards { grid-template-columns: repeat(2, 1fr); }
         }
-		/* --- MOBILE & TABLET RESPONSIVENESS --- */
         @media (max-width: 768px) {
-            
-            /* 1. Fix the Navigation (Make it scrollable horizontally) */
-            nav {
-                padding: 0.5rem 1rem;
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .nav-brand {
-                margin-bottom: 10px;
-                width: 100%;
-                text-align: center;
-            }
-
-            .nav-links {
-                display: flex; /* Force display */
-                width: 100%;
-                overflow-x: auto; /* Allow side-scrolling */
-                white-space: nowrap; /* Keep buttons in one line */
-                padding-bottom: 5px;
-                gap: 10px;
-                -webkit-overflow-scrolling: touch; /* Smooth scrolling on iPhone */
-            }
-
-            .nav-btn {
-                background: rgba(255,255,255,0.1); /* Slight background to see buttons */
-                padding: 8px 15px;
-                border-radius: 20px;
-                font-size: 0.9rem;
-                flex-shrink: 0; /* Prevent buttons from squishing */
-            }
-
-            /* 2. Fix the Carousel Height */
-            .swiper {
-                height: 250px; /* Much shorter for phone screens */
-            }
-
-            /* 3. Fix Layout Stacking */
-            .container {
-                padding: 0 1rem; /* Less padding on sides */
-            }
-            
-            .about-grid, 
-            .articles-grid {
-                grid-template-columns: 1fr; /* Force 1 column stack */
-                gap: 1.5rem;
-            }
-
-            /* 4. Fix Profile Picture & Sidebar */
-            .about-sidebar {
-                text-align: center;
-                margin-bottom: 2rem;
-            }
-            
-            .profile-pic {
-                width: 180px; /* Smaller profile pic */
-                height: 180px;
-            }
-
-            /* 5. Typography Adjustments */
-            header h1 { font-size: 1.8rem; }
-            header p { font-size: 1rem; }
-            
-            .section-header { font-size: 1.3rem; }
-            
-            /* Make text easier to read */
-            p, li {
-                font-size: 0.95rem;
-                text-align: left; /* Justify can look weird on mobile, left is safer */
-            }
+            nav { padding: 0.5rem 1rem; flex-direction: column; align-items: flex-start; }
+            .nav-brand { margin-bottom: 10px; width: 100%; text-align: center; }
+            .nav-links { display: flex; width: 100%; overflow-x: auto; white-space: nowrap; padding-bottom: 5px; gap: 10px; -webkit-overflow-scrolling: touch; }
+            .nav-btn { background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem; flex-shrink: 0; }
+            .swiper { height: 250px; }
+            .container { padding: 0 1rem; }
+            .about-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -385,7 +208,8 @@
             <button class="nav-btn active" onclick="openTab('home')">Home</button>
             <button class="nav-btn" onclick="openTab('about')">About</button>
             <button class="nav-btn" onclick="openTab('research')">Research</button>
-			<button class="nav-btn" onclick="openTab('service')">Service & Awards</button>
+            <button class="nav-btn" onclick="openTab('tools')">Composite Tools</button>
+            <button class="nav-btn" onclick="openTab('service')">Service & Awards</button>
             <button class="nav-btn" onclick="openTab('hobby')">Hobby</button>
             <button class="nav-btn" onclick="openTab('contact')">Contact</button>
         </div>
@@ -394,25 +218,22 @@
     <div class="container">
 
         <div id="home" class="tab-content active">
-            
             <header>
                 <h1>Pratik Koirala, Ph.D.</h1>
                 <p>Polymer and Composites | FEA Specialist | Aerospace</p>
-                
                 <div class="contact-links">
                     <a href="https://www.linkedin.com/in/prkoirala/" title="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
                     <a href="https://github.com/pratikoirala" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
                     <a href="mailto:prkoirala9@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
                 </div>
             </header>
-
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide"><img src="Pictures/Interface_and_Interphase3.png" alt="Slide 1"></div>
                     <div class="swiper-slide"><img src="Pictures/Interphase.png" alt="Slide 2"></div>
                     <div class="swiper-slide"><img src="Pictures/bonding.png" alt="Slide 3"></div>
                     <div class="swiper-slide"><img src="Pictures/T&P.png" alt="Slide 4"></div>
-					<div class="swiper-slide">
+                    <div class="swiper-slide">
                         <video autoplay muted loop playsinline>
                             <source src="Pictures/vid.mp4" type="video/mp4">
                             Your browser does not support the video tag.
@@ -427,44 +248,27 @@
 
         <div id="about" class="tab-content">
             <h2 class="section-header">About Me</h2>
-            
             <div class="about-grid">
                 <div class="about-sidebar">
                     <img src="Pictures/pratik.png" alt="Pratik Koirala" class="profile-pic">
                     <br><br>
                     <p><strong>Location:</strong> Austin, TX</p>
                     <p><strong>Email:</strong> prkoirala9@gmail.com</p>
-                    
-                    <br>
-                    <br>
+                    <br><br>
                     <h4 style="color:#175096; margin-bottom:10px;">Focus Areas</h4>
                     <div class="skill-tags">
                         <span class="skill-tag">Polymer Composites</span>
                         <span class="skill-tag">Structural Optimization</span>
                         <span class="skill-tag">Additive Manufacturing</span>
                         <span class="skill-tag">Data-Driven Design</span>
-						<span class="skill-tag">Advanced Electronic Packaging</span>
+                        <span class="skill-tag">Advanced Electronic Packaging</span>
                     </div>
                 </div>
-
                 <div class="about-main">
-                    <p>
-                        I am a Mechanical Engineer and Finite Element Analysis (FEA) specialist focused on structural mechanics, advanced materials, and simulation-driven design. 
-                        My work centers on using physics-based modeling to predict real-world behavior and support reliable, high-performance engineering decisions.
-                    </p>
-
-                    <p>
-                        I have hands-on experience developing and validating finite element models for complex, multi-material systems, working with tools such as ANSYS, Abaqus, and HyperMesh to analyze stress, deformation, fatigue, warpage, and failure mechanisms. 
-                        I place strong emphasis on experimental validation, correlating simulations with mechanical testing, digital image correlation (DIC), DMA, and material characterization to ensure accuracy and reliability.
-                    </p>
-
-                    <p>
-                        Through my research and postdoctoral work at the University of Texas at Austin, I have built analysis workflows from the ground up—defining material properties, boundary conditions, and failure criteria, and translating simulation results into actionable design insights. 
-                        I enjoy collaborating closely with design, materials, and manufacturing teams, and I am driven by environments that value hands-on engineering, rapid iteration, and technical rigor.
-                    </p>
-
-                    <h3 class="section-header">Technical Expertise</h3>
+                    <p>I am a Mechanical Engineer and Finite Element Analysis (FEA) specialist focused on structural mechanics, advanced materials, and simulation-driven design. My work centers on using physics-based modeling to predict real-world behavior and support reliable, high-performance engineering decisions.</p>
+                    <p>I have hands-on experience developing and validating finite element models for complex, multi-material systems, working with tools such as ANSYS, Abaqus, and HyperMesh to analyze stress, deformation, fatigue, warpage, and failure mechanisms. I place strong emphasis on experimental validation, correlating simulations with mechanical testing, digital image correlation (DIC), DMA, and material characterization to ensure accuracy and reliability.</p>
                     
+                    <h3 class="section-header">Technical Expertise</h3>
                     <div style="margin-bottom: 1.5rem;">
                         <strong>Manufacturing & Processing:</strong><br>
                         <span class="skill-tag">Additive Manufacturing (FDM, SLA, SLS)</span>
@@ -475,20 +279,17 @@
                         <span class="skill-tag">Blade Coating</span>
                         <span class="skill-tag">Composite Curing Cycles</span>
                     </div>
-
                     <div style="margin-bottom: 1.5rem;">
                         <strong>Experimental Characterization:</strong><br>
                         <span class="skill-tag">Mechanical Testing (Tensile, bending, fracture)</span>
-						<span class="skill-tag">Thermal Testing (DMA / DSC /TGA)</span>
-						<span class="skill-tag">SEM (Scanning Electron Microscopy)</span>
+                        <span class="skill-tag">Thermal Testing (DMA / DSC / TGA)</span>
+                        <span class="skill-tag">SEM (Scanning Electron Microscopy)</span>
                         <span class="skill-tag">AFM (Atomic Force Microscopy)</span>
                         <span class="skill-tag">Raman Spectroscopy</span>
                         <span class="skill-tag">Thermal Imaging (FLIR A700)</span>
                         <span class="skill-tag">4-Probe Conductivity</span>
                         <span class="skill-tag">Digital Image Correlation (DIC)</span>
-                        
                     </div>
-
                     <div style="margin-bottom: 1.5rem;">
                         <strong>Computational & Software:</strong><br>
                         <span class="skill-tag">Python (OpenCV, Pandas, SciPy)</span>
@@ -499,23 +300,12 @@
                         <span class="skill-tag">HyperMesh</span>
                         <span class="skill-tag">LabVIEW</span>
                         <span class="skill-tag">SolidWorks</span>
-                        
                     </div>
 
-                    <div style="margin-bottom: 1.5rem;">
-                        <strong>Analysis & Theory:</strong><br>
-                        <span class="skill-tag">Finite Element Analysis (FEA)</span>
-                        <span class="skill-tag">Composite Failure Theory</span>
-                        <span class="skill-tag">Void Analysis & Metrology</span>
-                        <span class="skill-tag">Thermal Profiling</span>
-                    </div>
-					
-					<h3 class="section-header">Professional Experience</h3>
-
+                    <h3 class="section-header">Professional Experience</h3>
                     <div class="education-entry">
                         <div style="display:flex; justify-content:space-between; align-items:baseline;">
-                            <strong>Postdoctoral Researcher</strong>
-                            <span>2024 – Present</span>
+                            <strong>Postdoctoral Researcher</strong><span>2024 – Present</span>
                         </div>
                         <span style="color:#175096; font-style:italic;">University of Texas at Austin | Austin, TX</span>
                         <ul style="margin-top:10px; padding-left:20px; font-size:0.95rem;">
@@ -524,11 +314,9 @@
                             <li>Designed and built an automated 4-Probe conductivity measurement setup integrated with Keithley instrumentation via Python.</li>
                         </ul>
                     </div>
-					
-					<div class="education-entry">
+                    <div class="education-entry">
                         <div style="display:flex; justify-content:space-between; align-items:baseline;">
-                            <strong>Product Development Engineer Co-op</strong>
-                            <span>[2023] – [2024]</span>
+                            <strong>Product Development Engineer Co-op</strong><span>2023 – 2024</span>
                         </div>
                         <span style="color:#175096; font-style:italic;">AMD (Advanced Micro Devices) | Austin, TX</span>
                         <ul style="margin-top:10px; padding-left:20px; font-size:0.95rem;">
@@ -538,45 +326,33 @@
                             <li>Automated data analysis workflows using Python, improving reporting efficiency.</li>
                         </ul>
                     </div>
-
                     <div class="education-entry">
                         <div style="display:flex; justify-content:space-between; align-items:baseline;">
-                            <strong>Graduate Research Assistant</strong>
-                            <span>2019 – 2024</span>
+                            <strong>Graduate Research Assistant</strong><span>2019 – 2024</span>
                         </div>
                         <span style="color:#175096; font-style:italic;">University of Texas at Austin | Austin, TX</span>
                         <ul style="margin-top:10px; padding-left:20px; font-size:0.95rem;">
                             <li>Characterized manufacturing defects (voids, delamination, wrinkles) in composite laminates using <strong>optical microscopy and quantitative image analysis</strong> to correlate defect density with mechanical failure.</li>
-							<li>Investigated interface mechanics in <strong>thermosetting and thermoplastic composites</strong>, focusing on failure modes and delamination.</li>
+                            <li>Investigated interface mechanics in <strong>thermosetting and thermoplastic composites</strong>, focusing on failure modes and delamination.</li>
                             <li>Performed advanced FEA simulations using <strong>Abaqus and Cohesive Zone Modeling (CZM)</strong> to predict fracture behavior in symmetric laminates.</li>
                             <li>Manufactured composite samples using <strong>Resin Transfer Molding (RTM)</strong>, Hot Press, and Hand Layup techniques.</li>
                             <li>Conducted material characterization using DSC, DMA, and optical microscopy to validate simulation models.</li>
                         </ul>
                     </div>
-
-                    <h3 class="section-header">Education</h3>
                     
+                    <h3 class="section-header">Education</h3>
                     <div class="education-entry">
-                        <p>
-                            <strong>Ph.D. Mechanical Engineering</strong> | University of Texas at Austin | 2024 <br>
-                            <span style="color:#666">Focus: Investigating interfaces in thermosetting and thermoplastic composites</span>
-                        </p>
+                        <p><strong>Ph.D. Mechanical Engineering</strong> | University of Texas at Austin | 2024 <br>
+                        <span style="color:#666">Focus: Investigating interfaces in thermosetting and thermoplastic composites</span></p>
                     </div>
-
                     <div class="education-entry">
-                        <p>
-                            <strong>MS Mechanical Engineering</strong> | University of Texas at Austin | 2022 <br>
-                            <span style="color:#666">Focus: Additive manufacturing of carbon fiber reinforced polymer composites</span>
-                        </p>
+                        <p><strong>MS Mechanical Engineering</strong> | University of Texas at Austin | 2022 <br>
+                        <span style="color:#666">Focus: Additive manufacturing of carbon fiber reinforced polymer composites</span></p>
                     </div>
-
                     <div class="education-entry">
-                        <p>
-                            <strong>BS Mechanical Engineering</strong> | Kathmandu University | 2015 <br>
-                            <span style="color:#666">Focus: Experimental and computational study of ultra-low head turbines</span>
-                        </p>
+                        <p><strong>BS Mechanical Engineering</strong> | Kathmandu University | 2015 <br>
+                        <span style="color:#666">Focus: Experimental and computational study of ultra-low head turbines</span></p>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -589,64 +365,54 @@
                 <li><strong>Void Analysis & Metrology:</strong> Automated detection of micro-voids in sintered parts using Computer Vision (Python/OpenCV).</li>
                 <li><strong>Material Characterization:</strong> Thermal profiling (FLIR), 4-Probe conductivity, and capillary action studies.</li>
             </ul>
-			
-			
-			<h2 class="section-header" style="margin-top: 3rem;">Featured Research Insights</h2>
             
+            <h2 class="section-header" style="margin-top: 3rem;">Featured Research Insights</h2>
             <div class="articles-grid">
                 
                 <div class="article-card" id="art-sintering">
                     <div class="article-title">Investigating interfacial properties vs interphase thickness in a thermoplastic composite</div>
                     <p class="article-summary">
                         Thermoplastic composites offer exceptional characteristics—particularly weldability, superior toughness, and potential for rapid out-of-autoclave processing—that make 
-						them highly attractive for diverse applications. The temperature history during their manufacturing plays a critical role in shaping key microstructural features, 
-						including fiber–matrix interfacial properties, matrix crystallinity, and interphase morphology. These characteristics, in turn, determine the composite's macroscale 
-						mechanical performance. In carbon fiber-reinforced low-melt polyaryletherketone (LM-PAEK™) composites, the influence of processing conditions was systematically 
-						examined by producing three distinct sample types through automated fiber placement and post-processing: (1) fast cooling followed by cold crystallization, 
-						(2) controlled cooling from melt at 2 °C/min, and (3) fast cooling at rates exceeding 10,000 °C/min. Interfacial mechanical properties and interphase size 
-						were characterized using cyclic nanoindentation push-out tests and force-modulation atomic force microscopy, revealing that specimens cooled at 2 °C/min 
-						exhibit an interphase region approximately three times thicker than that of rapidly cooled specimens, with enhanced interfacial fiber–matrix strength 
-						and fracture toughness. These findings highlight the importance of controlling the interphase thickness in thermoplastic composites.
+                        them highly attractive for diverse applications. The temperature history during their manufacturing plays a critical role in shaping key microstructural features, 
+                        including fiber–matrix interfacial properties, matrix crystallinity, and interphase morphology. These characteristics, in turn, determine the composite's macroscale 
+                        mechanical performance. In carbon fiber-reinforced low-melt polyaryletherketone (LM-PAEK™) composites, the influence of processing conditions was systematically 
+                        examined by producing three distinct sample types through automated fiber placement and post-processing: (1) fast cooling followed by cold crystallization, 
+                        (2) controlled cooling from melt at 2 °C/min, and (3) fast cooling at rates exceeding 10,000 °C/min. Interfacial mechanical properties and interphase size 
+                        were characterized using cyclic nanoindentation push-out tests and force-modulation atomic force microscopy, revealing that specimens cooled at 2 °C/min 
+                        exhibit an interphase region approximately three times thicker than that of rapidly cooled specimens, with enhanced interfacial fiber–matrix strength 
+                        and fracture toughness. These findings highlight the importance of controlling the interphase thickness in thermoplastic composites.
                     </p>
-                    <a href="#" class="read-more-btn">Read Full Article &rarr;</a>
                 </div>
 
                 <div class="article-card" id="art-vision">
                     <div class="article-title">Reactive extrusion additive manufacturing of a short carbon fiber thermosetting composite via active mixing</div>
                     <p class="article-summary">
                         Reactive extrusion additive manufacturing (REAM) is a recently developed process that utilizes reactive thermoset resin-hardener systems that are mixed 
-						inside a shearing element, deposited layer by layer to form a structure, and cured in-situ without external energy. An externally powered active mixing 
-						element was developed and used to demonstrate REAM with a highly viscous resin that was filled with 10 wt% chopped carbon fibers. This was achieved by 
-						adding fumed silica and increasing the temperature of the fiber-resin mixture to enable effective in-situ mixing while maintaining shape retention upon 
-						deposition. Tensile properties of fiber-reinforced and reference REAM parts were measured and explained using their fiber alignment and length distribution. 
-						Finally, a mechanics model was utilized to determine the optimal fiber content for strength and stiffness, considering the degradation of fiber length at 
-						higher volume fractions due to the mixing.
+                        inside a shearing element, deposited layer by layer to form a structure, and cured in-situ without external energy. An externally powered active mixing 
+                        element was developed and used to demonstrate REAM with a highly viscous resin that was filled with 10 wt% chopped carbon fibers. This was achieved by 
+                        adding fumed silica and increasing the temperature of the fiber-resin mixture to enable effective in-situ mixing while maintaining shape retention upon 
+                        deposition. Tensile properties of fiber-reinforced and reference REAM parts were measured and explained using their fiber alignment and length distribution. 
+                        Finally, a mechanics model was utilized to determine the optimal fiber content for strength and stiffness, considering the degradation of fiber length at 
+                        higher volume fractions due to the mixing.
                     </p>
-                    <a href="#" class="read-more-btn">View Experimental Setup and Modeling Algorithm&rarr;</a>
                 </div>
 
                 <div class="article-card" id="art-composites">
-                    <div class="article-title">Interlaminar Properites Enhancement in Thermosetting Composites</div>
+                    <div class="article-title">Interlaminar Properties Enhancement in Thermosetting Composites</div>
                     <p class="article-summary">
                         A major shortcoming of carbon fiber reinforced polymer composites (CFRP) is their interlaminar performance. This study provides an inexpensive and readily
-						scalable solution to this problem by incorporating ultra-thin sheets of carbon nanotubes (CNT) between the plies (laminates) of CFRPs. To this end, dry 
-						carbon fiber fabrics are first sandwiched between CNT sheets. The fabrics are then stacked and infused with epoxy to form a CFRP with interlaminar CNT 
-						sheets. Contrary to the typical approach where microns-long CNTs are distributed randomly within a CFRP for reinforcement, this study uses ~100 nm 
-						thick CNT sheets consisting of aligned and ultra-long (0.3 mm) nanotubes. Despite their negligible weight fraction of only 0.016%, the interlaminar 
-						CNT sheets enhanced the CFRP's flexural strength by 49%, interlaminar shear strength by 30%, and mode I fracture toughness by 30%. X-ray micro-tomography 
-						revealed that samples with interlaminar CNTs are significantly resistant to delamination and crack propagation. Moreover, the in-plane electrical 
-						conductivity of these composites increased commensurate with the weight fraction of CNTs, providing a maximum enhancement of 278% over the reference 
-						sample for 0.048 wt% of CNT sheets. This study reveals that for almost no change in weight and thickness, interlaminar CNT sheets can enhance the 
-						electrical conductivity and interlaminar performance of CFRPs..
+                        scalable solution to this problem by incorporating ultra-thin sheets of carbon nanotubes (CNT) between the plies (laminates) of CFRPs. To this end, dry 
+                        carbon fiber fabrics are first sandwiched between CNT sheets. The fabrics are then stacked and infused with epoxy to form a CFRP with interlaminar CNT 
+                        sheets. Contrary to the typical approach where microns-long CNTs are distributed randomly within a CFRP for reinforcement, this study uses ~100 nm 
+                        thick CNT sheets consisting of aligned and ultra-long (0.3 mm) nanotubes. Despite their negligible weight fraction of only 0.016%, the interlaminar 
+                        CNT sheets enhanced the CFRP's flexural strength by 49%, interlaminar shear strength by 30%, and mode I fracture toughness by 30%. X-ray micro-tomography 
+                        revealed that samples with interlaminar CNTs are significantly resistant to delamination and crack propagation. Moreover, the in-plane electrical 
+                        conductivity of these composites increased commensurate with the weight fraction of CNTs, providing a maximum enhancement of 278% over the reference 
+                        sample for 0.048 wt% of CNT sheets. This study reveals that for almost no change in weight and thickness, interlaminar CNT sheets can enhance the 
+                        electrical conductivity and interlaminar performance of CFRPs.
                     </p>
-                    <a href="#" class="read-more-btn">See Simulation Results &rarr;</a>
                 </div>
-
             </div>
-            ```
-
-
-
 
             <h2 class="section-header">Publications</h2>
             
@@ -735,10 +501,158 @@
                 <div class="publication-title">Printability of highly viscous composite slurries via reactive extrusion additive manufacturing</div>
                 <div class="publication-meta">P Koirala. <br><strong>Master's Thesis</strong>, University of Texas at Austin, 2022.</div>
             </div>
-
         </div>
-		
-		<div id="service" class="tab-content">
+
+        <div id="tools" class="tab-content">
+            <h2 class="section-header">Classical Lamination Theory (CLT) Analyzer</h2>
+            <p>Full [ABD] matrix calculation, through-thickness stress plots, and multi-criteria failure analysis.</p>
+
+            <div class="clt-app">
+                <div class="layout">
+                    <div>
+                        <div class="panel">
+                            <div class="panel-header"><div class="dot"></div><span class="panel-title">Material Properties</span></div>
+                            <div class="panel-body">
+                                <div class="form-section">
+                                    <div class="form-section-label">Elastic Constants</div>
+                                    <div class="form-row">
+                                        <div class="form-group"><label>E₁ (GPa)</label><input id="e1" type="number" value="140" step="any"></div>
+                                        <div class="form-group"><label>E₂ (GPa)</label><input id="e2" type="number" value="10" step="any"></div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group"><label>G₁₂ (GPa)</label><input id="g12" type="number" value="5" step="any"></div>
+                                        <div class="form-group"><label>ν₁₂</label><input id="nu12" type="number" value="0.3" step="any"></div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group"><label>G₁₃ (GPa)</label><input id="g13" type="number" value="5" step="any"></div>
+                                        <div class="form-group"><label>G₂₃ (GPa)</label><input id="g23" type="number" value="3.8" step="any"></div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group"><label>Ply thickness t (mm)</label><input id="tply" type="number" value="0.125" step="any"></div>
+                                        <div class="form-group"><label>Density ρ (kg/m³)</label><input id="rho" type="number" value="1600" step="any"></div>
+                                    </div>
+                                </div>
+
+                                <div class="form-section">
+                                    <div class="form-section-label">Strength Parameters</div>
+                                    <div class="form-row">
+                                        <div class="form-group"><label>Xt (Tensile) (MPa)</label><input id="Xt" type="number" value="1500" step="any"></div>
+                                        <div class="form-group"><label>Xc (Comp.) (MPa)</label><input id="Xc" type="number" value="1500" step="any"></div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group"><label>Yt (Tensile) (MPa)</label><input id="Yt" type="number" value="40" step="any"></div>
+                                        <div class="form-group"><label>Yc (Comp.) (MPa)</label><input id="Yc" type="number" value="246" step="any"></div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group"><label>S₁₂ (In-plane shear)</label><input id="S12" type="number" value="68" step="any"></div>
+                                        <div class="form-group"><label>S₂₃ (Interlaminar)</label><input id="S23" type="number" value="40" step="any"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel">
+                            <div class="panel-header"><div class="dot" style="background:var(--accent4);"></div><span class="panel-title">Layup & Loads</span></div>
+                            <div class="panel-body">
+                                <div class="form-section">
+                                    <div class="form-section-label">Stacking Sequence</div>
+                                    <div class="form-group" style="margin-bottom:6px;">
+                                        <label>Angles (degrees, slash-separated)</label>
+                                        <textarea id="layup" rows="2" placeholder="0/45/-45/90/90/-45/45/0">0/45/-45/90/90/-45/45/0</textarea>
+                                    </div>
+                                    <div style="display:flex; gap:10px; margin-bottom:10px; align-items:center; font-size:12px;">
+                                        <input type="checkbox" id="symmetric" style="width:auto;"> <label for="symmetric">Enforce symmetric [ ]s</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-section">
+                                    <div class="form-section-label">Applied Loads</div>
+                                    <div class="form-row">
+                                        <div class="form-group"><label>Nₓ (N/m)</label><input id="Nx" type="number" value="1000" step="any"></div>
+                                        <div class="form-group"><label>Nᵧ (N/m)</label><input id="Ny" type="number" value="0" step="any"></div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group"><label>Nₓᵧ (N/m)</label><input id="Nxy" type="number" value="0" step="any"></div>
+                                        <div class="form-group"><label>Mₓ (N·m/m)</label><input id="Mx" type="number" value="0" step="any"></div>
+                                    </div>
+                                </div>
+
+                                <div class="form-section" style="margin-bottom:8px;">
+                                    <div class="form-section-label">Plot Options</div>
+                                    <div class="radio-group" style="margin-bottom:10px;">
+                                        <input type="radio" name="coord" id="coord_local" value="local" checked>
+                                        <label for="coord_local">Local (1-2)</label>
+                                        <input type="radio" name="coord" id="coord_global" value="global">
+                                        <label for="coord_global">Global (x-y)</label>
+                                    </div>
+                                    <div style="display:flex; justify-content:space-between; font-size:12px;">
+                                        <label><input type="checkbox" id="sh_s1" checked style="width:auto;"> σ₁/σₓ</label>
+                                        <label><input type="checkbox" id="sh_s2" checked style="width:auto;"> σ₂/σᵧ</label>
+                                        <label><input type="checkbox" id="sh_s12" checked style="width:auto;"> τ₁₂/τₓᵧ</label>
+                                    </div>
+                                </div>
+
+                                <button class="btn-primary" onclick="runCLT()">Run Analysis</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="right-col" id="results" style="display:none; flex-direction:column; gap:16px;">
+                        
+                        <div class="panel">
+                            <div class="panel-header"><div class="dot" style="background:var(--safe);"></div><span class="panel-title">Summary</span></div>
+                            <div class="panel-body">
+                                <div class="summary-cards" id="summaryCards"></div>
+                            </div>
+                        </div>
+
+                        <div class="panel">
+                            <div class="panel-header"><div class="dot" style="background:var(--accent);"></div><span class="panel-title">ABD Stiffness Matrix</span></div>
+                            <div class="panel-body">
+                                <div class="matrix-section" id="abdDisplay"></div>
+                            </div>
+                        </div>
+
+                        <div class="panel">
+                            <div class="panel-header"><div class="dot"></div><span class="panel-title">Stress & Failure Analysis</span></div>
+                            <div class="panel-body">
+                                <div class="tabs">
+                                    <div class="tab active" onclick="switchCltTab(this,'tab-chart')">Stress Profile</div>
+                                    <div class="tab" onclick="switchCltTab(this,'tab-failure')">Max Stress</div>
+                                    <div class="tab" onclick="switchCltTab(this,'tab-rf')">Reserve Factors</div>
+                                </div>
+
+                                <div class="clt-tab-content active" id="tab-chart">
+                                    <div style="position:relative; height:350px;">
+                                        <canvas id="stressChart"></canvas>
+                                    </div>
+                                </div>
+
+                                <div class="clt-tab-content" id="tab-failure">
+                                    <div style="overflow-x:auto;">
+                                        <table class="failure-table">
+                                            <thead><tr><th>Ply</th><th>θ°</th><th>σ₁ (MPa)</th><th>σ₂ (MPa)</th><th>τ₁₂ (MPa)</th><th>Fiber</th><th>Matrix</th><th>Status</th></tr></thead>
+                                            <tbody id="failureBody"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="clt-tab-content" id="tab-rf">
+                                    <div style="overflow-x:auto;">
+                                        <table class="failure-table">
+                                            <thead><tr><th>Ply</th><th>θ°</th><th>RF Max-Stress</th><th>RF Tsai-Hill</th><th>RF Tsai-Wu</th><th>RF Hashin</th><th>Min RF</th></tr></thead>
+                                            <tbody id="rfBody"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="service" class="tab-content">
             
             <h2 class="section-header">Honors & Awards</h2>
             
@@ -802,7 +716,7 @@
             <div style="margin-bottom: 1.5rem;">
                 <strong>Mentorship:</strong>
                 <ul style="margin-top:5px; padding-left:20px; color:#444;">
-                    <li>Mentored 3 Undergraduate Research Assistants on Composite manufacturing and SEM imaging techniques.</li>
+                    <li>Mentored 3 Undergraduate Research Assistants on Python scripting and SEM imaging techniques.</li>
                     <li>Guided Junior Graduate students on FEA modeling best practices using Abaqus.</li>
                 </ul>
             </div>
@@ -815,7 +729,6 @@
             </div>
 
         </div>
-		
 
         <div id="hobby" class="tab-content">
             <h2 class="section-header">Photography</h2>
@@ -850,45 +763,268 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
     <script>
-        // 1. Tab Switching Logic
+        // --- 1. MAIN TAB SWITCHING LOGIC ---
+        // --- 1. MAIN TAB SWITCHING LOGIC ---
         function openTab(tabName) {
-            var i, tabContent, navBtn;
-            tabContent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabContent.length; i++) {
-                tabContent[i].style.display = "none";
-                tabContent[i].classList.remove("active");
+            // Hide all main tabs
+            var tabContent = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabContent.length; i++) {
+                // Ignore the internal tool tabs
+                if(!tabContent[i].classList.contains('clt-tab-content')) {
+                    tabContent[i].style.display = "none";
+                    tabContent[i].classList.remove("active");
+                }
             }
-            navBtn = document.getElementsByClassName("nav-btn");
-            for (i = 0; i < navBtn.length; i++) {
+            
+            // Remove active class from all nav buttons
+            var navBtn = document.getElementsByClassName("nav-btn");
+            for (var i = 0; i < navBtn.length; i++) {
                 navBtn[i].classList.remove("active");
             }
+            
+            // Show the selected tab and mark button as active
             document.getElementById(tabName).style.display = "block";
             document.getElementById(tabName).classList.add("active");
             event.currentTarget.classList.add("active");
         }
 
-        // 2. Swiper Carousel Initialization
-        var swiper = new Swiper(".mySwiper", {
-            spaceBetween: 30,
-            centeredSlides: true,
-            observer: true,
-            observeParents: true,
-            loop: true,
-            autoplay: {
-                delay: 3500,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
+        // --- 2. SWIPER INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', function() {
+            var swiper = new Swiper(".mySwiper", {
+                spaceBetween: 30,
+                centeredSlides: true,
+                observer: true,
+                observeParents: true,
+                loop: true,
+                autoplay: { 
+                    delay: 3500, 
+                    disableOnInteraction: false 
+                },
+                pagination: { 
+                    el: ".swiper-pagination", 
+                    clickable: true 
+                },
+                navigation: { 
+                    nextEl: ".swiper-button-next", 
+                    prevEl: ".swiper-button-prev" 
+                },
+            });
         });
+
+        // --- 3. CLT TOOL CALCULATOR LOGIC ---
+        function matInv6(M) {
+            const n = 6;
+            const A = M.map(r => [...r]);
+            const I = Array.from({length:n}, (_,i) => Array.from({length:n}, (_,j) => i===j?1:0));
+            for(let col=0;col<n;col++) {
+                let pivot = col;
+                for(let r=col+1;r<n;r++) if(Math.abs(A[r][col])>Math.abs(A[pivot][col])) pivot=r;
+                [A[col],A[pivot]]=[A[pivot],A[col]];
+                [I[col],I[pivot]]=[I[pivot],I[col]];
+                const d = A[col][col];
+                if(Math.abs(d)<1e-30) continue;
+                for(let j=0;j<n;j++){A[col][j]/=d;I[col][j]/=d;}
+                for(let r=0;r<n;r++) {
+                    if(r===col) continue;
+                    const f=A[r][col];
+                    for(let j=0;j<n;j++){A[r][j]-=f*A[col][j];I[r][j]-=f*I[col][j];}
+                }
+            }
+            return I;
+        }
+
+        function fmtN(v, dig=3) {
+            if(Math.abs(v)<1e-10) return '0';
+            const abs = Math.abs(v);
+            if(abs >= 1e6) return (v/1e6).toFixed(dig-1)+'M';
+            if(abs >= 1e3) return (v/1e3).toFixed(dig-1)+'k';
+            return v.toFixed(dig);
+        }
+
+        let cltChart = null;
+
+        function runCLT() {
+            const E1 = parseFloat(document.getElementById('e1').value)*1e9;
+            const E2 = parseFloat(document.getElementById('e2').value)*1e9;
+            const G12 = parseFloat(document.getElementById('g12').value)*1e9;
+            const nu12 = parseFloat(document.getElementById('nu12').value);
+            const tply = parseFloat(document.getElementById('tply').value)/1000;
+            const Xt = parseFloat(document.getElementById('Xt').value)*1e6;
+            const Xc = parseFloat(document.getElementById('Xc').value)*1e6;
+            const Yt = parseFloat(document.getElementById('Yt').value)*1e6;
+            const Yc = parseFloat(document.getElementById('Yc').value)*1e6;
+            const S12 = parseFloat(document.getElementById('S12').value)*1e6;
+            const S23 = parseFloat(document.getElementById('S23').value)*1e6;
+
+            const nu21 = nu12 * E2 / E1;
+            const denom = 1 - nu12*nu21;
+            const Q = [[E1/denom, nu12*E2/denom, 0], [nu12*E2/denom, E2/denom, 0], [0, 0, G12]];
+
+            let rawLayup = document.getElementById('layup').value.trim();
+            let angles = rawLayup.split('/').map(s=>parseFloat(s.trim())).filter(v=>!isNaN(v));
+            if(document.getElementById('symmetric').checked) angles = [...angles, ...[...angles].reverse()];
+            
+            const nPlies = angles.length;
+            if(nPlies < 1) return;
+            const h = nPlies * tply;
+            const z = Array.from({length:nPlies+1}, (_,i) => -h/2 + i*tply);
+            const loads = ['Nx','Ny','Nxy','Mx','My','Mxy'].map(id => parseFloat(document.getElementById(id)?.value) || 0);
+            
+            const ABD = Array.from({length:6},()=>new Array(6).fill(0));
+            const Qbars = angles.map(deg => {
+                const theta = deg * Math.PI/180;
+                const c = Math.cos(theta), s = Math.sin(theta);
+                const c2=c*c, s2=s*s, c4=c2*c2, s4=s2*s2, sc=s*c;
+                return {
+                    Q11: Q[0][0]*c4 + Q[1][1]*s4 + 2*(Q[0][1]+2*Q[2][2])*s2*c2,
+                    Q22: Q[0][0]*s4 + Q[1][1]*c4 + 2*(Q[0][1]+2*Q[2][2])*s2*c2,
+                    Q12: (Q[0][0]+Q[1][1]-4*Q[2][2])*s2*c2 + Q[0][1]*(c4+s4),
+                    Q66: (Q[0][0]+Q[1][1]-2*Q[0][1]-2*Q[2][2])*s2*c2 + Q[2][2]*(c4+s4),
+                    Q16: (Q[0][0]-Q[0][1]-2*Q[2][2])*sc*c2 + (Q[0][1]-Q[1][1]+2*Q[2][2])*sc*s2,
+                    Q26: (Q[0][0]-Q[0][1]-2*Q[2][2])*sc*s2 + (Q[0][1]-Q[1][1]+2*Q[2][2])*sc*c2,
+                };
+            });
+
+            angles.forEach((_, k) => {
+                const Qb = Qbars[k];
+                const dz = z[k+1] - z[k];
+                const dz2 = (z[k+1]**2 - z[k]**2)/2;
+                const dz3 = (z[k+1]**3 - z[k]**3)/3;
+                const terms = [[0,0,Qb.Q11],[0,1,Qb.Q12],[0,2,Qb.Q16],[1,1,Qb.Q22],[1,2,Qb.Q26],[2,2,Qb.Q66]];
+                terms.forEach(([i,j,q]) => {
+                    ABD[i][j]+=q*dz; ABD[i+3][j]+=q*dz2; ABD[i][j+3]+=q*dz2; ABD[i+3][j+3]+=q*dz3;
+                });
+            });
+            for(let i=0;i<6;i++) for(let j=0;j<i;j++) ABD[i][j]=ABD[j][i];
+
+            const A = [[ABD[0][0],ABD[0][1],ABD[0][2]],[ABD[1][0],ABD[1][1],ABD[1][2]],[ABD[2][0],ABD[2][1],ABD[2][2]]];
+            const B = [[ABD[0][3],ABD[0][4],ABD[0][5]],[ABD[1][3],ABD[1][4],ABD[1][5]],[ABD[2][3],ABD[2][4],ABD[2][5]]];
+            const D = [[ABD[3][3],ABD[3][4],ABD[3][5]],[ABD[4][3],ABD[4][4],ABD[4][5]],[ABD[5][3],ABD[5][4],ABD[5][5]]];
+
+            const invABD = matInv6(ABD);
+            const str_curv = invABD.map(row => row.reduce((s,v,j) => s+v*loads[j], 0));
+            
+            const plies = [];
+            const isGlobal = document.querySelector('input[name="coord"]:checked').value === 'global';
+
+            function getFA(s1, s2, t12) {
+                const Xt_=Xt/1e6, Xc_=Xc/1e6, Yt_=Yt/1e6, Yc_=Yc/1e6, S12_=S12/1e6, S23_=S23/1e6;
+                const msF = s1>=0? s1/Xt_ : -s1/Xc_;
+                const msM = s2>=0? s2/Yt_ : -s2/Yc_;
+                const msS = Math.abs(t12)/S12_;
+                const msMax = Math.max(msF, msM, msS);
+                const th = (s1/Xt_)**2 - s1*s2/(Xt_**2) + (s2/Yt_)**2 + (t12/S12_)**2;
+                const hF = s1>=0 ? (s1/Xt_)**2+(t12/S12_)**2 : (s1/Xc_)**2;
+                const hM = s2>=0 ? (s2/Yt_)**2+(t12/S12_)**2 : (s2/(2*S23_))**2 + ((Yc_/(2*S23_))**2 - 1)*(s2/Yc_) + (t12/S12_)**2;
+                const F1=1/Xt_-1/Xc_, F2=1/Yt_-1/Yc_, F11=1/(Xt_*Xc_), F22=1/(Yt_*Yc_), F66=1/(S12_*S12_), F12=-0.5*Math.sqrt(F11*F22);
+                const a_tw = F11*s1*s1 + F22*s2*s2 + F66*t12*t12 + 2*F12*s1*s2;
+                const b_tw = F1*s1 + F2*s2;
+                let twRF = Infinity;
+                if(Math.abs(a_tw)>1e-30){ const disc = b_tw*b_tw+4*a_tw; if(disc>=0) twRF=(-b_tw+Math.sqrt(disc))/(2*a_tw); } 
+                else if(Math.abs(b_tw)>1e-30) twRF=1/b_tw;
+                return { msMax, th, hashMax: Math.max(hF,hM), twRF, msFail: msMax>=1, minRF: Math.min(1/msMax, 1/Math.sqrt(th||1e-30), twRF, 1/Math.sqrt(Math.max(hF,hM)||1e-30)) };
+            }
+
+            angles.forEach((deg, k) => {
+                const c = Math.cos(deg*Math.PI/180), s = Math.sin(deg*Math.PI/180);
+                const zpts = [z[k], (z[k]+z[k+1])/2, z[k+1]];
+                const pts = zpts.map(zz => {
+                    const ex=str_curv[0]+zz*str_curv[3], ey=str_curv[1]+zz*str_curv[4], gxy=str_curv[2]+zz*str_curv[5];
+                    const sx=(Qbars[k].Q11*ex+Qbars[k].Q12*ey+Qbars[k].Q16*gxy)/1e6, sy=(Qbars[k].Q12*ex+Qbars[k].Q22*ey+Qbars[k].Q26*gxy)/1e6, txy=(Qbars[k].Q16*ex+Qbars[k].Q26*ey+Qbars[k].Q66*gxy)/1e6;
+                    const e1=c*c*ex+s*s*ey+s*c*gxy, e2=s*s*ex+c*c*ey-s*c*gxy, g12=-2*s*c*ex+2*s*c*ey+(c*c-s*s)*gxy;
+                    const s1=(Q[0][0]*e1+Q[0][1]*e2)/1e6, s2=(Q[1][0]*e1+Q[1][1]*e2)/1e6, t12=(Q[2][2]*g12)/1e6;
+                    return { sx,sy,txy, s1,s2,t12, zz };
+                });
+                plies.push({ deg, k, pts, fa: getFA(pts[1].s1, pts[1].s2, pts[1].t12) });
+            });
+
+            document.getElementById('results').style.display = 'flex';
+            
+            const critRF = Math.min(...plies.map(p=>p.fa.minRF));
+            const nFail = plies.filter(p=>p.fa.msFail).length;
+            document.getElementById('summaryCards').innerHTML = `
+                <div class="summary-card"><div class="val" style="color:${nFail?'var(--fail)':'var(--safe)'}">${nFail}</div><div class="lbl">Failed Plies</div></div>
+                <div class="summary-card"><div class="val" style="color:${critRF<1?'var(--fail)':critRF<1.5?'var(--warn)':'var(--safe)'}">${critRF.toFixed(2)}</div><div class="lbl">Min Reserve Factor</div></div>
+                <div class="summary-card"><div class="val" style="color:var(--accent)">${(h*1000).toFixed(2)}</div><div class="lbl">Thickness (mm)</div></div>
+                <div class="summary-card"><div class="val" style="color:var(--text-dim)">${(A[0][0]/1e6).toFixed(1)}</div><div class="lbl">A₁₁ (MN/m)</div></div>
+            `;
+
+            function matHTML(label, M, scale) {
+                const maxV = Math.max(...M.flat().map(Math.abs));
+                return `<div class="matrix-block"><h4>${label}</h4><div class="matrix-grid">
+                    ${M.map((row,i)=>row.map((v,j)=>{
+                        const isZ=Math.abs(v)<1e-8*maxV;
+                        return `<div class="matrix-cell ${isZ?'':i===j?'nonzero':'coupling'}">${isZ?'0':fmtN(v/scale,3)}</div>`;
+                    }).join('')).join('')}
+                </div></div>`;
+            }
+            document.getElementById('abdDisplay').innerHTML = matHTML('[A] MN/m',A,1e6) + matHTML('[B] N',B,1) + matHTML('[D] Nm',D,1);
+
+            const vspan = v => `<span style="color:${v>0?'#175096':v<0?'#d9534f':'#333'}">${v.toFixed(1)}</span>`;
+            const rfspan = v => `<b style="color:${v<1?'var(--fail)':v<1.5?'var(--warn)':'var(--safe)'}">${isFinite(v)?v.toFixed(2):'∞'}</b>`;
+            
+            document.getElementById('failureBody').innerHTML = plies.map(p => `<tr>
+                <td>${p.k+1}</td><td>${p.deg}°</td><td>${vspan(p.pts[1].s1)}</td><td>${vspan(p.pts[1].s2)}</td><td>${vspan(p.pts[1].t12)}</td>
+                <td><div class="rf-bar-wrap"><div class="rf-bar"><div class="rf-bar-fill" style="width:${Math.min(p.fa.msMax*100,100)}%;background:${p.fa.msFail?'var(--fail)':'var(--safe)'}"></div></div></div></td>
+                <td><div class="rf-bar-wrap"><div class="rf-bar"><div class="rf-bar-fill" style="width:${Math.min(p.fa.msMax*100,100)}%;background:${p.fa.msFail?'var(--fail)':'var(--safe)'}"></div></div></div></td>
+                <td>${p.fa.msFail?'<span style="color:var(--fail);font-weight:700">FAIL</span>':'<span style="color:var(--safe);font-weight:700">SAFE</span>'}</td>
+            </tr>`).join('');
+
+            document.getElementById('rfBody').innerHTML = plies.map(p => `<tr>
+                <td>${p.k+1}</td><td>${p.deg}°</td>
+                <td>${rfspan(1/p.fa.msMax)}</td><td>${rfspan(1/Math.sqrt(p.fa.th||1e-30))}</td><td>${rfspan(p.fa.twRF)}</td><td>${rfspan(1/Math.sqrt(p.fa.hashMax||1e-30))}</td><td>${rfspan(p.fa.minRF)}</td>
+            </tr>`).join('');
+
+            const d1=[], d2=[], d3=[], layerLines=[];
+            plies.forEach((p, k) => {
+                p.pts.forEach(pt => {
+                    const zmm = pt.zz*1000 + h*500;
+                    d1.push({x:isGlobal?pt.sx:pt.s1, y:zmm}); d2.push({x:isGlobal?pt.sy:pt.s2, y:zmm}); d3.push({x:isGlobal?pt.txy:pt.t12, y:zmm});
+                });
+                if(k<nPlies-1) layerLines.push((z[k+1]+h/2)*1000);
+            });
+
+            const ctx = document.getElementById('stressChart').getContext('2d');
+            if(cltChart) cltChart.destroy();
+            const datasets = [];
+            const lbl = isGlobal ? ['σₓ','σᵧ','τₓᵧ'] : ['σ₁','σ₂','τ₁₂'];
+            if(document.getElementById('sh_s1').checked) datasets.push({label:lbl[0],data:d1,borderColor:'#175096',borderWidth:2,pointRadius:0});
+            if(document.getElementById('sh_s2').checked) datasets.push({label:lbl[1],data:d2,borderColor:'#d9534f',borderWidth:2,pointRadius:0,borderDash:[5,5]});
+            if(document.getElementById('sh_s12').checked) datasets.push({label:lbl[2],data:d3,borderColor:'#198754',borderWidth:2,pointRadius:0,borderDash:[2,4]});
+
+            cltChart = new Chart(ctx, {
+                type:'line',
+                data:{datasets},
+                options:{
+                    indexAxis:'y', responsive:true, maintainAspectRatio:false, layout:{padding:{right:60}},
+                    scales:{ x:{title:{display:true,text:'Stress (MPa)'},grid:{color:'#eee'}}, y:{title:{display:true,text:'z (mm)'},type:'linear',min:0,max:h*1000,grid:{display:false}} },
+                    plugins:{ legend:{labels:{font:{family:'Roboto',size:12}}} }
+                },
+                plugins:[{
+                    id:'layers',
+                    afterDatasetsDraw(chart){
+                        const {ctx,chartArea:{left,right},scales:{y}}=chart;
+                        ctx.save(); ctx.textAlign='left'; ctx.textBaseline='middle'; ctx.font='10px Roboto'; ctx.fillStyle='#888';
+                        layerLines.forEach(zl=>{ const yp=y.getPixelForValue(zl); ctx.beginPath();ctx.setLineDash([2,4]);ctx.strokeStyle='#ccc';ctx.moveTo(left,yp);ctx.lineTo(right,yp);ctx.stroke(); });
+                        plies.forEach((p,k)=>{ ctx.fillText(`L${k+1} (${p.deg}°)`, right-50, y.getPixelForValue((z[k]+z[k+1]+h)/2*1000)); });
+                        ctx.restore();
+                    }
+                }]
+            });
+        }
+
+        // --- 4. TAB SWITCHER SPECIFIC TO CLT TOOL ---
+        function switchCltTab(el, id) {
+            const tabs = el.parentElement.children;
+            for(let i=0; i<tabs.length; i++) tabs[i].classList.remove('active');
+            el.classList.add('active');
+            
+            const contents = document.getElementsByClassName('clt-tab-content');
+            for(let i=0; i<contents.length; i++) contents[i].classList.remove('active');
+            document.getElementById(id).classList.add('active');
+        }
     </script>
 </body>
 </html>
-
