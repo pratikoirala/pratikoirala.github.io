@@ -172,6 +172,16 @@
         .clt-app .rf-bar { flex: 1; height: 6px; background: #e9ecef; border-radius: 3px; overflow: hidden; min-width: 40px; }
         .clt-app .rf-bar-fill { height: 100%; border-radius: 3px; }
 
+        /* --- TOOL SELECTOR STYLES --- */
+        .tool-selector-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 2rem; }
+        .tool-card { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 25px 20px; text-align: center; cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; border-top: 4px solid var(--cv-blue); }
+        .tool-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--cv-blue); }
+        .tool-card i { font-size: 2.5rem; color: var(--cv-blue); margin-bottom: 12px; display: block; }
+        .tool-card h3 { font-size: 1.1rem; font-weight: 700; color: #175096; margin-bottom: 8px; }
+        .tool-card p { font-size: 0.9rem; color: #666; line-height: 1.4; }
+        .btn-secondary { padding: 8px 16px; background: #e9ecef; border: 1px solid #ccc; border-radius: 4px; cursor: pointer; font-family: 'Roboto', sans-serif; font-size: 0.9rem; transition: background 0.2s; }
+        .btn-secondary:hover { background: #dde1e5; }
+
         /* --- CONTACT & HOBBY TAB STYLES --- */
         .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
         .photo-card { background: white; padding: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-radius: 6px; }
@@ -503,147 +513,171 @@
             </div>
         </div>
 
-        <div id="tools" class="tab-content">
-            <h2 class="section-header">Classical Lamination Theory (CLT) Analyzer</h2>
-            <p>Full [ABD] matrix calculation, through-thickness stress plots, and multi-criteria failure analysis.</p>
+        <!-- Replace the entire <div id="tools" class="tab-content"> block in your existing file -->
 
-            <div class="clt-app">
-                <div class="layout">
-                    <div>
-                        <div class="panel">
-                            <div class="panel-header"><div class="dot"></div><span class="panel-title">Material Properties</span></div>
-                            <div class="panel-body">
-                                <div class="form-section">
-                                    <div class="form-section-label">Elastic Constants</div>
-                                    <div class="form-row">
-                                        <div class="form-group"><label>E₁ (GPa)</label><input id="e1" type="number" value="140" step="any"></div>
-                                        <div class="form-group"><label>E₂ (GPa)</label><input id="e2" type="number" value="10" step="any"></div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group"><label>G₁₂ (GPa)</label><input id="g12" type="number" value="5" step="any"></div>
-                                        <div class="form-group"><label>ν₁₂</label><input id="nu12" type="number" value="0.3" step="any"></div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group"><label>G₁₃ (GPa)</label><input id="g13" type="number" value="5" step="any"></div>
-                                        <div class="form-group"><label>G₂₃ (GPa)</label><input id="g23" type="number" value="3.8" step="any"></div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group"><label>Ply thickness t (mm)</label><input id="tply" type="number" value="0.125" step="any"></div>
-                                        <div class="form-group"><label>Density ρ (kg/m³)</label><input id="rho" type="number" value="1600" step="any"></div>
-                                    </div>
+<div id="tools" class="tab-content">
+    <h2 class="section-header">Engineering Tools Suite</h2>
+    <p style="margin-bottom: 20px; color: #666;">Select a tool below to perform calculations and visualizations.</p>
+
+    <!-- TOOL SELECTOR MENU -->
+    <div id="tool-selector" class="tool-selector-grid">
+        <div class="tool-card" onclick="showTool('clt')">
+            <i class="fas fa-layer-group"></i>
+            <h3>Composite Lamination (CLT)</h3>
+            <p>Calculate [ABD] matrix, stress profiles, and failure analysis.</p>
+        </div>
+        <div class="tool-card" onclick="showTool('laser')">
+            <i class="fas fa-bolt"></i>
+            <h3>Laser Pulse Analyzer</h3>
+            <p>Visualize pulsed laser waveforms based on frequency and duty cycle.</p>
+        </div>
+        <!-- Placeholder for future tools -->
+        <div class="tool-card" style="opacity: 0.6; cursor: default;">
+            <i class="fas fa-plus"></i>
+            <h3>Coming Soon</h3>
+            <p>More engineering tools will be added here.</p>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- TOOL 1: COMPOSITE LAMINATION (Existing Logic Wrapped) -->
+    <!-- ========================================== -->
+    <div id="tool-clt" class="active-tool" style="display: none;">
+        <div class="tool-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+            <h3>Classical Lamination Theory (CLT) Analyzer</h3>
+            <button onclick="hideTools()" class="btn-secondary" style="padding: 5px 10px; background:#eee; border:none; border-radius:4px; cursor:pointer;">&larr; Back to Tools</button>
+        </div>
+        
+        <p style="margin-bottom: 15px;">Full [ABD] matrix calculation, through-thickness stress plots, and multi-criteria failure analysis.</p>
+
+        <!-- Your existing CLT .clt-app container goes here exactly as before -->
+        <div class="clt-app">
+            <div class="layout">
+                <div>
+                    <div class="panel">
+                        <div class="panel-header"><div class="dot"></div><span class="panel-title">Material Properties</span></div>
+                        <div class="panel-body">
+                            <div class="form-section">
+                                <div class="form-section-label">Elastic Constants</div>
+                                <div class="form-row">
+                                    <div class="form-group"><label>E₁ (GPa)</label><input id="e1" type="number" value="140" step="any"></div>
+                                    <div class="form-group"><label>E₂ (GPa)</label><input id="e2" type="number" value="10" step="any"></div>
                                 </div>
-
-                                <div class="form-section">
-                                    <div class="form-section-label">Strength Parameters</div>
-                                    <div class="form-row">
-                                        <div class="form-group"><label>Xt (Tensile) (MPa)</label><input id="Xt" type="number" value="1500" step="any"></div>
-                                        <div class="form-group"><label>Xc (Comp.) (MPa)</label><input id="Xc" type="number" value="1500" step="any"></div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group"><label>Yt (Tensile) (MPa)</label><input id="Yt" type="number" value="40" step="any"></div>
-                                        <div class="form-group"><label>Yc (Comp.) (MPa)</label><input id="Yc" type="number" value="246" step="any"></div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group"><label>S₁₂ (In-plane shear)</label><input id="S12" type="number" value="68" step="any"></div>
-                                        <div class="form-group"><label>S₂₃ (Interlaminar)</label><input id="S23" type="number" value="40" step="any"></div>
-                                    </div>
+                                <div class="form-row">
+                                    <div class="form-group"><label>G₁₂ (GPa)</label><input id="g12" type="number" value="5" step="any"></div>
+                                    <div class="form-group"><label>ν₁₂</label><input id="nu12" type="number" value="0.3" step="any"></div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group"><label>G₁₃ (GPa)</label><input id="g13" type="number" value="5" step="any"></div>
+                                    <div class="form-group"><label>G₂₃ (GPa)</label><input id="g23" type="number" value="3.8" step="any"></div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group"><label>Ply thickness t (mm)</label><input id="tply" type="number" value="0.125" step="any"></div>
+                                    <div class="form-group"><label>Density ρ (kg/m³)</label><input id="rho" type="number" value="1600" step="any"></div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="panel">
-                            <div class="panel-header"><div class="dot" style="background:var(--accent4);"></div><span class="panel-title">Layup & Loads</span></div>
-                            <div class="panel-body">
-                                <div class="form-section">
-                                    <div class="form-section-label">Stacking Sequence</div>
-                                    <div class="form-group" style="margin-bottom:6px;">
-                                        <label>Angles (degrees, slash-separated)</label>
-                                        <textarea id="layup" rows="2" placeholder="0/45/-45/90/90/-45/45/0">0/45/-45/90/90/-45/45/0</textarea>
-                                    </div>
-                                    <div style="display:flex; gap:10px; margin-bottom:10px; align-items:center; font-size:12px;">
-                                        <input type="checkbox" id="symmetric" style="width:auto;"> <label for="symmetric">Enforce symmetric [ ]s</label>
-                                    </div>
+                            <div class="form-section">
+                                <div class="form-section-label">Strength Parameters</div>
+                                <div class="form-row">
+                                    <div class="form-group"><label>Xt (Tensile) (MPa)</label><input id="Xt" type="number" value="1500" step="any"></div>
+                                    <div class="form-group"><label>Xc (Comp.) (MPa)</label><input id="Xc" type="number" value="1500" step="any"></div>
                                 </div>
-
-                                <div class="form-section">
-                                    <div class="form-section-label">Applied Loads</div>
-                                    <div class="form-row">
-                                        <div class="form-group"><label>Nₓ (N/m)</label><input id="Nx" type="number" value="1000" step="any"></div>
-                                        <div class="form-group"><label>Nᵧ (N/m)</label><input id="Ny" type="number" value="0" step="any"></div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group"><label>Nₓᵧ (N/m)</label><input id="Nxy" type="number" value="0" step="any"></div>
-                                        <div class="form-group"><label>Mₓ (N·m/m)</label><input id="Mx" type="number" value="0" step="any"></div>
-                                    </div>
+                                <div class="form-row">
+                                    <div class="form-group"><label>Yt (Tensile) (MPa)</label><input id="Yt" type="number" value="40" step="any"></div>
+                                    <div class="form-group"><label>Yc (Comp.) (MPa)</label><input id="Yc" type="number" value="246" step="any"></div>
                                 </div>
-
-                                <div class="form-section" style="margin-bottom:8px;">
-                                    <div class="form-section-label">Plot Options</div>
-                                    <div class="radio-group" style="margin-bottom:10px;">
-                                        <input type="radio" name="coord" id="coord_local" value="local" checked>
-                                        <label for="coord_local">Local (1-2)</label>
-                                        <input type="radio" name="coord" id="coord_global" value="global">
-                                        <label for="coord_global">Global (x-y)</label>
-                                    </div>
-                                    <div style="display:flex; justify-content:space-between; font-size:12px;">
-                                        <label><input type="checkbox" id="sh_s1" checked style="width:auto;"> σ₁/σₓ</label>
-                                        <label><input type="checkbox" id="sh_s2" checked style="width:auto;"> σ₂/σᵧ</label>
-                                        <label><input type="checkbox" id="sh_s12" checked style="width:auto;"> τ₁₂/τₓᵧ</label>
-                                    </div>
+                                <div class="form-row">
+                                    <div class="form-group"><label>S₁₂ (In-plane shear)</label><input id="S12" type="number" value="68" step="any"></div>
+                                    <div class="form-group"><label>S₂₃ (Interlaminar)</label><input id="S23" type="number" value="40" step="any"></div>
                                 </div>
-
-                                <button class="btn-primary" onclick="runCLT()">Run Analysis</button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="right-col" id="results" style="display:none; flex-direction:column; gap:16px;">
-                        
-                        <div class="panel">
-                            <div class="panel-header"><div class="dot" style="background:var(--safe);"></div><span class="panel-title">Summary</span></div>
-                            <div class="panel-body">
-                                <div class="summary-cards" id="summaryCards"></div>
+                    <div class="panel">
+                        <div class="panel-header"><div class="dot" style="background:var(--accent4);"></div><span class="panel-title">Layup & Loads</span></div>
+                        <div class="panel-body">
+                            <div class="form-section">
+                                <div class="form-section-label">Stacking Sequence</div>
+                                <div class="form-group" style="margin-bottom:6px;">
+                                    <label>Angles (degrees, slash-separated)</label>
+                                    <textarea id="layup" rows="2" placeholder="0/45/-45/90/90/-45/45/0">0/45/-45/90/90/-45/45/0</textarea>
+                                </div>
+                                <div style="display:flex; gap:10px; margin-bottom:10px; align-items:center; font-size:12px;">
+                                    <input type="checkbox" id="symmetric" style="width:auto;"> <label for="symmetric">Enforce symmetric [ ]s</label>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="panel">
-                            <div class="panel-header"><div class="dot" style="background:var(--accent);"></div><span class="panel-title">ABD Stiffness Matrix</span></div>
-                            <div class="panel-body">
-                                <div class="matrix-section" id="abdDisplay"></div>
+                            <div class="form-section">
+                                <div class="form-section-label">Applied Loads</div>
+                                <div class="form-row">
+                                    <div class="form-group"><label>Nₓ (N/m)</label><input id="Nx" type="number" value="1000" step="any"></div>
+                                    <div class="form-group"><label>Nᵧ (N/m)</label><input id="Ny" type="number" value="0" step="any"></div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group"><label>Nₓᵧ (N/m)</label><input id="Nxy" type="number" value="0" step="any"></div>
+                                    <div class="form-group"><label>Mₓ (N·m/m)</label><input id="Mx" type="number" value="0" step="any"></div>
+                                </div>
                             </div>
+                            <div class="form-section" style="margin-bottom:8px;">
+                                <div class="form-section-label">Plot Options</div>
+                                <div class="radio-group" style="margin-bottom:10px;">
+                                    <input type="radio" name="coord" id="coord_local_c" value="local" checked>
+                                    <label for="coord_local_c">Local (1-2)</label>
+                                    <input type="radio" name="coord" id="coord_global_c" value="global">
+                                    <label for="coord_global_c">Global (x-y)</label>
+                                </div>
+                                <div style="display:flex; justify-content:space-between; font-size:12px;">
+                                    <label><input type="checkbox" id="sh_s1_c" checked style="width:auto;"> σ₁/σₓ</label>
+                                    <label><input type="checkbox" id="sh_s2_c" checked style="width:auto;"> σ₂/σᵧ</label>
+                                    <label><input type="checkbox" id="sh_s12_c" checked style="width:auto;"> τ₁₂/τₓᵧ</label>
+                                </div>
+                            </div>
+                            <button class="btn-primary" onclick="runCLT()">Run Analysis</button>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="panel">
-                            <div class="panel-header"><div class="dot"></div><span class="panel-title">Stress & Failure Analysis</span></div>
-                            <div class="panel-body">
-                                <div class="tabs">
-                                    <div class="tab active" onclick="switchCltTab(this,'tab-chart')">Stress Profile</div>
-                                    <div class="tab" onclick="switchCltTab(this,'tab-failure')">Max Stress</div>
-                                    <div class="tab" onclick="switchCltTab(this,'tab-rf')">Reserve Factors</div>
+                <div class="right-col" id="results_clt" style="display:none; flex-direction:column; gap:16px;">
+                    <!-- Existing Results Panels go here -->
+                    <div class="panel">
+                        <div class="panel-header"><div class="dot" style="background:var(--safe);"></div><span class="panel-title">Summary</span></div>
+                        <div class="panel-body">
+                            <div class="summary-cards" id="summaryCards_clt"></div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-header"><div class="dot" style="background:var(--accent);"></div><span class="panel-title">ABD Stiffness Matrix</span></div>
+                        <div class="panel-body">
+                            <div class="matrix-section" id="abdDisplay_clt"></div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-header"><div class="dot"></div><span class="panel-title">Stress & Failure Analysis</span></div>
+                        <div class="panel-body">
+                            <div class="tabs">
+                                <div class="tab active" onclick="switchCltTab(this,'tab-chart-c')">Stress Profile</div>
+                                <div class="tab" onclick="switchCltTab(this,'tab-failure-c')">Max Stress</div>
+                                <div class="tab" onclick="switchCltTab(this,'tab-rf-c')">Reserve Factors</div>
+                            </div>
+                            <div class="clt-tab-content active" id="tab-chart-c">
+                                <div style="position:relative; height:350px;">
+                                    <canvas id="stressChart_clt"></canvas>
                                 </div>
-
-                                <div class="clt-tab-content active" id="tab-chart">
-                                    <div style="position:relative; height:350px;">
-                                        <canvas id="stressChart"></canvas>
-                                    </div>
+                            </div>
+                            <div class="clt-tab-content" id="tab-failure-c">
+                                <div style="overflow-x:auto;">
+                                    <table class="failure-table">
+                                        <thead><tr><th>Ply</th><th>θ°</th><th>σ₁ (MPa)</th><th>σ₂ (MPa)</th><th>τ₁₂ (MPa)</th><th>Fiber</th><th>Matrix</th><th>Status</th></tr></thead>
+                                        <tbody id="failureBody_clt"></tbody>
+                                    </table>
                                 </div>
-
-                                <div class="clt-tab-content" id="tab-failure">
-                                    <div style="overflow-x:auto;">
-                                        <table class="failure-table">
-                                            <thead><tr><th>Ply</th><th>θ°</th><th>σ₁ (MPa)</th><th>σ₂ (MPa)</th><th>τ₁₂ (MPa)</th><th>Fiber</th><th>Matrix</th><th>Status</th></tr></thead>
-                                            <tbody id="failureBody"></tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-                                <div class="clt-tab-content" id="tab-rf">
-                                    <div style="overflow-x:auto;">
-                                        <table class="failure-table">
-                                            <thead><tr><th>Ply</th><th>θ°</th><th>RF Max-Stress</th><th>RF Tsai-Hill</th><th>RF Tsai-Wu</th><th>RF Hashin</th><th>Min RF</th></tr></thead>
-                                            <tbody id="rfBody"></tbody>
-                                        </table>
-                                    </div>
+                            </div>
+                            <div class="clt-tab-content" id="tab-rf-c">
+                                <div style="overflow-x:auto;">
+                                    <table class="failure-table">
+                                        <thead><tr><th>Ply</th><th>θ°</th><th>RF Max-Stress</th><th>RF Tsai-Hill</th><th>RF Tsai-Wu</th><th>RF Hashin</th><th>Min RF</th></tr></thead>
+                                        <tbody id="rfBody_clt"></tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -651,6 +685,69 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- TOOL 2: LASER PULSE ANALYZER (New Interactive Logic) -->
+    <!-- ========================================== -->
+    <div id="tool-laser" class="active-tool" style="display: none;">
+        <div class="tool-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+            <h3>Laser Pulse Analyzer</h3>
+            <button onclick="hideTools()" class="btn-secondary" style="padding: 5px 10px; background:#eee; border:none; border-radius:4px; cursor:pointer;">&larr; Back to Tools</button>
+        </div>
+
+        <div class="layout" style="display:grid; grid-template-columns: 300px 1fr; gap:20px; margin-top:20px;">
+            <!-- Input Panel -->
+            <div class="panel">
+                <div class="panel-header"><div class="dot" style="background:var(--accent4);"></div><span class="panel-title">Laser Parameters</span></div>
+                <div class="panel-body">
+                    <div class="form-section">
+                        <div class="form-group">
+                            <label>Frequency (Hz)</label>
+                            <input type="number" id="laser_freq" value="50" min="1" max="10000">
+                        </div>
+                        <div class="form-group" style="margin-top:10px;">
+                            <label>Duty Cycle (%)</label>
+                            <input type="range" id="laser_duty" value="10" min="1" max="99" style="width:100%" oninput="document.getElementById('laser_duty_val').textContent=this.value+'%'">
+                            <div style="text-align:right; font-size:0.8rem; font-weight:bold; color:var(--accent);" id="laser_duty_val">10%</div>
+                        </div>
+                        <div class="form-group" style="margin-top:10px;">
+                            <label>Total Duration (s)</label>
+                            <input type="number" id="laser_dur" value="1" min="0.1" step="0.1">
+                        </div>
+                        <button class="btn-primary" onclick="updateLaser()" style="margin-top:15px;">Calculate &amp; Plot</button>
+                    </div>
+                    
+                    <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 4px; border: 1px solid #eee;">
+                        <h4 style="margin:0 0 10px 0; font-size:14px; color:var(--text);">Calculated Metrics</h4>
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; font-size:13px;">
+                            <div><strong>Period:</strong> <span id="disp_period">-</span> µs</div>
+                            <div><strong>ON Time:</strong> <span id="disp_on">-</span> µs</div>
+                            <div><strong>OFF Time:</strong> <span id="disp_off">-</span> µs</div>
+                            <div><strong>Total Pulses:</strong> <span id="disp_count">-</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visualization Panel -->
+            <div class="panel" style="height: 100%; min-height: 400px;">
+                <div class="panel-header"><div class="dot" style="background:var(--accent);"></div><span class="panel-title">Waveform Visualization</span></div>
+                <div class="panel-body" style="display:flex; flex-direction:column; height:100%;">
+                    <div style="position:relative; height: 300px; width: 100%;">
+                        <canvas id="laserChart"></canvas>
+                    </div>
+                    <div style="margin-top:15px; font-size:13px; color: #666;">
+                        <p style="margin:0;"><strong>Note:</strong> The graph displays the digital state (0=OFF, 1=ON) over the selected duration. Hover over the chart for specific values.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Update your CSS to include these new styles -->
 
         <div id="service" class="tab-content">
             
@@ -940,11 +1037,11 @@
                 plies.push({ deg, k, pts, fa: getFA(pts[1].s1, pts[1].s2, pts[1].t12) });
             });
 
-            document.getElementById('results').style.display = 'flex';
+            document.getElementById('results_clt').style.display = 'flex';
             
             const critRF = Math.min(...plies.map(p=>p.fa.minRF));
             const nFail = plies.filter(p=>p.fa.msFail).length;
-            document.getElementById('summaryCards').innerHTML = `
+            document.getElementById('summaryCards_clt').innerHTML = `
                 <div class="summary-card"><div class="val" style="color:${nFail?'var(--fail)':'var(--safe)'}">${nFail}</div><div class="lbl">Failed Plies</div></div>
                 <div class="summary-card"><div class="val" style="color:${critRF<1?'var(--fail)':critRF<1.5?'var(--warn)':'var(--safe)'}">${critRF.toFixed(2)}</div><div class="lbl">Min Reserve Factor</div></div>
                 <div class="summary-card"><div class="val" style="color:var(--accent)">${(h*1000).toFixed(2)}</div><div class="lbl">Thickness (mm)</div></div>
@@ -960,19 +1057,19 @@
                     }).join('')).join('')}
                 </div></div>`;
             }
-            document.getElementById('abdDisplay').innerHTML = matHTML('[A] MN/m',A,1e6) + matHTML('[B] N',B,1) + matHTML('[D] Nm',D,1);
+            document.getElementById('abdDisplay_clt').innerHTML = matHTML('[A] MN/m',A,1e6) + matHTML('[B] N',B,1) + matHTML('[D] Nm',D,1);
 
             const vspan = v => `<span style="color:${v>0?'#175096':v<0?'#d9534f':'#333'}">${v.toFixed(1)}</span>`;
             const rfspan = v => `<b style="color:${v<1?'var(--fail)':v<1.5?'var(--warn)':'var(--safe)'}">${isFinite(v)?v.toFixed(2):'∞'}</b>`;
             
-            document.getElementById('failureBody').innerHTML = plies.map(p => `<tr>
+            document.getElementById('failureBody_clt').innerHTML = plies.map(p => `<tr>
                 <td>${p.k+1}</td><td>${p.deg}°</td><td>${vspan(p.pts[1].s1)}</td><td>${vspan(p.pts[1].s2)}</td><td>${vspan(p.pts[1].t12)}</td>
                 <td><div class="rf-bar-wrap"><div class="rf-bar"><div class="rf-bar-fill" style="width:${Math.min(p.fa.msMax*100,100)}%;background:${p.fa.msFail?'var(--fail)':'var(--safe)'}"></div></div></div></td>
                 <td><div class="rf-bar-wrap"><div class="rf-bar"><div class="rf-bar-fill" style="width:${Math.min(p.fa.msMax*100,100)}%;background:${p.fa.msFail?'var(--fail)':'var(--safe)'}"></div></div></div></td>
                 <td>${p.fa.msFail?'<span style="color:var(--fail);font-weight:700">FAIL</span>':'<span style="color:var(--safe);font-weight:700">SAFE</span>'}</td>
             </tr>`).join('');
 
-            document.getElementById('rfBody').innerHTML = plies.map(p => `<tr>
+            document.getElementById('rfBody_clt').innerHTML = plies.map(p => `<tr>
                 <td>${p.k+1}</td><td>${p.deg}°</td>
                 <td>${rfspan(1/p.fa.msMax)}</td><td>${rfspan(1/Math.sqrt(p.fa.th||1e-30))}</td><td>${rfspan(p.fa.twRF)}</td><td>${rfspan(1/Math.sqrt(p.fa.hashMax||1e-30))}</td><td>${rfspan(p.fa.minRF)}</td>
             </tr>`).join('');
@@ -986,13 +1083,13 @@
                 if(k<nPlies-1) layerLines.push((z[k+1]+h/2)*1000);
             });
 
-            const ctx = document.getElementById('stressChart').getContext('2d');
+            const ctx = document.getElementById('stressChart_clt').getContext('2d');
             if(cltChart) cltChart.destroy();
             const datasets = [];
             const lbl = isGlobal ? ['σₓ','σᵧ','τₓᵧ'] : ['σ₁','σ₂','τ₁₂'];
-            if(document.getElementById('sh_s1').checked) datasets.push({label:lbl[0],data:d1,borderColor:'#175096',borderWidth:2,pointRadius:0});
-            if(document.getElementById('sh_s2').checked) datasets.push({label:lbl[1],data:d2,borderColor:'#d9534f',borderWidth:2,pointRadius:0,borderDash:[5,5]});
-            if(document.getElementById('sh_s12').checked) datasets.push({label:lbl[2],data:d3,borderColor:'#198754',borderWidth:2,pointRadius:0,borderDash:[2,4]});
+            if(document.getElementById('sh_s1_c').checked) datasets.push({label:lbl[0],data:d1,borderColor:'#175096',borderWidth:2,pointRadius:0});
+            if(document.getElementById('sh_s2_c').checked) datasets.push({label:lbl[1],data:d2,borderColor:'#d9534f',borderWidth:2,pointRadius:0,borderDash:[5,5]});
+            if(document.getElementById('sh_s12_c').checked) datasets.push({label:lbl[2],data:d3,borderColor:'#198754',borderWidth:2,pointRadius:0,borderDash:[2,4]});
 
             cltChart = new Chart(ctx, {
                 type:'line',
@@ -1024,6 +1121,113 @@
             const contents = document.getElementsByClassName('clt-tab-content');
             for(let i=0; i<contents.length; i++) contents[i].classList.remove('active');
             document.getElementById(id).classList.add('active');
+        }
+
+        // --- 5. TOOL SELECTOR FUNCTIONS ---
+        function showTool(toolName) {
+            // Hide all tools
+            document.getElementById('tool-clt').style.display = 'none';
+            document.getElementById('tool-laser').style.display = 'none';
+            
+            // Show selected tool
+            document.getElementById('tool-' + toolName).style.display = 'block';
+        }
+
+        function hideTools() {
+            // Hide all tools and go back to tool selector
+            document.getElementById('tool-clt').style.display = 'none';
+            document.getElementById('tool-laser').style.display = 'none';
+        }
+
+        // --- 6. LASER PULSE ANALYZER LOGIC ---
+        let laserChart = null;
+
+        function updateLaser() {
+            // Get input values
+            const frequency = parseFloat(document.getElementById('laser_freq').value) || 50;
+            const dutyCycle = parseFloat(document.getElementById('laser_duty').value) || 10;
+            const duration = parseFloat(document.getElementById('laser_dur').value) || 1;
+            
+            // Calculate metrics
+            const period = 1 / frequency; // seconds
+            const onTime = period * (dutyCycle / 100);
+            const offTime = period - onTime;
+            const totalPulses = Math.floor(duration / period);
+            
+            // Update display
+            document.getElementById('disp_period').textContent = (period * 1e6).toFixed(2);
+            document.getElementById('disp_on').textContent = (onTime * 1e6).toFixed(2);
+            document.getElementById('disp_off').textContent = (offTime * 1e6).toFixed(2);
+            document.getElementById('disp_count').textContent = totalPulses;
+            document.getElementById('laser_duty_val').textContent = dutyCycle + '%';
+            
+            // Generate waveform data
+            const timeStep = Math.min(period / 20, 0.001);
+            const timePoints = [];
+            const statePoints = [];
+            
+            let t = 0;
+            while (t <= duration) {
+                const phase = (t % period) / period;
+                const state = phase < (dutyCycle / 100) ? 1 : 0;
+                timePoints.push(t);
+                statePoints.push(state);
+                t += timeStep;
+            }
+            
+            // Create or update chart
+            const canvas = document.getElementById('laserChart');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            
+            if (laserChart) {
+                laserChart.data.labels = timePoints;
+                laserChart.data.datasets[0].data = statePoints;
+                laserChart.update();
+            } else {
+                laserChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: timePoints,
+                        datasets: [{
+                            label: 'Laser State',
+                            data: statePoints,
+                            borderColor: '#175096',
+                            backgroundColor: 'rgba(23, 80, 150, 0.15)',
+                            borderWidth: 2,
+                            fill: true,
+                            stepped: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: { mode: 'index', intersect: false }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 1.5,
+                                ticks: {
+                                    stepSize: 0.5,
+                                    callback: function(value) {
+                                        return value === 0 ? 'OFF' : 'ON';
+                                    }
+                                },
+                                grid: { display: false }
+                            },
+                            x: {
+                                type: 'linear',
+                                position: 'bottom',
+                                title: { display: true, text: 'Time (s)' },
+                                grid: { color: '#eee' }
+                            }
+                        }
+                    }
+                });
+            }
         }
     </script>
 </body>
