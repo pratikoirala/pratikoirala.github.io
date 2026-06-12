@@ -67,7 +67,7 @@ const MATERIAL_DB = {
   },
 
   // ── Carbon Fiber / Thermoplastic ────────────────────────────────────────────
-  "AS4/PEEK Carbon/PEEK (APC-2)": {
+  "AS4/PEEK Carbon/PEEK": {
     E1:    134,
     E2:    8.9,
     G12:   5.1,
@@ -100,7 +100,7 @@ const MATERIAL_DB = {
     source: "WWFE Test Case 1 — Hinton & Soden, Composites Sci. Tech. 1998"
   },
 
-  "E-Glass/Epoxy (Woven Fabric)": {
+  "E-Glass/Epoxy (Woven)": {
     E1:    25,
     E2:    25,
     G12:   4.0,
@@ -130,7 +130,7 @@ const MATERIAL_DB = {
     S23:   20,
     tply:  0.125,
     rho:   1380,
-    source: "Mil-HDBK-17 / Daniel & Ishai, Table A.4"
+    source: "MIL-HDBK-17 / Daniel & Ishai, Table A.4"
   },
 
   // ── Boron / Epoxy ───────────────────────────────────────────────────────────
