@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pratik Koirala, Ph.D. | Portfolio</title>
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -14,7 +14,7 @@
 
     <style>
         :root {
-            --cv-blue: #175096; 
+            --cv-blue: #175096;
             --text-dark: #333;
             --text-light: #666;
             --bg-light: #f9f9f9;
@@ -86,22 +86,22 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* --- CAROUSEL STYLES --- */
-        .swiper { 
-            width: 100%; 
+        .swiper {
+            width: 100%;
             height: 450px; /* Height must be on the main container */
-            border-radius: 8px; 
+            border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             background: #fff;
         }
-        .swiper-slide { 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        .swiper-slide img, .swiper-slide video { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: contain; 
+        .swiper-slide img, .swiper-slide video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         /* --- ABOUT TAB STYLES --- */
@@ -128,7 +128,7 @@
             --accent: #175096; --accent2: #d9534f; --accent3: #198754; --accent4: #f59f00;
             --text: #333333; --text-dim: #666666; --text-mid: #555555;
             --fail: #d9534f; --safe: #198754; --warn: #f59f00;
-            font-family: 'Roboto', sans-serif; 
+            font-family: 'Roboto', sans-serif;
             font-size: 15px; /* INCREASED from 13px */
             color: var(--text);
         }
@@ -198,6 +198,10 @@
         .pfa-badge.matrix  { background: #f59f00; color: #fff; }
         .pfa-badge.fiber   { background: #d9534f; color: #fff; }
         .pfa-badge.fpf     { background: #175096; color: #fff; }
+        #pfa_laminate_svg text { font-family: 'Roboto', sans-serif; }
+        #pfa_detail_svg text { font-family: 'Roboto', sans-serif; }
+        #pfa_step_prev:hover, #pfa_step_next:hover { background: #0d2d57 !important; }
+        #pfa_step_prev:disabled, #pfa_step_next:disabled { opacity: 0.4; cursor: not-allowed !important; }
 
         /* --- MATERIAL PRESET SELECTOR --- */
         .clt-app select {
@@ -313,7 +317,7 @@
                 <div class="about-main">
                     <p>I am a Mechanical Engineer and Finite Element Analysis (FEA) specialist focused on structural mechanics, advanced materials, and simulation-driven design. My work centers on using physics-based modeling to predict real-world behavior and support reliable, high-performance engineering decisions.</p>
                     <p>I have hands-on experience developing and validating finite element models for complex, multi-material systems, working with tools such as ANSYS, Abaqus, and HyperMesh to analyze stress, deformation, fatigue, warpage, and failure mechanisms. I place strong emphasis on experimental validation, correlating simulations with mechanical testing, digital image correlation (DIC), DMA, and material characterization to ensure accuracy and reliability.</p>
-                    
+
                     <h3 class="section-header">Technical Expertise</h3>
                     <div style="margin-bottom: 1.5rem;">
                         <strong>Manufacturing & Processing:</strong><br>
@@ -385,7 +389,7 @@
                             <li>Conducted material characterization using DSC, DMA, and optical microscopy to validate simulation models.</li>
                         </ul>
                     </div>
-                    
+
                     <h3 class="section-header">Education</h3>
                     <div class="education-entry">
                         <p><strong>Ph.D. Mechanical Engineering</strong> | University of Texas at Austin | 2024 <br>
@@ -411,21 +415,21 @@
                 <li><strong>Void Analysis & Metrology:</strong> Automated detection of micro-voids in sintered parts using Computer Vision (Python/OpenCV).</li>
                 <li><strong>Material Characterization:</strong> Thermal profiling (FLIR), 4-Probe conductivity, and capillary action studies.</li>
             </ul>
-            
+
             <h2 class="section-header" style="margin-top: 3rem;">Featured Research Insights</h2>
             <div class="articles-grid">
-                
+
                 <div class="article-card" id="art-sintering">
                     <div class="article-title">Investigating interfacial properties vs interphase thickness in a thermoplastic composite</div>
                     <p class="article-summary">
-                        Thermoplastic composites offer exceptional characteristics—particularly weldability, superior toughness, and potential for rapid out-of-autoclave processing—that make 
-                        them highly attractive for diverse applications. The temperature history during their manufacturing plays a critical role in shaping key microstructural features, 
-                        including fiber–matrix interfacial properties, matrix crystallinity, and interphase morphology. These characteristics, in turn, determine the composite's macroscale 
-                        mechanical performance. In carbon fiber-reinforced low-melt polyaryletherketone (LM-PAEK™) composites, the influence of processing conditions was systematically 
-                        examined by producing three distinct sample types through automated fiber placement and post-processing: (1) fast cooling followed by cold crystallization, 
-                        (2) controlled cooling from melt at 2 °C/min, and (3) fast cooling at rates exceeding 10,000 °C/min. Interfacial mechanical properties and interphase size 
-                        were characterized using cyclic nanoindentation push-out tests and force-modulation atomic force microscopy, revealing that specimens cooled at 2 °C/min 
-                        exhibit an interphase region approximately three times thicker than that of rapidly cooled specimens, with enhanced interfacial fiber–matrix strength 
+                        Thermoplastic composites offer exceptional characteristics—particularly weldability, superior toughness, and potential for rapid out-of-autoclave processing—that make
+                        them highly attractive for diverse applications. The temperature history during their manufacturing plays a critical role in shaping key microstructural features,
+                        including fiber–matrix interfacial properties, matrix crystallinity, and interphase morphology. These characteristics, in turn, determine the composite's macroscale
+                        mechanical performance. In carbon fiber-reinforced low-melt polyaryletherketone (LM-PAEK™) composites, the influence of processing conditions was systematically
+                        examined by producing three distinct sample types through automated fiber placement and post-processing: (1) fast cooling followed by cold crystallization,
+                        (2) controlled cooling from melt at 2 °C/min, and (3) fast cooling at rates exceeding 10,000 °C/min. Interfacial mechanical properties and interphase size
+                        were characterized using cyclic nanoindentation push-out tests and force-modulation atomic force microscopy, revealing that specimens cooled at 2 °C/min
+                        exhibit an interphase region approximately three times thicker than that of rapidly cooled specimens, with enhanced interfacial fiber–matrix strength
                         and fracture toughness. These findings highlight the importance of controlling the interphase thickness in thermoplastic composites.
                     </p>
                 </div>
@@ -433,12 +437,12 @@
                 <div class="article-card" id="art-vision">
                     <div class="article-title">Reactive extrusion additive manufacturing of a short carbon fiber thermosetting composite via active mixing</div>
                     <p class="article-summary">
-                        Reactive extrusion additive manufacturing (REAM) is a recently developed process that utilizes reactive thermoset resin-hardener systems that are mixed 
-                        inside a shearing element, deposited layer by layer to form a structure, and cured in-situ without external energy. An externally powered active mixing 
-                        element was developed and used to demonstrate REAM with a highly viscous resin that was filled with 10 wt% chopped carbon fibers. This was achieved by 
-                        adding fumed silica and increasing the temperature of the fiber-resin mixture to enable effective in-situ mixing while maintaining shape retention upon 
-                        deposition. Tensile properties of fiber-reinforced and reference REAM parts were measured and explained using their fiber alignment and length distribution. 
-                        Finally, a mechanics model was utilized to determine the optimal fiber content for strength and stiffness, considering the degradation of fiber length at 
+                        Reactive extrusion additive manufacturing (REAM) is a recently developed process that utilizes reactive thermoset resin-hardener systems that are mixed
+                        inside a shearing element, deposited layer by layer to form a structure, and cured in-situ without external energy. An externally powered active mixing
+                        element was developed and used to demonstrate REAM with a highly viscous resin that was filled with 10 wt% chopped carbon fibers. This was achieved by
+                        adding fumed silica and increasing the temperature of the fiber-resin mixture to enable effective in-situ mixing while maintaining shape retention upon
+                        deposition. Tensile properties of fiber-reinforced and reference REAM parts were measured and explained using their fiber alignment and length distribution.
+                        Finally, a mechanics model was utilized to determine the optimal fiber content for strength and stiffness, considering the degradation of fiber length at
                         higher volume fractions due to the mixing.
                     </p>
                 </div>
@@ -447,23 +451,23 @@
                     <div class="article-title">Interlaminar Properties Enhancement in Thermosetting Composites</div>
                     <p class="article-summary">
                         A major shortcoming of carbon fiber reinforced polymer composites (CFRP) is their interlaminar performance. This study provides an inexpensive and readily
-                        scalable solution to this problem by incorporating ultra-thin sheets of carbon nanotubes (CNT) between the plies (laminates) of CFRPs. To this end, dry 
-                        carbon fiber fabrics are first sandwiched between CNT sheets. The fabrics are then stacked and infused with epoxy to form a CFRP with interlaminar CNT 
-                        sheets. Contrary to the typical approach where microns-long CNTs are distributed randomly within a CFRP for reinforcement, this study uses ~100 nm 
-                        thick CNT sheets consisting of aligned and ultra-long (0.3 mm) nanotubes. Despite their negligible weight fraction of only 0.016%, the interlaminar 
-                        CNT sheets enhanced the CFRP's flexural strength by 49%, interlaminar shear strength by 30%, and mode I fracture toughness by 30%. X-ray micro-tomography 
-                        revealed that samples with interlaminar CNTs are significantly resistant to delamination and crack propagation. Moreover, the in-plane electrical 
-                        conductivity of these composites increased commensurate with the weight fraction of CNTs, providing a maximum enhancement of 278% over the reference 
-                        sample for 0.048 wt% of CNT sheets. This study reveals that for almost no change in weight and thickness, interlaminar CNT sheets can enhance the 
+                        scalable solution to this problem by incorporating ultra-thin sheets of carbon nanotubes (CNT) between the plies (laminates) of CFRPs. To this end, dry
+                        carbon fiber fabrics are first sandwiched between CNT sheets. The fabrics are then stacked and infused with epoxy to form a CFRP with interlaminar CNT
+                        sheets. Contrary to the typical approach where microns-long CNTs are distributed randomly within a CFRP for reinforcement, this study uses ~100 nm
+                        thick CNT sheets consisting of aligned and ultra-long (0.3 mm) nanotubes. Despite their negligible weight fraction of only 0.016%, the interlaminar
+                        CNT sheets enhanced the CFRP's flexural strength by 49%, interlaminar shear strength by 30%, and mode I fracture toughness by 30%. X-ray micro-tomography
+                        revealed that samples with interlaminar CNTs are significantly resistant to delamination and crack propagation. Moreover, the in-plane electrical
+                        conductivity of these composites increased commensurate with the weight fraction of CNTs, providing a maximum enhancement of 278% over the reference
+                        sample for 0.048 wt% of CNT sheets. This study reveals that for almost no change in weight and thickness, interlaminar CNT sheets can enhance the
                         electrical conductivity and interlaminar performance of CFRPs.
                     </p>
                 </div>
             </div>
 
             <h2 class="section-header">Publications</h2>
-            
+
             <h3 style="color:#175096; border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-top: 20px;">Journal Papers</h3>
-            
+
             <div class="publication-item">
                 <div class="publication-title">Investigating interfacial properties vs interphase thickness in a thermoplastic composite</div>
                 <div class="publication-meta">P Koirala, M Safdari, F Mangolini, M Tehrani. <br><strong>Composites Part B: Engineering</strong>, 299, 112444, 2025.</div>
@@ -582,7 +586,7 @@
             <h3>Classical Lamination Theory (CLT) Analyzer</h3>
             <button onclick="hideTools()" class="btn-secondary" style="padding: 5px 10px; background:#eee; border:none; border-radius:4px; cursor:pointer;">&larr; Back to Tools</button>
         </div>
-        
+
         <p style="margin-bottom: 15px;">Full [ABD] matrix calculation, through-thickness stress plots, and multi-criteria failure analysis.</p>
 
         <!-- Your existing CLT .clt-app container goes here exactly as before -->
@@ -761,7 +765,7 @@
                         </div>
                         <button class="btn-primary" onclick="updateLaser()" style="margin-top:15px;">Calculate &amp; Plot</button>
                     </div>
-                    
+
                     <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 4px; border: 1px solid #eee;">
                         <h4 style="margin:0 0 10px 0; font-size:14px; color:var(--text);">Calculated Metrics</h4>
                         <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; font-size:13px;">
@@ -946,7 +950,11 @@
                             </div>
 
                             <div class="clt-tab-content" id="pfa_tab_stack">
-                                <div id="pfa_ply_stack_container" class="pfa-ply-stack"></div>
+                                <div id="pfa_ply_stack_container">
+                                    <div style="padding:18px; border:1px dashed #dee2e6; border-radius:6px; background:#fafafa; color:#666; font-size:13px; text-align:center;">
+                                        Run analysis to see illustration
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="clt-tab-content" id="pfa_tab_strain">
@@ -970,9 +978,9 @@
 <!-- Update your CSS to include these new styles -->
 
         <div id="service" class="tab-content">
-            
+
             <h2 class="section-header">Honors & Awards</h2>
-            
+
             <div class="education-entry">
                 <div style="display:flex; justify-content:space-between; align-items:baseline;">
                     <strong>Best Paper Award</strong>
@@ -1014,7 +1022,7 @@
             </div>
 
             <h2 class="section-header" style="margin-top: 3rem;">Activities & Service</h2>
-            
+
             <div style="margin-bottom: 1.5rem;">
                 <strong>Paper Reviewer & Guest Editor:</strong>
                 <p style="font-size:0.95rem; color:#555; margin-bottom:10px;">
@@ -1050,10 +1058,10 @@
         <div id="hobby" class="tab-content">
             <h2 class="section-header">Photography</h2>
             <p style="margin-bottom: 1rem;">
-                Outside of the lab, I am an avid photographer. I enjoy capturing landscapes and macro details, 
+                Outside of the lab, I am an avid photographer. I enjoy capturing landscapes and macro details,
                 which often parallels my interest in microscopy and visual analysis.
             </p>
-            
+
             <div class="photo-grid">
                 <div class="photo-card">
                     <img src="Pictures/monk.jpg" alt="Photography 1">
@@ -1094,13 +1102,13 @@
                     tabContent[i].classList.remove("active");
                 }
             }
-            
+
             // Remove active class from all nav buttons
             var navBtn = document.getElementsByClassName("nav-btn");
             for (var i = 0; i < navBtn.length; i++) {
                 navBtn[i].classList.remove("active");
             }
-            
+
             // Show the selected tab and mark button as active
             document.getElementById(tabName).style.display = "block";
             document.getElementById(tabName).classList.add("active");
@@ -1115,17 +1123,17 @@
                 observer: true,
                 observeParents: true,
                 loop: true,
-                autoplay: { 
-                    delay: 3500, 
-                    disableOnInteraction: false 
+                autoplay: {
+                    delay: 3500,
+                    disableOnInteraction: false
                 },
-                pagination: { 
-                    el: ".swiper-pagination", 
-                    clickable: true 
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true
                 },
-                navigation: { 
-                    nextEl: ".swiper-button-next", 
-                    prevEl: ".swiper-button-prev" 
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev"
                 },
             });
             populateMaterialDropdowns();
@@ -1164,6 +1172,8 @@
         let cltChart = null;
         let pfaChart = null;
         let pfaStrainChart = null;
+        let pfaIllustrationData = null;
+        let pfaCurrentStep = -1;
 
         function populateMaterialDropdowns() {
             ['clt_material_preset', 'pfa_material_preset'].forEach(id => {
@@ -1364,6 +1374,493 @@
             return 'Combined';
         }
 
+        function pfaCreateSvgEl(tag, attrs = {}, textContent = null) {
+            const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+            Object.entries(attrs).forEach(([key, value]) => {
+                if(value === null || value === undefined) return;
+                el.setAttribute(key, String(value));
+            });
+            if(textContent !== null) el.textContent = textContent;
+            return el;
+        }
+
+        function pfaClearSvg(svg) {
+            if(!svg) return;
+            while(svg.firstChild) svg.removeChild(svg.firstChild);
+        }
+
+        function pfaEnsurePlyStackLayout() {
+            const container = document.getElementById('pfa_ply_stack_container');
+            if(!container) return null;
+            if(document.getElementById('pfa_ply_bars') && document.getElementById('pfa_laminate_svg') && document.getElementById('pfa_detail_svg')) return container;
+            container.innerHTML = `
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px; align-items:start;">
+                    <div>
+                        <div style="font-size:12px; font-weight:700; text-transform:uppercase; color:#175096; margin-bottom:8px; letter-spacing:1px;">
+                            Laminate Cross-Section
+                        </div>
+                        <svg id="pfa_laminate_svg" width="100%" viewBox="0 0 340 420" style="border:1px solid #dee2e6; border-radius:6px; background:#fafafa;"></svg>
+                        <div style="display:flex; gap:8px; margin-top:10px; align-items:center;">
+                            <button id="pfa_step_prev" onclick="pfaStepPrev()" style="padding:6px 14px; background:#175096; color:#fff; border:none; border-radius:4px; cursor:pointer; font-size:12px;">&#9664; Prev</button>
+                            <span id="pfa_step_label" style="flex:1; text-align:center; font-size:12px; color:#555;"></span>
+                            <button id="pfa_step_next" onclick="pfaStepNext()" style="padding:6px 14px; background:#175096; color:#fff; border:none; border-radius:4px; cursor:pointer; font-size:12px;">Next &#9654;</button>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="font-size:12px; font-weight:700; text-transform:uppercase; color:#175096; margin-bottom:8px; letter-spacing:1px;">
+                            Ply Stress State
+                        </div>
+                        <svg id="pfa_detail_svg" width="100%" viewBox="0 0 280 280" style="border:1px solid #dee2e6; border-radius:6px; background:#fafafa;"></svg>
+                        <div id="pfa_detail_caption" style="margin-top:8px; font-size:12px; color:#555; line-height:1.5;"></div>
+                    </div>
+                </div>
+                <div style="margin-top:16px;">
+                    <div style="font-size:12px; font-weight:700; text-transform:uppercase; color:#175096; margin-bottom:8px; letter-spacing:1px;">Ply Status Summary</div>
+                    <div id="pfa_ply_bars" class="pfa-ply-stack"></div>
+                </div>
+            `;
+            return container;
+        }
+
+        function pfaPlyStateAtStep(plyIndex, step) {
+            if(step < 0 || !pfaIllustrationData || !Array.isArray(pfaIllustrationData.failureLog)) return 'intact';
+            let state = 'intact';
+            for(let i = 0; i <= step && i < pfaIllustrationData.failureLog.length; i++) {
+                if(pfaIllustrationData.failureLog[i].plyIndex === plyIndex) {
+                    const mode = pfaIllustrationData.failureLog[i].mode || '';
+                    if(mode.includes('fiber')) state = 'fiber';
+                    else if(state !== 'fiber') state = 'matrix';
+                }
+            }
+            return state;
+        }
+
+        function pfaArrowColor(value) {
+            return value >= 0 ? '#175096' : '#d9534f';
+        }
+
+        function pfaSvgArrow(svg, x1, y1, x2, y2, color, label, labelDx = 0, labelDy = 0) {
+            if(!svg) return;
+            const dx = x2 - x1;
+            const dy = y2 - y1;
+            const len = Math.hypot(dx, dy);
+            if(len < 1e-6) return;
+            const ux = dx / len;
+            const uy = dy / len;
+            const headLength = Math.min(10, Math.max(6, len * 0.2));
+            const headWidth = headLength * 0.7;
+            const bx = x2 - ux * headLength;
+            const by = y2 - uy * headLength;
+            const lx = bx + (-uy) * headWidth;
+            const ly = by + ux * headWidth;
+            const rx = bx - (-uy) * headWidth;
+            const ry = by - ux * headWidth;
+
+            svg.appendChild(pfaCreateSvgEl('line', {
+                x1, y1, x2: bx, y2: by,
+                stroke: color,
+                'stroke-width': 2.5,
+                'stroke-linecap': 'round'
+            }));
+            svg.appendChild(pfaCreateSvgEl('polygon', {
+                points: `${x2},${y2} ${lx},${ly} ${rx},${ry}`,
+                fill: color
+            }));
+
+            if(label) {
+                const mx = (x1 + x2) / 2 + labelDx;
+                const my = (y1 + y2) / 2 + labelDy;
+                svg.appendChild(pfaCreateSvgEl('text', {
+                    x: mx,
+                    y: my,
+                    fill: color,
+                    'font-size': 10,
+                    'font-weight': 700,
+                    'text-anchor': 'middle'
+                }, label));
+            }
+        }
+
+        function pfaRenderIllustration(plies, failureLog, loads) {
+            pfaEnsurePlyStackLayout();
+            pfaIllustrationData = {
+                plies: (plies || []).map(ply => ({ ...ply })),
+                failureLog: (failureLog || []).map(ev => ({ ...ev })),
+                loads: Array.isArray(loads) ? [...loads] : (loads || [])
+            };
+            pfaCurrentStep = failureLog && failureLog.length > 0 ? failureLog.length - 1 : 0;
+            pfaDrawLaminateSVG();
+            pfaDrawDetailSVG();
+            pfaUpdateStepLabel();
+        }
+
+        function pfaDrawLaminateSVG() {
+            const svg = document.getElementById('pfa_laminate_svg');
+            if(!svg) return;
+            pfaClearSvg(svg);
+
+            const data = pfaIllustrationData;
+            if(!data || !Array.isArray(data.plies) || !data.plies.length) {
+                svg.appendChild(pfaCreateSvgEl('text', {
+                    x: 170, y: 210, fill: '#666', 'font-size': 13, 'text-anchor': 'middle'
+                }, 'Run analysis to see illustration'));
+                return;
+            }
+
+            const plies = data.plies;
+            const nPlies = plies.length;
+            const svgH = 420;
+            const laminateW = 200;
+            const laminateH = Math.max(10, Math.min(22, 340 / nPlies));
+            const offsetX = 30;
+            const offsetY = 8;
+            const startX = 60;
+            const startY = svgH - 60;
+            const defs = pfaCreateSvgEl('defs');
+            svg.appendChild(defs);
+
+            const colors = {
+                intact: { fill: '#e8edf2', stroke: '#aab', top: '#d0d8e4', fiber: 'rgba(23, 80, 150, 0.5)' },
+                matrix: { fill: '#fff3cd', stroke: '#f59f00', top: '#ffe8a0', fiber: 'rgba(213, 79, 79, 0.4)' },
+                fiber: { fill: '#fde8e8', stroke: '#d9534f', top: '#fcc', fiber: 'rgba(213, 79, 79, 0.4)' }
+            };
+
+            let leftEdge = Infinity;
+            let rightEdge = -Infinity;
+            let topEdge = Infinity;
+            let bottomEdge = -Infinity;
+
+            plies.forEach((ply, k) => {
+                const plyX = startX + (nPlies - 1 - k) * offsetX * 0.3;
+                const plyY = startY - k * (laminateH + 3);
+                leftEdge = Math.min(leftEdge, plyX);
+                rightEdge = Math.max(rightEdge, plyX + laminateW + offsetX);
+                topEdge = Math.min(topEdge, plyY - offsetY);
+                bottomEdge = Math.max(bottomEdge, plyY + laminateH);
+
+                const state = pfaPlyStateAtStep(k, pfaCurrentStep);
+                const palette = colors[state] || colors.intact;
+                const facePoints = [
+                    [plyX, plyY],
+                    [plyX + laminateW, plyY],
+                    [plyX + laminateW, plyY + laminateH],
+                    [plyX, plyY + laminateH]
+                ];
+                const topPoints = [
+                    [plyX, plyY],
+                    [plyX + offsetX, plyY - offsetY],
+                    [plyX + laminateW + offsetX, plyY - offsetY],
+                    [plyX + laminateW, plyY]
+                ];
+                svg.appendChild(pfaCreateSvgEl('polygon', {
+                    points: facePoints.map(p => p.join(',')).join(' '),
+                    fill: palette.fill,
+                    stroke: palette.stroke,
+                    'stroke-width': 1.2
+                }));
+                svg.appendChild(pfaCreateSvgEl('polygon', {
+                    points: topPoints.map(p => p.join(',')).join(' '),
+                    fill: palette.top,
+                    stroke: palette.stroke,
+                    'stroke-width': 1
+                }));
+
+                const clipId = `pfa_ply_clip_${k}`;
+                const clipPath = pfaCreateSvgEl('clipPath', { id: clipId });
+                clipPath.appendChild(pfaCreateSvgEl('polygon', {
+                    points: facePoints.map(p => p.join(',')).join(' ')
+                }));
+                defs.appendChild(clipPath);
+
+                const centerX = plyX + laminateW / 2;
+                const centerY = plyY + laminateH / 2;
+                const theta = ply.angleDeg * Math.PI / 180;
+                const dirX = Math.cos(theta);
+                const dirY = -Math.sin(theta);
+                const perpX = -dirY;
+                const perpY = dirX;
+                const lineGroup = pfaCreateSvgEl('g', { 'clip-path': `url(#${clipId})` });
+                const lineCount = 7;
+                const spacing = laminateH * 1.5;
+                const halfLength = laminateW;
+                for(let i = 0; i < lineCount; i++) {
+                    const offset = (i - (lineCount - 1) / 2) * spacing;
+                    const ox = centerX + perpX * offset;
+                    const oy = centerY + perpY * offset;
+                    lineGroup.appendChild(pfaCreateSvgEl('line', {
+                        x1: ox - dirX * halfLength,
+                        y1: oy - dirY * halfLength,
+                        x2: ox + dirX * halfLength,
+                        y2: oy + dirY * halfLength,
+                        stroke: palette.fiber,
+                        'stroke-width': 1
+                    }));
+                }
+                svg.appendChild(lineGroup);
+
+                svg.appendChild(pfaCreateSvgEl('text', {
+                    x: plyX - 5,
+                    y: plyY + laminateH / 2 + 3,
+                    fill: '#555',
+                    'font-size': 9,
+                    'text-anchor': 'end'
+                }, `${k + 1} ${ply.angleDeg}°`));
+            });
+
+            const loads = data.loads || [];
+            const Nx = Array.isArray(loads) ? (loads[0] || 0) : (loads.Nx || 0);
+            const Ny = Array.isArray(loads) ? (loads[1] || 0) : (loads.Ny || 0);
+            const Nxy = Array.isArray(loads) ? (loads[2] || 0) : (loads.Nxy || 0);
+            const nxMag = Math.min(40, 12 + Math.log10(Math.abs(Nx) + 1) * 10);
+            const nyMag = Math.min(40, 12 + Math.log10(Math.abs(Ny) + 1) * 10);
+            const nxyMag = Math.min(30, 10 + Math.log10(Math.abs(Nxy) + 1) * 8);
+
+            if(Math.abs(Nx) > 1e-9) {
+                const yMid = (topEdge + bottomEdge) / 2;
+                const color = pfaArrowColor(Nx);
+                if(Nx > 0) {
+                    pfaSvgArrow(svg, leftEdge, yMid, leftEdge - nxMag, yMid, color, 'Nₓ', 0, -8);
+                    pfaSvgArrow(svg, rightEdge, yMid, rightEdge + nxMag, yMid, color, 'Nₓ', 0, -8);
+                } else {
+                    pfaSvgArrow(svg, leftEdge - nxMag, yMid, leftEdge, yMid, color, 'Nₓ', 0, -8);
+                    pfaSvgArrow(svg, rightEdge + nxMag, yMid, rightEdge, yMid, color, 'Nₓ', 0, -8);
+                }
+            }
+
+            if(Math.abs(Ny) > 1e-9) {
+                const xMid = (leftEdge + rightEdge) / 2;
+                const color = pfaArrowColor(Ny);
+                if(Ny > 0) {
+                    pfaSvgArrow(svg, xMid, topEdge, xMid, topEdge - nyMag, color, 'Nᵧ', 14, 0);
+                    pfaSvgArrow(svg, xMid, bottomEdge, xMid, bottomEdge + nyMag, color, 'Nᵧ', 14, 0);
+                } else {
+                    pfaSvgArrow(svg, xMid, topEdge - nyMag, xMid, topEdge, color, 'Nᵧ', 14, 0);
+                    pfaSvgArrow(svg, xMid, bottomEdge + nyMag, xMid, bottomEdge, color, 'Nᵧ', 14, 0);
+                }
+            }
+
+            if(Math.abs(Nxy) > 1e-9) {
+                const color = pfaArrowColor(Nxy);
+                const sign = Nxy > 0 ? 1 : -1;
+                const corners = [
+                    { x: leftEdge, y: topEdge, dx: nxyMag, dy: nxyMag * sign },
+                    { x: rightEdge, y: topEdge, dx: nxyMag, dy: -nxyMag * sign },
+                    { x: rightEdge, y: bottomEdge, dx: -nxyMag, dy: -nxyMag * sign },
+                    { x: leftEdge, y: bottomEdge, dx: -nxyMag, dy: nxyMag * sign }
+                ];
+                corners.forEach(corner => {
+                    if(Nxy > 0) pfaSvgArrow(svg, corner.x, corner.y, corner.x + corner.dx, corner.y + corner.dy, color);
+                    else pfaSvgArrow(svg, corner.x + corner.dx, corner.y + corner.dy, corner.x, corner.y, color);
+                });
+                svg.appendChild(pfaCreateSvgEl('text', {
+                    x: rightEdge + 18,
+                    y: topEdge + 10,
+                    fill: color,
+                    'font-size': 10,
+                    'font-weight': 700
+                }, 'Nₓᵧ'));
+            }
+
+            if(pfaCurrentStep >= 0 && data.failureLog[pfaCurrentStep]) {
+                const ev = data.failureLog[pfaCurrentStep];
+                const k = ev.plyIndex;
+                const plyX = startX + (nPlies - 1 - k) * offsetX * 0.3;
+                const plyY = startY - k * (laminateH + 3);
+                svg.appendChild(pfaCreateSvgEl('polygon', {
+                    points: [
+                        [plyX, plyY],
+                        [plyX + laminateW, plyY],
+                        [plyX + laminateW, plyY + laminateH],
+                        [plyX, plyY + laminateH]
+                    ].map(p => p.join(',')).join(' '),
+                    fill: 'none',
+                    stroke: '#d9534f',
+                    'stroke-width': 2,
+                    'stroke-dasharray': '4,2'
+                }));
+
+                const calloutX = 226;
+                const calloutY = Math.max(18, plyY - 16);
+                svg.appendChild(pfaCreateSvgEl('rect', {
+                    x: calloutX,
+                    y: calloutY,
+                    width: 102,
+                    height: 50,
+                    rx: 4,
+                    fill: '#fff',
+                    stroke: '#d9534f',
+                    'stroke-width': 1
+                }));
+                [
+                    `Step ${ev.step}: Ply ${ev.plyIndex + 1}`,
+                    `${ev.angleDeg}° — ${ev.mode}`,
+                    `λ=${ev.lambdaCumulative.toFixed(3)}`
+                ].forEach((line, idx) => {
+                    svg.appendChild(pfaCreateSvgEl('text', {
+                        x: calloutX + 6,
+                        y: calloutY + 14 + idx * 14,
+                        fill: idx === 1 ? '#d9534f' : '#333',
+                        'font-size': 9,
+                        'font-weight': idx === 1 ? 700 : 500
+                    }, line));
+                });
+            }
+
+            [
+                { label: 'Intact', fill: '#e8edf2', stroke: '#aab' },
+                { label: 'Matrix Fail', fill: '#fff3cd', stroke: '#f59f00' },
+                { label: 'Fiber Fail', fill: '#fde8e8', stroke: '#d9534f' }
+            ].forEach((item, idx) => {
+                const y = 380 + idx * 14;
+                svg.appendChild(pfaCreateSvgEl('rect', { x: 16, y, width: 10, height: 10, fill: item.fill, stroke: item.stroke }));
+                svg.appendChild(pfaCreateSvgEl('text', { x: 32, y: y + 9, fill: '#555', 'font-size': 9 }, item.label));
+            });
+        }
+
+        function pfaFailureBadge(mode) {
+            if(mode === 'fiber-tension') return { label: 'FIBER TENSION', fill: '#d9534f', text: '#fff' };
+            if(mode === 'fiber-compression') return { label: 'FIBER COMPRESSION', fill: '#d9534f', text: '#fff' };
+            if(mode === 'matrix-tension') return { label: 'MATRIX TENSION', fill: '#f59f00', text: '#fff' };
+            if(mode === 'matrix-compression') return { label: 'MATRIX COMPRESSION', fill: '#f59f00', text: '#fff' };
+            if(mode === 'matrix-shear') return { label: 'MATRIX SHEAR', fill: '#fd7e14', text: '#fff' };
+            return { label: 'COMBINED', fill: '#6c757d', text: '#fff' };
+        }
+
+        function pfaDrawDetailSVG() {
+            const svg = document.getElementById('pfa_detail_svg');
+            const caption = document.getElementById('pfa_detail_caption');
+            if(!svg) return;
+            pfaClearSvg(svg);
+            if(caption) caption.textContent = '';
+
+            if(!pfaIllustrationData || !pfaIllustrationData.failureLog.length || pfaCurrentStep < 0) {
+                svg.appendChild(pfaCreateSvgEl('text', {
+                    x: 140, y: 140, fill: '#666', 'font-size': 13, 'text-anchor': 'middle'
+                }, 'Run analysis to see stress state'));
+                return;
+            }
+
+            const ev = pfaIllustrationData.failureLog[pfaCurrentStep];
+            if(!ev) {
+                svg.appendChild(pfaCreateSvgEl('text', {
+                    x: 140, y: 140, fill: '#666', 'font-size': 13, 'text-anchor': 'middle'
+                }, 'Run analysis to see stress state'));
+                return;
+            }
+
+            const centerX = 140;
+            const centerY = 140;
+            const theta = (ev.angleDeg || 0) * Math.PI / 180;
+            const axis1 = { x: Math.cos(theta), y: -Math.sin(theta) };
+            const axis2 = { x: -axis1.y, y: axis1.x };
+            const maxStress = Math.max(Math.abs(ev.s1 || 0), Math.abs(ev.s2 || 0), Math.abs(ev.t12 || 0), 1);
+            const scale = value => {
+                const abs = Math.abs(value || 0);
+                if(abs < 1e-9) return 0;
+                return Math.max(15, (abs / maxStress) * 80);
+            };
+
+            svg.appendChild(pfaCreateSvgEl('line', {
+                x1: 30, y1: centerY, x2: 250, y2: centerY,
+                stroke: '#c7ccd3', 'stroke-width': 1.5, 'stroke-dasharray': '4,4'
+            }));
+            svg.appendChild(pfaCreateSvgEl('line', {
+                x1: centerX, y1: 30, x2: centerX, y2: 250,
+                stroke: '#c7ccd3', 'stroke-width': 1.5, 'stroke-dasharray': '4,4'
+            }));
+            svg.appendChild(pfaCreateSvgEl('text', { x: 252, y: centerY - 6, fill: '#9aa1ab', 'font-size': 10 }, 'x'));
+            svg.appendChild(pfaCreateSvgEl('text', { x: centerX + 6, y: 26, fill: '#9aa1ab', 'font-size': 10 }, 'y'));
+
+            pfaSvgArrow(svg, centerX, centerY, centerX + axis1.x * 60, centerY + axis1.y * 60, '#175096', '1', 0, -10);
+            pfaSvgArrow(svg, centerX, centerY, centerX + axis2.x * 50, centerY + axis2.y * 50, '#175096', '2', 0, -10);
+
+            const s1Len = scale(ev.s1);
+            const s2Len = scale(ev.s2);
+            const t12Len = scale(ev.t12);
+            if(s1Len > 0) {
+                const sign = ev.s1 >= 0 ? 1 : -1;
+                pfaSvgArrow(svg, centerX, centerY, centerX + axis1.x * s1Len * sign, centerY + axis1.y * s1Len * sign, ev.s1 >= 0 ? '#d9534f' : '#175096', 'σ₁');
+            }
+            if(s2Len > 0) {
+                const sign = ev.s2 >= 0 ? 1 : -1;
+                pfaSvgArrow(svg, centerX, centerY, centerX + axis2.x * s2Len * sign, centerY + axis2.y * s2Len * sign, ev.s2 >= 0 ? '#d9534f' : '#175096', 'σ₂');
+            }
+            if(t12Len > 0) {
+                const shearAngleA = theta + Math.PI / 4;
+                const shearAngleB = theta - Math.PI / 4;
+                const sign = ev.t12 >= 0 ? 1 : -1;
+                [
+                    { x: Math.cos(shearAngleA) * sign, y: -Math.sin(shearAngleA) * sign },
+                    { x: -Math.cos(shearAngleB) * sign, y: Math.sin(shearAngleB) * sign }
+                ].forEach((dir, idx) => {
+                    pfaSvgArrow(svg, centerX, centerY, centerX + dir.x * t12Len, centerY + dir.y * t12Len, '#fd7e14', idx === 0 ? 'τ₁₂' : '');
+                });
+            }
+
+            const badge = pfaFailureBadge(ev.mode);
+            svg.appendChild(pfaCreateSvgEl('rect', {
+                x: 150, y: 18, width: 112, height: 24, rx: 12,
+                fill: badge.fill
+            }));
+            svg.appendChild(pfaCreateSvgEl('text', {
+                x: 206, y: 34, fill: badge.text, 'font-size': 9, 'font-weight': 700, 'text-anchor': 'middle'
+            }, badge.label));
+            svg.appendChild(pfaCreateSvgEl('text', {
+                x: 140, y: 56, fill: '#175096', 'font-size': 14, 'font-weight': 700, 'text-anchor': 'middle'
+            }, `Ply ${ev.plyIndex + 1} — ${ev.angleDeg}°`));
+
+            if(caption) {
+                caption.textContent = `Step ${ev.step}: ${ev.mode} at λ=${ev.lambdaCumulative.toFixed(4)}. Local stresses: σ₁=${(ev.s1 / 1e6).toFixed(2)} MPa, σ₂=${(ev.s2 / 1e6).toFixed(2)} MPa, τ₁₂=${(ev.t12 / 1e6).toFixed(2)} MPa.`;
+            }
+        }
+
+        function pfaStepNext() {
+            if(!pfaIllustrationData) return;
+            const maxStep = pfaIllustrationData.failureLog.length - 1;
+            if(pfaCurrentStep < maxStep) {
+                pfaCurrentStep++;
+                pfaDrawLaminateSVG();
+                pfaDrawDetailSVG();
+                pfaUpdateStepLabel();
+            }
+        }
+
+        function pfaStepPrev() {
+            if(!pfaIllustrationData) return;
+            if(pfaCurrentStep > 0) {
+                pfaCurrentStep--;
+                pfaDrawLaminateSVG();
+                pfaDrawDetailSVG();
+                pfaUpdateStepLabel();
+            } else if(pfaCurrentStep === 0) {
+                pfaCurrentStep = -1;
+                pfaDrawLaminateSVG();
+                pfaDrawDetailSVG();
+                pfaUpdateStepLabel();
+            }
+        }
+
+        function pfaUpdateStepLabel() {
+            const label = document.getElementById('pfa_step_label');
+            const prevBtn = document.getElementById('pfa_step_prev');
+            const nextBtn = document.getElementById('pfa_step_next');
+            if(!label) return;
+            const failureCount = pfaIllustrationData && Array.isArray(pfaIllustrationData.failureLog) ? pfaIllustrationData.failureLog.length : 0;
+            const maxStep = failureCount - 1;
+            if(prevBtn) prevBtn.disabled = !pfaIllustrationData || failureCount === 0 || pfaCurrentStep < 0;
+            if(nextBtn) nextBtn.disabled = !pfaIllustrationData || failureCount === 0 || pfaCurrentStep >= maxStep;
+            if(!pfaIllustrationData || failureCount === 0) {
+                label.textContent = 'No failures recorded';
+                return;
+            }
+            if(pfaCurrentStep < 0) {
+                label.textContent = 'Initial state (all intact)';
+                return;
+            }
+            const ev = pfaIllustrationData.failureLog[pfaCurrentStep];
+            label.textContent = `Step ${ev.step} of ${failureCount}  |  λ = ${ev.lambdaCumulative.toFixed(4)}`;
+        }
+
         function pfaRenderStiffnessChart(history) {
             const canvas = document.getElementById('pfa_stiffness_chart');
             if(!canvas) return;
@@ -1391,9 +1888,11 @@
             });
         }
 
-        function pfaRenderPlyStack(plies, failureLog, totalLambda) {
-            const el = document.getElementById('pfa_ply_stack_container');
-            if(!el) return;
+        function pfaRenderPlyStack(plies, failureLog, totalLambda, loads) {
+            const container = document.getElementById('pfa_ply_stack_container');
+            if(!container) return;
+            pfaEnsurePlyStackLayout();
+            const el = document.getElementById('pfa_ply_bars') || container;
             el.innerHTML = '';
             plies.forEach((ply, idx) => {
                 const cls = ply.fiberFailed ? 'fiber' : (ply.matrixFailed ? 'matrix' : 'intact');
@@ -1414,6 +1913,7 @@
                 bar.title = `Final λ=${totalLambda.toFixed(4)} | Retention=${retention.toFixed(1)}%`;
                 el.appendChild(bar);
             });
+            pfaRenderIllustration(plies, failureLog, loads);
         }
 
         function pfaRenderStrainChart(strainHistory, lambdaFPF, lambdaLPF) {
@@ -1633,6 +2133,9 @@
                     deltaLambda,
                     lambdaCumulative: lambda,
                     statusClass: modeLabel.toLowerCase(),
+                    s1: best.stress.s1,
+                    s2: best.stress.s2,
+                    t12: best.stress.t12,
                     stress: best.stress,
                     RF: best.RF
                 });
@@ -1673,14 +2176,14 @@
                     <td>${ev.step}</td>
                     <td>${ev.plyIndex + 1}</td>
                     <td>${ev.angleDeg}</td>
-                    <td>${ev.mode}<br><span style="font-size:11px;color:#666;">σ₁=${fmtN(ev.stress.s1/1e6,3)} MPa, σ₂=${fmtN(ev.stress.s2/1e6,3)} MPa, τ₁₂=${fmtN(ev.stress.t12/1e6,3)} MPa</span></td>
+                    <td>${ev.mode}<br><span style="font-size:11px;color:#666;">σ₁=${fmtN(ev.s1/1e6,3)} MPa, σ₂=${fmtN(ev.s2/1e6,3)} MPa, τ₁₂=${fmtN(ev.t12/1e6,3)} MPa</span></td>
                     <td>${ev.deltaLambda.toFixed(3)}</td>
                     <td>${ev.lambdaCumulative.toFixed(4)}</td>
                     <td><span class="pfa-badge ${ev.statusClass}${ev.step===1?' fpf':''}">${ev.step===1?'FPF ':''}${ev.modeLabel}</span></td>
                 </tr>`).join('');
 
             pfaRenderStiffnessChart(history);
-            pfaRenderPlyStack(plies, failureLog, lambda);
+            pfaRenderPlyStack(plies, failureLog, lambda, loadsRef);
             pfaRenderStrainChart(strainHistory, fpf, lpf);
             document.getElementById('pfa_results').style.display = 'flex';
             switchPFATab(document.querySelector('#tool-pfa .tabs .tab'), 'pfa_tab_sequence');
@@ -1706,13 +2209,13 @@
             let rawLayup = document.getElementById('layup').value.trim();
             let angles = rawLayup.split('/').map(s=>parseFloat(s.trim())).filter(v=>!isNaN(v));
             if(document.getElementById('symmetric').checked) angles = [...angles, ...[...angles].reverse()];
-            
+
             const nPlies = angles.length;
             if(nPlies < 1) return;
             const h = nPlies * tply;
             const z = Array.from({length:nPlies+1}, (_,i) => -h/2 + i*tply);
             const loads = ['Nx','Ny','Nxy','Mx','My','Mxy'].map(id => parseFloat(document.getElementById(id)?.value) || 0);
-            
+
             const ABD = Array.from({length:6},()=>new Array(6).fill(0));
             const Qbars = angles.map(deg => {
                 const theta = deg * Math.PI/180;
@@ -1746,7 +2249,7 @@
 
             const invABD = matInv6(ABD);
             const str_curv = invABD.map(row => row.reduce((s,v,j) => s+v*loads[j], 0));
-            
+
             const plies = [];
             const isGlobal = document.querySelector('input[name="coord"]:checked').value === 'global';
 
@@ -1763,7 +2266,7 @@
                 const a_tw = F11*s1*s1 + F22*s2*s2 + F66*t12*t12 + 2*F12*s1*s2;
                 const b_tw = F1*s1 + F2*s2;
                 let twRF = Infinity;
-                if(Math.abs(a_tw)>1e-30){ const disc = b_tw*b_tw+4*a_tw; if(disc>=0) twRF=(-b_tw+Math.sqrt(disc))/(2*a_tw); } 
+                if(Math.abs(a_tw)>1e-30){ const disc = b_tw*b_tw+4*a_tw; if(disc>=0) twRF=(-b_tw+Math.sqrt(disc))/(2*a_tw); }
                 else if(Math.abs(b_tw)>1e-30) twRF=1/b_tw;
                 return { msMax, th, hashMax: Math.max(hF,hM), twRF, msFail: msMax>=1, minRF: Math.min(1/msMax, 1/Math.sqrt(th||1e-30), twRF, 1/Math.sqrt(Math.max(hF,hM)||1e-30)) };
             }
@@ -1782,7 +2285,7 @@
             });
 
             document.getElementById('results_clt').style.display = 'flex';
-            
+
             const critRF = Math.min(...plies.map(p=>p.fa.minRF));
             const nFail = plies.filter(p=>p.fa.msFail).length;
             document.getElementById('summaryCards_clt').innerHTML = `
@@ -1805,7 +2308,7 @@
 
             const vspan = v => `<span style="color:${v>0?'#175096':v<0?'#d9534f':'#333'}">${v.toFixed(1)}</span>`;
             const rfspan = v => `<b style="color:${v<1?'var(--fail)':v<1.5?'var(--warn)':'var(--safe)'}">${isFinite(v)?v.toFixed(2):'∞'}</b>`;
-            
+
             document.getElementById('failureBody_clt').innerHTML = plies.map(p => `<tr>
                 <td>${p.k+1}</td><td>${p.deg}°</td><td>${vspan(p.pts[1].s1)}</td><td>${vspan(p.pts[1].s2)}</td><td>${vspan(p.pts[1].t12)}</td>
                 <td><div class="rf-bar-wrap"><div class="rf-bar"><div class="rf-bar-fill" style="width:${Math.min(p.fa.msMax*100,100)}%;background:${p.fa.msFail?'var(--fail)':'var(--safe)'}"></div></div></div></td>
@@ -1861,7 +2364,7 @@
             const tabs = el.parentElement.children;
             for(let i=0; i<tabs.length; i++) tabs[i].classList.remove('active');
             el.classList.add('active');
-            
+
             const contents = document.getElementsByClassName('clt-tab-content');
             for(let i=0; i<contents.length; i++) contents[i].classList.remove('active');
             document.getElementById(id).classList.add('active');
@@ -1872,7 +2375,7 @@
             // Hide all tools
             document.getElementById('tool-clt').style.display = 'none';
             document.getElementById('tool-laser').style.display = 'none';
-            
+
             // Show selected tool
             document.getElementById('tool-' + toolName).style.display = 'block';
         }
@@ -1891,25 +2394,25 @@
             const frequency = parseFloat(document.getElementById('laser_freq').value) || 50;
             const dutyCycle = parseFloat(document.getElementById('laser_duty').value) || 10;
             const duration = parseFloat(document.getElementById('laser_dur').value) || 1;
-            
+
             // Calculate metrics
             const period = 1 / frequency; // seconds
             const onTime = period * (dutyCycle / 100);
             const offTime = period - onTime;
             const totalPulses = Math.floor(duration / period);
-            
+
             // Update display
             document.getElementById('disp_period').textContent = (period * 1e6).toFixed(2);
             document.getElementById('disp_on').textContent = (onTime * 1e6).toFixed(2);
             document.getElementById('disp_off').textContent = (offTime * 1e6).toFixed(2);
             document.getElementById('disp_count').textContent = totalPulses;
             document.getElementById('laser_duty_val').textContent = dutyCycle + '%';
-            
+
             // Generate waveform data
             const timeStep = Math.min(period / 20, 0.001);
             const timePoints = [];
             const statePoints = [];
-            
+
             let t = 0;
             while (t <= duration) {
                 const phase = (t % period) / period;
@@ -1918,12 +2421,12 @@
                 statePoints.push(state);
                 t += timeStep;
             }
-            
+
             // Create or update chart
             const canvas = document.getElementById('laserChart');
             if (!canvas) return;
             const ctx = canvas.getContext('2d');
-            
+
             if (laserChart) {
                 laserChart.data.labels = timePoints;
                 laserChart.data.datasets[0].data = statePoints;
