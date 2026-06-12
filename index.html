@@ -182,6 +182,22 @@
         .btn-secondary { padding: 8px 16px; background: #e9ecef; border: 1px solid #ccc; border-radius: 4px; cursor: pointer; font-family: 'Roboto', sans-serif; font-size: 0.9rem; transition: background 0.2s; }
         .btn-secondary:hover { background: #dde1e5; }
 
+        /* --- PFA TOOL STYLES --- */
+        .pfa-ply-stack { display: flex; flex-direction: column; gap: 3px; padding: 10px 0; }
+        .pfa-ply-bar {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 6px 12px; border-radius: 4px; font-size: 13px; font-family: 'JetBrains Mono', monospace;
+            border: 1px solid #dee2e6; transition: background 0.3s;
+        }
+        .pfa-ply-bar.intact  { background: #f0f0f0; color: #555; }
+        .pfa-ply-bar.matrix  { background: #fff3cd; border-color: #f59f00; color: #7d5a00; }
+        .pfa-ply-bar.fiber   { background: #fde8e8; border-color: #d9534f; color: #a02020; }
+        .pfa-badge { padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 700; font-family: 'Roboto', sans-serif; }
+        .pfa-badge.intact  { background: #e9ecef; color: #666; }
+        .pfa-badge.matrix  { background: #f59f00; color: #fff; }
+        .pfa-badge.fiber   { background: #d9534f; color: #fff; }
+        .pfa-badge.fpf     { background: #175096; color: #fff; }
+
         /* --- CONTACT & HOBBY TAB STYLES --- */
         .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
         .photo-card { background: white; padding: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-radius: 6px; }
@@ -531,11 +547,10 @@
             <h3>Laser Pulse Analyzer</h3>
             <p>Visualize pulsed laser waveforms based on frequency and duty cycle.</p>
         </div>
-        <!-- Placeholder for future tools -->
-        <div class="tool-card" style="opacity: 0.6; cursor: default;">
-            <i class="fas fa-plus"></i>
-            <h3>Coming Soon</h3>
-            <p>More engineering tools will be added here.</p>
+        <div class="tool-card" onclick="showTool('pfa')">
+            <i class="fas fa-shield-alt"></i>
+            <h3>Progressive Failure Analysis (PFA)</h3>
+            <p>Iterative ply-by-ply failure with stiffness degradation, FPF/LPF detection, and load capacity charts.</p>
         </div>
     </div>
 
@@ -745,6 +760,162 @@
         </div>
     </div>
 
+    <!-- ========================================== -->
+    <!-- TOOL 3: PROGRESSIVE FAILURE ANALYSIS -->
+    <!-- ========================================== -->
+    <div id="tool-pfa" class="active-tool" style="display: none;">
+        <div class="tool-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+            <h3>Composite Progressive Failure Analysis (PFA)</h3>
+            <button onclick="hideTools(); document.getElementById('tool-pfa').style.display='none';" class="btn-secondary" style="padding: 5px 10px; background:#eee; border:none; border-radius:4px; cursor:pointer;">&larr; Back to Tools</button>
+        </div>
+        <p style="margin-bottom: 15px;">Iterative ply-by-ply failure analysis with stiffness degradation and collapse tracking.</p>
+
+        <div class="clt-app">
+            <div class="layout">
+                <div>
+                    <div class="panel">
+                        <div class="panel-header"><div class="dot"></div><span class="panel-title">Material Properties</span></div>
+                        <div class="panel-body">
+                            <div class="form-section">
+                                <div class="form-section-label">Elastic Constants</div>
+                                <div class="form-row">
+                                    <div class="form-group"><label>E₁ (GPa)</label><input id="pfa_e1" type="number" value="140" step="any"></div>
+                                    <div class="form-group"><label>E₂ (GPa)</label><input id="pfa_e2" type="number" value="10" step="any"></div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group"><label>G₁₂ (GPa)</label><input id="pfa_g12" type="number" value="5" step="any"></div>
+                                    <div class="form-group"><label>ν₁₂</label><input id="pfa_nu12" type="number" value="0.3" step="any"></div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group"><label>Ply thickness t (mm)</label><input id="pfa_tply" type="number" value="0.125" step="any"></div>
+                                    <div class="form-group"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-header"><div class="dot" style="background:var(--accent2);"></div><span class="panel-title">Strength Parameters</span></div>
+                        <div class="panel-body">
+                            <div class="form-row">
+                                <div class="form-group"><label>Xt (MPa)</label><input id="pfa_Xt" type="number" value="1500" step="any"></div>
+                                <div class="form-group"><label>Xc (MPa)</label><input id="pfa_Xc" type="number" value="1500" step="any"></div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group"><label>Yt (MPa)</label><input id="pfa_Yt" type="number" value="40" step="any"></div>
+                                <div class="form-group"><label>Yc (MPa)</label><input id="pfa_Yc" type="number" value="246" step="any"></div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group"><label>S₁₂ (MPa)</label><input id="pfa_S12" type="number" value="68" step="any"></div>
+                                <div class="form-group"><label>S₂₃ Interlaminar Shear (MPa)</label><input id="pfa_S23" type="number" value="40" step="any"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-header"><div class="dot" style="background:var(--accent4);"></div><span class="panel-title">Layup & Loads</span></div>
+                        <div class="panel-body">
+                            <div class="form-section">
+                                <div class="form-section-label">Stacking Sequence</div>
+                                <div class="form-group" style="margin-bottom:6px;">
+                                    <label>Angles (degrees, slash-separated)</label>
+                                    <textarea id="pfa_layup" rows="2">0/45/-45/90/90/-45/45/0</textarea>
+                                </div>
+                                <div style="display:flex; gap:10px; margin-bottom:10px; align-items:center; font-size:12px;">
+                                    <input type="checkbox" id="pfa_symmetric" style="width:auto;"><label for="pfa_symmetric">Enforce symmetric [ ]s</label>
+                                </div>
+                            </div>
+                            <div class="form-section">
+                                <div class="form-section-label">Applied Loads</div>
+                                <div class="form-row">
+                                    <div class="form-group"><label>Nₓ (N/m)</label><input id="pfa_Nx" type="number" value="1000" step="any"></div>
+                                    <div class="form-group"><label>Nᵧ (N/m)</label><input id="pfa_Ny" type="number" value="0" step="any"></div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group"><label>Nₓᵧ (N/m)</label><input id="pfa_Nxy" type="number" value="0" step="any"></div>
+                                    <div class="form-group"><label>Mₓ (N·m/m)</label><input id="pfa_Mx" type="number" value="0" step="any"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-header"><div class="dot" style="background:var(--accent3);"></div><span class="panel-title">Analysis Settings</span></div>
+                        <div class="panel-body">
+                            <div class="form-section">
+                                <div class="form-section-label">Failure Criterion</div>
+                                <div class="radio-group" style="display:grid; grid-template-columns:1fr 1fr; gap:4px;">
+                                    <input type="radio" name="pfa_criterion" id="pfa_crit_max" value="Max Stress">
+                                    <label for="pfa_crit_max">Max Stress</label>
+                                    <input type="radio" name="pfa_criterion" id="pfa_crit_th" value="Tsai-Hill">
+                                    <label for="pfa_crit_th">Tsai-Hill</label>
+                                    <input type="radio" name="pfa_criterion" id="pfa_crit_tw" value="Tsai-Wu">
+                                    <label for="pfa_crit_tw">Tsai-Wu</label>
+                                    <input type="radio" name="pfa_criterion" id="pfa_crit_hashin" value="Hashin" checked>
+                                    <label for="pfa_crit_hashin">Hashin</label>
+                                </div>
+                            </div>
+                            <div class="form-section">
+                                <div class="form-section-label">Degradation Model</div>
+                                <div class="radio-group">
+                                    <input type="radio" name="pfa_degradation" id="pfa_deg_discount" value="Ply Discount" checked>
+                                    <label for="pfa_deg_discount">Ply Discount</label>
+                                    <input type="radio" name="pfa_degradation" id="pfa_deg_residual" value="Residual (1%)">
+                                    <label for="pfa_deg_residual">Residual (1%)</label>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-bottom:10px;">
+                                <label>Max Load Factor</label>
+                                <input id="pfa_maxlambda" type="number" value="20" step="any">
+                            </div>
+                            <button class="btn-primary" onclick="runPFA()">Run Progressive Failure Analysis</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right-col" id="pfa_results" style="display:none; flex-direction:column; gap:16px;">
+                    <div class="panel">
+                        <div class="panel-header"><div class="dot" style="background:var(--safe);"></div><span class="panel-title">Summary</span></div>
+                        <div class="panel-body">
+                            <div class="summary-cards" id="pfa_summary_cards"></div>
+                            <div id="pfa_message" style="margin-top:10px; font-size:13px; color:#d9534f; font-weight:700;"></div>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-header"><div class="dot"></div><span class="panel-title">Progressive Results</span></div>
+                        <div class="panel-body">
+                            <div class="tabs">
+                                <div class="tab active" onclick="switchPFATab(this,'pfa_tab_sequence')">Failure Sequence</div>
+                                <div class="tab" onclick="switchPFATab(this,'pfa_tab_stiffness')">Stiffness Degradation</div>
+                                <div class="tab" onclick="switchPFATab(this,'pfa_tab_stack')">Ply Stack</div>
+                            </div>
+
+                            <div class="clt-tab-content active" id="pfa_tab_sequence">
+                                <div style="overflow-x:auto;">
+                                    <table class="failure-table">
+                                        <thead><tr><th>Step</th><th>Ply #</th><th>θ (°)</th><th>Failure Mode</th><th>Δλ</th><th>λ cumulative</th><th>Status</th></tr></thead>
+                                        <tbody id="pfa_failure_body"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="clt-tab-content" id="pfa_tab_stiffness">
+                                <div style="position:relative; height:350px;">
+                                    <canvas id="pfa_stiffness_chart"></canvas>
+                                </div>
+                            </div>
+
+                            <div class="clt-tab-content" id="pfa_tab_stack">
+                                <div id="pfa_ply_stack_container" class="pfa-ply-stack"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <!-- Update your CSS to include these new styles -->
@@ -941,6 +1112,405 @@
         }
 
         let cltChart = null;
+        let pfaChart = null;
+
+        function pfaBuildQbar(E1, E2, G12, nu12, angleDeg) {
+            const safeE1 = Math.max(Math.abs(E1 || 0), 1e-18);
+            const safeE2 = Math.max(Math.abs(E2 || 0), 1e-18);
+            const safeG12 = Math.max(Math.abs(G12 || 0), 1e-18);
+            const safeNu12 = isFinite(nu12) ? nu12 : 0;
+            const nu21 = safeNu12 * safeE2 / safeE1;
+            const denom = 1 - safeNu12 * nu21;
+            if(Math.abs(denom) < 1e-18) return [[0,0,0],[0,0,0],[0,0,0]];
+
+            const Q11 = safeE1 / denom;
+            const Q22 = safeE2 / denom;
+            const Q12 = safeNu12 * safeE2 / denom;
+            const Q66 = safeG12;
+
+            const th = angleDeg * Math.PI / 180;
+            const c = Math.cos(th), s = Math.sin(th);
+            const c2 = c*c, s2 = s*s, c4 = c2*c2, s4 = s2*s2, sc = s*c;
+
+            const q11 = Q11*c4 + Q22*s4 + 2*(Q12 + 2*Q66)*s2*c2;
+            const q22 = Q11*s4 + Q22*c4 + 2*(Q12 + 2*Q66)*s2*c2;
+            const q12 = (Q11 + Q22 - 4*Q66)*s2*c2 + Q12*(c4 + s4);
+            const q66 = (Q11 + Q22 - 2*Q12 - 2*Q66)*s2*c2 + Q66*(c4 + s4);
+            const q16 = (Q11 - Q12 - 2*Q66)*sc*c2 + (Q12 - Q22 + 2*Q66)*sc*s2;
+            const q26 = (Q11 - Q12 - 2*Q66)*sc*s2 + (Q12 - Q22 + 2*Q66)*sc*c2;
+            return [[q11, q12, q16], [q12, q22, q26], [q16, q26, q66]];
+        }
+
+        function pfaAssembleABD(plies, z) {
+            const ABD = Array.from({length:6}, () => Array(6).fill(0));
+            plies.forEach((ply, k) => {
+                const Qb = pfaBuildQbar(ply.E1, ply.E2, ply.G12, ply.nu12, ply.angleDeg);
+                const dz = z[k+1] - z[k];
+                const dz2 = (z[k+1]*z[k+1] - z[k]*z[k]) / 2;
+                const dz3 = (z[k+1]*z[k+1]*z[k+1] - z[k]*z[k]*z[k]) / 3;
+                const terms = [[0,0,Qb[0][0]],[0,1,Qb[0][1]],[0,2,Qb[0][2]],[1,1,Qb[1][1]],[1,2,Qb[1][2]],[2,2,Qb[2][2]]];
+                terms.forEach(([i,j,q]) => {
+                    ABD[i][j] += q * dz;
+                    ABD[i+3][j] += q * dz2;
+                    ABD[i][j+3] += q * dz2;
+                    ABD[i+3][j+3] += q * dz3;
+                });
+            });
+            for(let i=0;i<6;i++) for(let j=0;j<i;j++) ABD[i][j] = ABD[j][i];
+            return ABD;
+        }
+
+        function pfaEvaluateCriterion(s1, s2, t12, strengths, criterion) {
+            const eps = 1e-18;
+            const tinyStress = 1e-10;
+            if(Math.abs(s1) < tinyStress && Math.abs(s2) < tinyStress && Math.abs(t12) < tinyStress) return { RF: Infinity, mode: 'none' };
+
+            const Xt = Math.max(Math.abs(strengths.Xt || 0), eps);
+            const Xc = Math.max(Math.abs(strengths.Xc || 0), eps);
+            const Yt = Math.max(Math.abs(strengths.Yt || 0), eps);
+            const Yc = Math.max(Math.abs(strengths.Yc || 0), eps);
+            const S12 = Math.max(Math.abs(strengths.S12 || 0), eps);
+            const S23 = Math.max(Math.abs(strengths.S23 || 0), eps);
+
+            if(criterion === 'Max Stress') {
+                const absS1 = Math.abs(s1), absS2 = Math.abs(s2), absT = Math.abs(t12);
+                const RF_fiber = absS1 < tinyStress ? Infinity : (s1 >= 0 ? Xt / absS1 : Xc / absS1);
+                const RF_matrix_t = absS2 < tinyStress ? Infinity : (s2 >= 0 ? Yt / absS2 : Yc / absS2);
+                const RF_matrix_s = absT < tinyStress ? Infinity : S12 / absT;
+                const RF_matrix = Math.min(RF_matrix_t, RF_matrix_s);
+                const RF = Math.min(RF_fiber, RF_matrix);
+                let mode = 'matrix-shear';
+                if(RF === RF_fiber) mode = s1 >= 0 ? 'fiber-tension' : 'fiber-compression';
+                else if(RF_matrix_t <= RF_matrix_s) mode = s2 >= 0 ? 'matrix-tension' : 'matrix-compression';
+                return { RF, mode };
+            }
+
+            if(criterion === 'Tsai-Hill') {
+                const X = s1 >= 0 ? Xt : Xc;
+                const Y = s2 >= 0 ? Yt : Yc;
+                const FI = (s1/X)*(s1/X) - (s1*s2)/(X*X) + (s2/Y)*(s2/Y) + (t12/S12)*(t12/S12);
+                if(FI <= eps) return { RF: Infinity, mode: 'combined' };
+                return { RF: 1/Math.sqrt(FI), mode: 'combined' };
+            }
+
+            if(criterion === 'Tsai-Wu') {
+                const F1 = 1/Xt - 1/Xc;
+                const F2 = 1/Yt - 1/Yc;
+                const F11 = 1/(Xt*Xc);
+                const F22 = 1/(Yt*Yc);
+                const F66 = 1/(S12*S12);
+                const F12 = -0.5 * Math.sqrt(F11 * F22);
+                const a = F11*s1*s1 + F22*s2*s2 + F66*t12*t12 + 2*F12*s1*s2;
+                const b = F1*s1 + F2*s2;
+                if(Math.abs(a) <= eps) {
+                    if(Math.abs(b) <= eps) return { RF: Infinity, mode: 'combined' };
+                    const r = 1/b;
+                    return { RF: r > 0 ? r : Infinity, mode: 'combined' };
+                }
+                const disc = b*b + 4*a;
+                if(disc < 0) return { RF: Infinity, mode: 'combined' };
+                const r1 = (-b + Math.sqrt(disc)) / (2*a);
+                const r2 = (-b - Math.sqrt(disc)) / (2*a);
+                const RF = [r1,r2].filter(v => isFinite(v) && v > eps).sort((x,y)=>x-y)[0] ?? Infinity;
+                return { RF, mode: 'combined' };
+            }
+
+            const FI_ft = s1 >= 0 ? (s1/Xt)*(s1/Xt) + (t12/S12)*(t12/S12) : NaN;
+            const FI_fc = s1 < 0 ? (s1/Xc)*(s1/Xc) : NaN;
+            const FI_mt = s2 >= 0 ? (s2/Yt)*(s2/Yt) + (t12/S12)*(t12/S12) : NaN;
+            const FI_mc = s2 < 0 ? (s2/(2*S23))*(s2/(2*S23)) + (((Yc/(2*S23))*(Yc/(2*S23))) - 1)*(s2/Yc) + (t12/S12)*(t12/S12) : NaN;
+            const candidates = [
+                {FI: FI_ft, mode: 'fiber-tension'},
+                {FI: FI_fc, mode: 'fiber-compression'},
+                {FI: FI_mt, mode: 'matrix-tension'},
+                {FI: FI_mc, mode: 'matrix-compression'}
+            ].map(c => ({ RF: (isFinite(c.FI) && c.FI > eps) ? 1/Math.sqrt(c.FI) : Infinity, mode: c.mode }));
+            candidates.sort((a,b) => a.RF - b.RF);
+            return candidates[0] || { RF: Infinity, mode: 'none' };
+        }
+
+        function pfaDegradePly(ply, mode, degradationModel) {
+            const next = { ...ply };
+            const isFiber = mode && mode.includes('fiber');
+            const isMatrix = mode && mode.includes('matrix');
+            if(isFiber) {
+                next.fiberFailed = true;
+                next.matrixFailed = true;
+                if(degradationModel === 'Residual (1%)') {
+                    next.E1 *= 0.01; next.E2 *= 0.01; next.G12 *= 0.01;
+                } else {
+                    next.E1 *= 0.001; next.E2 *= 0.001; next.G12 *= 0.001; next.nu12 = 0;
+                }
+            } else if(isMatrix) {
+                next.matrixFailed = true;
+                if(degradationModel === 'Residual (1%)') {
+                    next.E2 *= 0.01; next.G12 *= 0.01;
+                } else {
+                    next.E2 *= 0.001; next.G12 *= 0.001; next.nu12 *= 0.001;
+                }
+            }
+            return next;
+        }
+
+        function pfaDet6(M) {
+            const A = M.map(r => [...r]);
+            let det = 1;
+            for(let i=0;i<6;i++) {
+                let piv = i;
+                for(let r=i+1;r<6;r++) if(Math.abs(A[r][i]) > Math.abs(A[piv][i])) piv = r;
+                if(Math.abs(A[piv][i]) < 1e-30) return 0;
+                if(piv !== i) { [A[i],A[piv]] = [A[piv],A[i]]; det *= -1; }
+                det *= A[i][i];
+                const d = A[i][i];
+                for(let r=i+1;r<6;r++) {
+                    const f = A[r][i] / d;
+                    for(let c=i;c<6;c++) A[r][c] -= f * A[i][c];
+                }
+            }
+            return det;
+        }
+
+        function pfaModeLabel(mode) {
+            if(mode && mode.includes('fiber')) return 'Fiber';
+            if(mode && mode.includes('matrix')) return 'Matrix';
+            return 'Combined';
+        }
+
+        function pfaRenderStiffnessChart(history) {
+            const canvas = document.getElementById('pfa_stiffness_chart');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            if(pfaChart) pfaChart.destroy();
+            const mapSeries = key => history.map(h => ({x: h.lambda, y: h[key]}));
+            pfaChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    datasets: [
+                        { label: 'A₁₁ (%)', data: mapSeries('A11'), borderColor: '#175096', borderWidth: 2, pointRadius: 0, stepped: true },
+                        { label: 'A₂₂ (%)', data: mapSeries('A22'), borderColor: '#198754', borderWidth: 2, pointRadius: 0, stepped: true },
+                        { label: 'D₁₁ (%)', data: mapSeries('D11'), borderColor: '#f59f00', borderWidth: 2, pointRadius: 0, stepped: true }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    parsing: false,
+                    scales: {
+                        x: { type: 'linear', title: { display: true, text: 'Load Factor λ' }, grid: { color: '#eee' } },
+                        y: { min: 0, max: 100, title: { display: true, text: 'Normalized Stiffness (%)' }, grid: { color: '#eee' } }
+                    }
+                }
+            });
+        }
+
+        function pfaRenderPlyStack(plies, failureLog, totalLambda) {
+            const el = document.getElementById('pfa_ply_stack_container');
+            if(!el) return;
+            el.innerHTML = '';
+            plies.forEach((ply, idx) => {
+                const cls = ply.fiberFailed ? 'fiber' : (ply.matrixFailed ? 'matrix' : 'intact');
+                const badge = ply.fiberFailed ? 'FIBER' : (ply.matrixFailed ? 'MATRIX' : 'INTACT');
+                const e1Base = Math.max(Math.abs(ply.E1_0 || 0), 1e-18);
+                const retention = Math.max(0, Math.min(100, (ply.E1 / e1Base) * 100));
+                const bar = document.createElement('div');
+                bar.className = `pfa-ply-bar ${cls}`;
+                bar.innerHTML = `
+                    <div style="display:flex; align-items:center; gap:10px; flex:1;">
+                        <span>[Ply ${idx+1}]</span>
+                        <span>${ply.angleDeg}°</span>
+                        <div style="flex:1; height:6px; background:rgba(0,0,0,0.12); border-radius:3px; overflow:hidden;">
+                            <div style="height:100%; width:${retention.toFixed(1)}%; background:currentColor; opacity:0.55;"></div>
+                        </div>
+                    </div>
+                    <span class="pfa-badge ${cls}">${badge}</span>`;
+                bar.title = `Final λ=${totalLambda.toFixed(4)} | Retention=${retention.toFixed(1)}%`;
+                el.appendChild(bar);
+            });
+        }
+
+        function switchPFATab(el, id) {
+            const wrap = el.parentElement;
+            for(let i=0;i<wrap.children.length;i++) wrap.children[i].classList.remove('active');
+            el.classList.add('active');
+            ['pfa_tab_sequence','pfa_tab_stiffness','pfa_tab_stack'].forEach(tabId => {
+                const node = document.getElementById(tabId);
+                if(node) node.classList.remove('active');
+            });
+            const target = document.getElementById(id);
+            if(target) target.classList.add('active');
+        }
+
+        function runPFA() {
+            const E1 = (parseFloat(document.getElementById('pfa_e1').value) || 0) * 1e9;
+            const E2 = (parseFloat(document.getElementById('pfa_e2').value) || 0) * 1e9;
+            const G12 = (parseFloat(document.getElementById('pfa_g12').value) || 0) * 1e9;
+            const nu12 = parseFloat(document.getElementById('pfa_nu12').value) || 0;
+            const tply = (parseFloat(document.getElementById('pfa_tply').value) || 0) / 1000;
+            const strengths = {
+                Xt: (parseFloat(document.getElementById('pfa_Xt').value) || 0) * 1e6,
+                Xc: (parseFloat(document.getElementById('pfa_Xc').value) || 0) * 1e6,
+                Yt: (parseFloat(document.getElementById('pfa_Yt').value) || 0) * 1e6,
+                Yc: (parseFloat(document.getElementById('pfa_Yc').value) || 0) * 1e6,
+                S12: (parseFloat(document.getElementById('pfa_S12').value) || 0) * 1e6,
+                S23: (parseFloat(document.getElementById('pfa_S23').value) || 0) * 1e6
+            };
+            if(!isFinite(strengths.S23) || strengths.S23 <= 0) strengths.S23 = strengths.S12 * 0.6;
+
+            const criterion = document.querySelector('input[name="pfa_criterion"]:checked')?.value || 'Hashin';
+            const degradationModel = document.querySelector('input[name="pfa_degradation"]:checked')?.value || 'Ply Discount';
+            const maxLambda = parseFloat(document.getElementById('pfa_maxlambda').value) || 20;
+            const loadsRef = [
+                parseFloat(document.getElementById('pfa_Nx').value) || 0,
+                parseFloat(document.getElementById('pfa_Ny').value) || 0,
+                parseFloat(document.getElementById('pfa_Nxy').value) || 0,
+                parseFloat(document.getElementById('pfa_Mx').value) || 0,
+                0, 0
+            ];
+
+            let angles = (document.getElementById('pfa_layup').value || '').split('/').map(v => parseFloat(v.trim())).filter(v => !isNaN(v));
+            if(document.getElementById('pfa_symmetric').checked) angles = [...angles, ...[...angles].reverse()];
+            if(!angles.length || tply <= 0 || E1 <= 0 || E2 <= 0 || G12 <= 0) return;
+
+            let plies = angles.map(a => ({
+                angleDeg: a,
+                E1, E2, G12, nu12,
+                E1_0: E1,
+                fiberFailed: false,
+                matrixFailed: false
+            }));
+
+            const nPlies = plies.length;
+            const h = nPlies * tply;
+            const z = Array.from({length:nPlies+1}, (_,i) => -h/2 + i*tply);
+
+            let lambda = 0;
+            let collapseMessage = '';
+            const failureLog = [];
+            const history = [];
+
+            const ABD0 = pfaAssembleABD(plies, z);
+            const A11_0 = Math.max(Math.abs(ABD0[0][0]), 1e-18);
+            const A22_0 = Math.max(Math.abs(ABD0[1][1]), 1e-18);
+            const D11_0 = Math.max(Math.abs(ABD0[3][3]), 1e-18);
+            history.push({lambda: 0, A11: 100, A22: 100, D11: 100});
+
+            for(let iter=0; iter<500; iter++) {
+                const ABD = pfaAssembleABD(plies, z);
+                const detABD = pfaDet6(ABD);
+                if(Math.abs(detABD) < 1e-20) {
+                    collapseMessage = 'Structural collapse: ABD became singular during degradation.';
+                    break;
+                }
+
+                const invABD = matInv6(ABD);
+                const stateUnit = invABD.map(row => row.reduce((acc, v, j) => acc + v*loadsRef[j], 0));
+
+                let best = {RF: Infinity, plyIndex: -1, mode: 'none', stress: null};
+
+                for(let k=0; k<nPlies; k++) {
+                    const ply = plies[k];
+                    if(ply.fiberFailed) continue;
+                    const zk = (z[k] + z[k+1]) / 2;
+                    const ex = stateUnit[0] + zk * stateUnit[3];
+                    const ey = stateUnit[1] + zk * stateUnit[4];
+                    const gxy = stateUnit[2] + zk * stateUnit[5];
+
+                    const th = ply.angleDeg * Math.PI / 180;
+                    const c = Math.cos(th), s = Math.sin(th);
+                    const e1 = c*c*ex + s*s*ey + s*c*gxy;
+                    const e2 = s*s*ex + c*c*ey - s*c*gxy;
+                    const g12 = -2*s*c*ex + 2*s*c*ey + (c*c - s*s)*gxy;
+
+                    const nu21 = ply.nu12 * (ply.E2 / Math.max(ply.E1, 1e-18));
+                    const denom = 1 - ply.nu12 * nu21;
+                    if(Math.abs(denom) < 1e-18) continue;
+                    const Q11 = ply.E1 / denom;
+                    const Q22 = ply.E2 / denom;
+                    const Q12 = ply.nu12 * ply.E2 / denom;
+                    const Q66 = ply.G12;
+
+                    const s1 = Q11*e1 + Q12*e2;
+                    const s2 = Q12*e1 + Q22*e2;
+                    const t12 = Q66*g12;
+
+                    const evalOut = pfaEvaluateCriterion(s1, s2, t12, strengths, criterion);
+                    if(evalOut.RF < best.RF) {
+                        best = {RF: evalOut.RF, plyIndex: k, mode: evalOut.mode, stress: {s1, s2, t12}};
+                    }
+                }
+
+                if(!isFinite(best.RF) || best.plyIndex < 0) {
+                    collapseMessage = collapseMessage || 'No additional ply failures detected within the current loading path.';
+                    break;
+                }
+
+                const deltaLambda = best.RF;
+                lambda += deltaLambda;
+                if(lambda > maxLambda) {
+                    lambda = maxLambda;
+                    collapseMessage = `Did not reach LPF within max load factor λ=${maxLambda}.`;
+                    break;
+                }
+
+                plies[best.plyIndex] = pfaDegradePly(plies[best.plyIndex], best.mode, degradationModel);
+                const modeLabel = pfaModeLabel(best.mode);
+                failureLog.push({
+                    step: failureLog.length + 1,
+                    plyIndex: best.plyIndex,
+                    angleDeg: plies[best.plyIndex].angleDeg,
+                    mode: best.mode,
+                    modeLabel,
+                    deltaLambda,
+                    lambdaCumulative: lambda,
+                    statusClass: modeLabel.toLowerCase(),
+                    stress: best.stress,
+                    RF: best.RF
+                });
+
+                const ABDn = pfaAssembleABD(plies, z);
+                history.push({
+                    lambda,
+                    A11: 100 * (ABDn[0][0] / A11_0),
+                    A22: 100 * (ABDn[1][1] / A22_0),
+                    D11: 100 * (ABDn[3][3] / D11_0)
+                });
+
+                if(plies.every(p => p.fiberFailed)) {
+                    collapseMessage = collapseMessage || 'All plies experienced fiber failure (LPF reached).';
+                    break;
+                }
+            }
+
+            const fpf = failureLog[0]?.lambdaCumulative;
+            const lpf = failureLog.length ? failureLog[failureLog.length-1].lambdaCumulative : 0;
+            const failedCount = plies.filter(p => p.fiberFailed || p.matrixFailed).length;
+            const lastHist = history[history.length - 1] || {A11: 100, A22: 100, D11: 100};
+
+            document.getElementById('pfa_summary_cards').innerHTML = `
+                <div class="summary-card"><div class="val" style="color:${fpf ? 'var(--accent)' : 'var(--text-dim)'}">${fpf ? fpf.toFixed(4) : '—'}</div><div class="lbl">FPF Load Factor</div></div>
+                <div class="summary-card"><div class="val" style="color:${lpf ? 'var(--warn)' : 'var(--text-dim)'}">${lpf ? lpf.toFixed(4) : '—'}</div><div class="lbl">LPF Load Factor</div></div>
+                <div class="summary-card"><div class="val" style="color:var(--fail)">${failedCount}/${nPlies}</div><div class="lbl">Plies Failed</div></div>
+                <div class="summary-card"><div class="val" style="color:var(--safe)">${lastHist.A11.toFixed(2)}%</div><div class="lbl">Residual A₁₁</div></div>
+            `;
+
+            document.getElementById('pfa_message').textContent = collapseMessage;
+
+            document.getElementById('pfa_failure_body').innerHTML = failureLog.map(ev => `
+                <tr>
+                    <td>${ev.step}</td>
+                    <td>${ev.plyIndex + 1}</td>
+                    <td>${ev.angleDeg}</td>
+                    <td>${ev.mode}<br><span style="font-size:11px;color:#666;">σ₁=${fmtN(ev.stress.s1/1e6,3)} MPa, σ₂=${fmtN(ev.stress.s2/1e6,3)} MPa, τ₁₂=${fmtN(ev.stress.t12/1e6,3)} MPa</span></td>
+                    <td>${ev.deltaLambda.toFixed(3)}</td>
+                    <td>${ev.lambdaCumulative.toFixed(4)}</td>
+                    <td><span class="pfa-badge ${ev.statusClass}${ev.step===1?' fpf':''}">${ev.step===1?'FPF ':''}${ev.modeLabel}</span></td>
+                </tr>`).join('');
+
+            pfaRenderStiffnessChart(history);
+            pfaRenderPlyStack(plies, failureLog, lambda);
+            document.getElementById('pfa_results').style.display = 'flex';
+            switchPFATab(document.querySelector('#tool-pfa .tabs .tab'), 'pfa_tab_sequence');
+        }
 
         function runCLT() {
             const E1 = parseFloat(document.getElementById('e1').value)*1e9;
