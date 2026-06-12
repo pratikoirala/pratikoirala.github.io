@@ -198,6 +198,25 @@
         .pfa-badge.fiber   { background: #d9534f; color: #fff; }
         .pfa-badge.fpf     { background: #175096; color: #fff; }
 
+        /* --- MATERIAL PRESET SELECTOR --- */
+        .clt-app select {
+            background: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            color: #333;
+            font-family: 'Roboto', sans-serif;
+            font-size: 13px;
+            padding: 8px 10px;
+            width: 100%;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+        .clt-app select:focus {
+            border-color: #175096;
+            box-shadow: 0 0 0 2px rgba(23,80,150,0.1);
+            outline: none;
+        }
+
         /* --- CONTACT & HOBBY TAB STYLES --- */
         .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
         .photo-card { background: white; padding: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-radius: 6px; }
@@ -572,6 +591,15 @@
                     <div class="panel">
                         <div class="panel-header"><div class="dot"></div><span class="panel-title">Material Properties</span></div>
                         <div class="panel-body">
+                            <div class="form-section" style="margin-bottom:12px;">
+                                <div class="form-section-label">Material Preset</div>
+                                <div style="display:flex; gap:8px; align-items:center;">
+                                    <select id="clt_material_preset" style="flex:1;" onchange="applyMaterialPreset('clt')">
+                                        <option value="">— Select a material —</option>
+                                    </select>
+                                </div>
+                                <div id="clt_material_source" style="font-size:11px; color:#888; margin-top:4px; font-style:italic;"></div>
+                            </div>
                             <div class="form-section">
                                 <div class="form-section-label">Elastic Constants</div>
                                 <div class="form-row">
@@ -766,7 +794,7 @@
     <div id="tool-pfa" class="active-tool" style="display: none;">
         <div class="tool-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
             <h3>Composite Progressive Failure Analysis (PFA)</h3>
-            <button onclick="hideTools(); document.getElementById('tool-pfa').style.display='none';" class="btn-secondary" style="padding: 5px 10px; background:#eee; border:none; border-radius:4px; cursor:pointer;">&larr; Back to Tools</button>
+            <button onclick="hideTools()" class="btn-secondary" style="padding: 5px 10px; background:#eee; border:none; border-radius:4px; cursor:pointer;">&larr; Back to Tools</button>
         </div>
         <p style="margin-bottom: 15px;">Iterative ply-by-ply failure analysis with stiffness degradation and collapse tracking.</p>
 
@@ -776,6 +804,15 @@
                     <div class="panel">
                         <div class="panel-header"><div class="dot"></div><span class="panel-title">Material Properties</span></div>
                         <div class="panel-body">
+                            <div class="form-section" style="margin-bottom:12px;">
+                                <div class="form-section-label">Material Preset</div>
+                                <div style="display:flex; gap:8px; align-items:center;">
+                                    <select id="pfa_material_preset" style="flex:1;" onchange="applyMaterialPreset('pfa')">
+                                        <option value="">— Select a material —</option>
+                                    </select>
+                                </div>
+                                <div id="pfa_material_source" style="font-size:11px; color:#888; margin-top:4px; font-style:italic;"></div>
+                            </div>
                             <div class="form-section">
                                 <div class="form-section-label">Elastic Constants</div>
                                 <div class="form-row">
@@ -889,6 +926,7 @@
                                 <div class="tab active" onclick="switchPFATab(this,'pfa_tab_sequence')">Failure Sequence</div>
                                 <div class="tab" onclick="switchPFATab(this,'pfa_tab_stiffness')">Stiffness Degradation</div>
                                 <div class="tab" onclick="switchPFATab(this,'pfa_tab_stack')">Ply Stack</div>
+                                <div class="tab" onclick="switchPFATab(this,'pfa_tab_strain')">Stress-Strain</div>
                             </div>
 
                             <div class="clt-tab-content active" id="pfa_tab_sequence">
@@ -908,6 +946,16 @@
 
                             <div class="clt-tab-content" id="pfa_tab_stack">
                                 <div id="pfa_ply_stack_container" class="pfa-ply-stack"></div>
+                            </div>
+
+                            <div class="clt-tab-content" id="pfa_tab_strain">
+                                <div style="position:relative; height:350px;">
+                                    <canvas id="pfa_strain_chart"></canvas>
+                                </div>
+                                <p style="font-size:12px; color:#888; margin-top:8px;">
+                                    Apparent laminate axial stress σₓ (MPa) vs. midplane axial strain εₓ (%).
+                                    Markers indicate FPF and LPF events. Slope change reflects stiffness degradation.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -1079,6 +1127,7 @@
                     prevEl: ".swiper-button-prev" 
                 },
             });
+            populateMaterialDropdowns();
         });
 
         // --- 3. CLT TOOL CALCULATOR LOGIC ---
@@ -1113,6 +1162,101 @@
 
         let cltChart = null;
         let pfaChart = null;
+        let pfaStrainChart = null;
+
+        const MATERIAL_DB = {
+          "AS4/3501-6 Carbon/Epoxy": {
+            E1: 142, E2: 10.3, G12: 7.2, nu12: 0.27,
+            Xt: 1830, Xc: 1096, Yt: 57, Yc: 228, S12: 71, S23: 40,
+            tply: 0.125, rho: 1580,
+            source: "Daniel & Ishai, Table A.4"
+          },
+          "T300/5208 Carbon/Epoxy": {
+            E1: 181, E2: 10.3, G12: 7.17, nu12: 0.28,
+            Xt: 1500, Xc: 1500, Yt: 40, Yc: 246, S12: 68, S23: 40,
+            tply: 0.125, rho: 1600,
+            source: "Jones, Mechanics of Composite Materials"
+          },
+          "IM6/SC1081 Carbon/Epoxy": {
+            E1: 177, E2: 10.8, G12: 7.6, nu12: 0.27,
+            Xt: 2860, Xc: 1750, Yt: 49, Yc: 246, S12: 83, S23: 45,
+            tply: 0.125, rho: 1600,
+            source: "MIL-HDBK-17"
+          },
+          "E-Glass/Epoxy (Woven)": {
+            E1: 25, E2: 25, G12: 4.0, nu12: 0.17,
+            Xt: 440, Xc: 425, Yt: 440, Yc: 425, S12: 40, S23: 30,
+            tply: 0.25, rho: 1900,
+            source: "WWFE Benchmark"
+          },
+          "E-Glass/MY750 Epoxy (UD)": {
+            E1: 45.6, E2: 16.2, G12: 5.83, nu12: 0.278,
+            Xt: 1280, Xc: 800, Yt: 40, Yc: 145, S12: 73, S23: 45,
+            tply: 0.25, rho: 2000,
+            source: "WWFE Test Case 1 — Hinton & Soden 1998"
+          },
+          "AS4/PEEK Carbon/PEEK": {
+            E1: 134, E2: 8.9, G12: 5.1, nu12: 0.28,
+            Xt: 2130, Xc: 1100, Yt: 80, Yc: 200, S12: 160, S23: 60,
+            tply: 0.125, rho: 1600,
+            source: "APC-2, Thermoplastic Composites"
+          },
+          "Kevlar-49/Epoxy": {
+            E1: 76, E2: 5.5, G12: 2.1, nu12: 0.34,
+            Xt: 1400, Xc: 235, Yt: 12, Yc: 53, S12: 34, S23: 20,
+            tply: 0.125, rho: 1380,
+            source: "Mil-HDBK-17 / Daniel & Ishai"
+          },
+          "Boron/Epoxy": {
+            E1: 204, E2: 18.5, G12: 5.59, nu12: 0.23,
+            Xt: 1260, Xc: 2500, Yt: 61, Yc: 202, S12: 67, S23: 40,
+            tply: 0.1346, rho: 2000,
+            source: "Daniel & Ishai, Table A.4"
+          },
+          "Custom": {
+            E1: 140, E2: 10, G12: 5, nu12: 0.3,
+            Xt: 1500, Xc: 1500, Yt: 40, Yc: 246, S12: 68, S23: 40,
+            tply: 0.125, rho: 1600,
+            source: ""
+          }
+        };
+
+        function populateMaterialDropdowns() {
+            ['clt_material_preset', 'pfa_material_preset'].forEach(id => {
+                const sel = document.getElementById(id);
+                if(!sel) return;
+                Object.keys(MATERIAL_DB).forEach(name => {
+                    const opt = document.createElement('option');
+                    opt.value = name;
+                    opt.textContent = name;
+                    sel.appendChild(opt);
+                });
+            });
+        }
+
+        function applyMaterialPreset(tool) {
+            const prefix = tool === 'clt' ? '' : 'pfa_';
+            const selId  = tool === 'clt' ? 'clt_material_preset' : 'pfa_material_preset';
+            const srcId  = tool === 'clt' ? 'clt_material_source'  : 'pfa_material_source';
+
+            const matName = document.getElementById(selId).value;
+            if(!matName || !MATERIAL_DB[matName]) return;
+            const m = MATERIAL_DB[matName];
+
+            const fields = {
+                e1: m.E1, e2: m.E2, g12: m.G12, nu12: m.nu12,
+                tply: m.tply, rho: m.rho,
+                Xt: m.Xt, Xc: m.Xc, Yt: m.Yt, Yc: m.Yc, S12: m.S12, S23: m.S23
+            };
+
+            Object.entries(fields).forEach(([field, val]) => {
+                const el = document.getElementById(prefix + field);
+                if(el && val !== undefined) el.value = val;
+            });
+
+            const srcEl = document.getElementById(srcId);
+            if(srcEl) srcEl.textContent = m.source ? 'Source: ' + m.source : '';
+        }
 
         function pfaBuildQbar(E1, E2, G12, nu12, angleDeg) {
             const safeE1 = Math.max(Math.abs(E1 || 0), 1e-18);
@@ -1328,11 +1472,85 @@
             });
         }
 
+        function pfaRenderStrainChart(strainHistory, lambdaFPF, lambdaLPF) {
+            if(pfaStrainChart) { pfaStrainChart.destroy(); pfaStrainChart = null; }
+            const canvas = document.getElementById('pfa_strain_chart');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+
+            const lineData = strainHistory.map(p => ({
+                x: p.eps_x * 100,
+                y: p.sigma_x / 1e6
+            }));
+
+            const fpfData = strainHistory.filter(p => Math.abs(p.lambda - lambdaFPF) < 1e-9).map(p => ({
+                x: p.eps_x * 100, y: p.sigma_x / 1e6
+            }));
+            const lpfData = strainHistory.length ? [{ x: strainHistory[strainHistory.length-1].eps_x * 100, y: strainHistory[strainHistory.length-1].sigma_x / 1e6 }] : [];
+
+            pfaStrainChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    datasets: [
+                        {
+                            label: 'σₓ vs εₓ',
+                            data: lineData,
+                            borderColor: '#175096',
+                            backgroundColor: 'rgba(23,80,150,0.08)',
+                            borderWidth: 2,
+                            pointRadius: 3,
+                            pointBackgroundColor: '#175096',
+                            tension: 0,
+                            fill: true,
+                            order: 3
+                        },
+                        {
+                            label: 'FPF',
+                            data: fpfData,
+                            borderColor: '#f59f00',
+                            backgroundColor: '#f59f00',
+                            pointRadius: 8,
+                            pointStyle: 'star',
+                            showLine: false,
+                            order: 1
+                        },
+                        {
+                            label: 'LPF',
+                            data: lpfData,
+                            borderColor: '#d9534f',
+                            backgroundColor: '#d9534f',
+                            pointRadius: 8,
+                            pointStyle: 'triangle',
+                            showLine: false,
+                            order: 2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    parsing: false,
+                    scales: {
+                        x: { type: 'linear', title: { display: true, text: 'Axial Strain εₓ (%)' }, grid: { color: '#eee' } },
+                        y: { title: { display: true, text: 'Apparent Stress σₓ (MPa)' }, grid: { color: '#eee' } }
+                    },
+                    plugins: {
+                        legend: { display: true, position: 'top' },
+                        tooltip: {
+                            callbacks: {
+                                label: function(c) { return `σₓ = ${c.parsed.y.toFixed(1)} MPa, εₓ = ${c.parsed.x.toFixed(4)}%`; }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
         function switchPFATab(el, id) {
             const wrap = el.parentElement;
             for(let i=0;i<wrap.children.length;i++) wrap.children[i].classList.remove('active');
             el.classList.add('active');
-            ['pfa_tab_sequence','pfa_tab_stiffness','pfa_tab_stack'].forEach(tabId => {
+            ['pfa_tab_sequence','pfa_tab_stiffness','pfa_tab_stack','pfa_tab_strain'].forEach(tabId => {
                 const node = document.getElementById(tabId);
                 if(node) node.classList.remove('active');
             });
@@ -1387,12 +1605,16 @@
             let collapseMessage = '';
             const failureLog = [];
             const history = [];
+            const strainHistory = [];
+            const Nx_ref = loadsRef[0];
+            const h_total = h;
 
             const ABD0 = pfaAssembleABD(plies, z);
             const A11_0 = Math.max(Math.abs(ABD0[0][0]), 1e-18);
             const A22_0 = Math.max(Math.abs(ABD0[1][1]), 1e-18);
             const D11_0 = Math.max(Math.abs(ABD0[3][3]), 1e-18);
             history.push({lambda: 0, A11: 100, A22: 100, D11: 100});
+            strainHistory.push({lambda: 0, eps_x: 0, sigma_x: 0});
 
             for(let iter=0; iter<500; iter++) {
                 const ABD = pfaAssembleABD(plies, z);
@@ -1448,9 +1670,12 @@
                 lambda += deltaLambda;
                 if(lambda > maxLambda) {
                     lambda = maxLambda;
+                    strainHistory.push({lambda, eps_x: stateUnit[0]*lambda, sigma_x: h_total > 0 ? Nx_ref*lambda/h_total : 0});
                     collapseMessage = `Did not reach LPF within max load factor λ=${maxLambda}.`;
                     break;
                 }
+
+                strainHistory.push({lambda, eps_x: stateUnit[0]*lambda, sigma_x: h_total > 0 ? Nx_ref*lambda/h_total : 0});
 
                 plies[best.plyIndex] = pfaDegradePly(plies[best.plyIndex], best.mode, degradationModel);
                 const modeLabel = pfaModeLabel(best.mode);
@@ -1486,9 +1711,12 @@
             const failedCount = plies.filter(p => p.fiberFailed || p.matrixFailed).length;
             const lastHist = history[history.length - 1] || {A11: 100, A22: 100, D11: 100};
 
+            const FPF_MPa = (fpf && h > 0 && isFinite(Nx_ref)) ? (fpf * Nx_ref / h) / 1e6 : null;
+            const LPF_MPa = (lpf && h > 0 && isFinite(Nx_ref)) ? (lpf * Nx_ref / h) / 1e6 : null;
+
             document.getElementById('pfa_summary_cards').innerHTML = `
-                <div class="summary-card"><div class="val" style="color:${fpf ? 'var(--accent)' : 'var(--text-dim)'}">${fpf ? fpf.toFixed(4) : '—'}</div><div class="lbl">FPF Load Factor</div></div>
-                <div class="summary-card"><div class="val" style="color:${lpf ? 'var(--warn)' : 'var(--text-dim)'}">${lpf ? lpf.toFixed(4) : '—'}</div><div class="lbl">LPF Load Factor</div></div>
+                <div class="summary-card"><div class="val" style="color:${fpf ? 'var(--accent)' : 'var(--text-dim)'}">${fpf ? fpf.toFixed(4) : '—'}</div>${FPF_MPa !== null ? `<div style="font-size:11px;color:#666;margin-top:2px;">(${FPF_MPa.toFixed(1)} MPa)</div>` : ''}<div class="lbl">FPF Load Factor</div></div>
+                <div class="summary-card"><div class="val" style="color:${lpf ? 'var(--warn)' : 'var(--text-dim)'}">${lpf ? lpf.toFixed(4) : '—'}</div>${LPF_MPa !== null ? `<div style="font-size:11px;color:#666;margin-top:2px;">(${LPF_MPa.toFixed(1)} MPa)</div>` : ''}<div class="lbl">LPF Load Factor</div></div>
                 <div class="summary-card"><div class="val" style="color:var(--fail)">${failedCount}/${nPlies}</div><div class="lbl">Plies Failed</div></div>
                 <div class="summary-card"><div class="val" style="color:var(--safe)">${lastHist.A11.toFixed(2)}%</div><div class="lbl">Residual A₁₁</div></div>
             `;
@@ -1508,6 +1736,7 @@
 
             pfaRenderStiffnessChart(history);
             pfaRenderPlyStack(plies, failureLog, lambda);
+            pfaRenderStrainChart(strainHistory, fpf, lpf);
             document.getElementById('pfa_results').style.display = 'flex';
             switchPFATab(document.querySelector('#tool-pfa .tabs .tab'), 'pfa_tab_sequence');
         }
